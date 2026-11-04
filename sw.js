@@ -2,7 +2,7 @@
    目标：加到桌面后断网也能打开；有网时静默更新。
    策略：页面 network-first（保证拿到新内容），静态资源 stale-while-revalidate。 */
 
-var CACHE = 'zmf-v2';
+var CACHE = 'zmf-v3';
 var CORE = [
   './',
   './index.html',

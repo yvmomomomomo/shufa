@@ -2306,9 +2306,10 @@ window.ZMF_BANK = (window.ZMF_BANK || []).concat([
     if ($('nZz')) $('nZz').textContent = nZ;
     if ($('nJp')) $('nJp').textContent = nJ;
 
-    document.querySelectorAll('.qchip').forEach(function (c) {
+    document.querySelectorAll('.qchips .chip').forEach(function (c) {
       c.addEventListener('click', function () {
         state.filter = c.getAttribute('data-f');
+        state.size = state.size;      // 保持每组题数
         syncChips();
         start();
       });
