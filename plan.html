@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="作战室">
+<meta name="theme-color" content="#f3ede1">
+<title>五十日作战室 — 政治 · 日语203 · 书法专业课</title>
+<meta name="description" content="中国美术学院书法专硕（日语203）五十日备考作战室：分数账本、政治冲刺、日语提分路径、书法日课与检查表。">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ============================================================
+   松雪·脉络  —  赵孟頫书法脉络
+   设计语言：宣纸 / 墨 / 朱砂 / 界格
+   ============================================================ */
+
+:root{
+  --paper:      #f3ede1;
+  --paper-2:    #eae2d2;
+  --paper-3:    #e0d6c2;
+  --ink:        #17170f;
+  --ink-2:      #3c3b31;
+  --ink-3:      #6f6d60;
+  --ink-4:      #9c998b;
+  --cinnabar:   #a6342a;
+  --cinnabar-2: #c2543f;
+  --cinnabar-s: rgba(166,52,42,.12);
+  --gold:       #8a7448;
+  --jade:       #2f5257;
+  --line:       rgba(23,23,15,.16);
+  --line-2:     rgba(23,23,15,.07);
+
+  --f-song: "Songti SC","STSong","SimSun","Source Han Serif SC","Noto Serif SC","Noto Serif CJK SC",serif;
+  --f-kai:  "Kaiti SC","STKaiti","KaiTi","楷体","Kaiti TC","Songti SC","Noto Serif CJK SC",serif;
+  --f-hei:  "PingFang SC","HarmonyOS Sans SC","MiSans","Microsoft YaHei","Noto Sans CJK SC","Noto Sans SC",sans-serif;
+
+  --serif: var(--f-song);
+  --kai:   var(--f-kai);
+  --mono:  "SF Mono","JetBrains Mono","Cascadia Mono",Consolas,"Courier New",monospace;
+
+  --maxw: 1120px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:17px;
+  line-height:1.95;
+  letter-spacing:.02em;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* 宣纸肌理 */
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    radial-gradient(ellipse 70% 50% at 12% 8%, rgba(255,255,255,.55), transparent 60%),
+    radial-gradient(ellipse 60% 55% at 88% 92%, rgba(140,120,80,.10), transparent 62%),
+    repeating-linear-gradient(0deg, rgba(90,75,45,.030) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(90,75,45,.024) 0 1px, transparent 1px 4px),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='220' height='220' filter='url(%23n)' opacity='.055'/></svg>");
+  mix-blend-mode:multiply;
+  opacity:.9;
+}
+
+main,header.hero,footer{ position:relative; z-index:1; }
+
+::selection{ background:var(--cinnabar); color:var(--paper); }
+
+a{ color:inherit; text-decoration:none; }
+
+img{ max-width:100%; }
+
+.wrap{ width:min(100% - 48px, var(--maxw)); margin-inline:auto; }
+
+/* ---------- 顶部阅读进度 ---------- */
+#progress{
+  position:fixed; top:0; left:0; height:2px; width:0%;
+  background:linear-gradient(90deg,var(--cinnabar),var(--cinnabar-2));
+  z-index:120; transition:width .1s linear;
+}
+
+/* ---------- 导航 ---------- */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; gap:28px;
+  padding:14px clamp(20px,4vw,44px);
+  background:rgba(243,237,225,.78);
+  -webkit-backdrop-filter:blur(14px) saturate(1.1);
+  backdrop-filter:blur(14px) saturate(1.1);
+  border-bottom:1px solid var(--line-2);
+  transform:translateY(0);
+  transition:transform .45s var(--ease), background .3s;
+}
+.nav.hide{ transform:translateY(-102%); }
+.nav__brand{ display:flex; align-items:center; gap:11px; margin-right:auto; }
+.nav__seal{
+  width:30px; height:30px; flex:none;
+  display:grid; place-items:center;
+  background:var(--cinnabar); color:#fff6ee;
+  font-family:var(--kai); font-size:13px; line-height:1; letter-spacing:0;
+  border-radius:3px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.28);
+}
+.nav__title{ font-family:var(--kai); font-size:19px; letter-spacing:.18em; }
+.nav__title small{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--ink-3); margin-left:8px; }
+.nav__links{ display:flex; gap:22px; align-items:center; }
+.nav__links a{
+  font-size:13.5px; letter-spacing:.12em; color:var(--ink-2);
+  position:relative; padding:4px 0; white-space:nowrap;
+}
+.nav__links a::after{
+  content:""; position:absolute; left:0; bottom:0; height:1px; width:0;
+  background:var(--cinnabar); transition:width .35s var(--ease);
+}
+.nav__links a:hover::after,.nav__links a.on::after{ width:100%; }
+.nav__links a.on{ color:var(--cinnabar); }
+.nav__cta{
+  font-size:12.5px; letter-spacing:.1em; color:var(--ink-2);
+  border:1px solid var(--line); border-radius:999px;
+  padding:7px 14px 6px; white-space:nowrap;
+  transition:.3s var(--ease);
+}
+.nav__cta:hover{ border-color:var(--cinnabar); color:var(--cinnabar); }
+/* 触屏也能打开的搜索入口（替代 Ctrl+K） */
+.nav__search{
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:inherit; font-size:12.5px; letter-spacing:.1em; color:var(--ink-2);
+  border:1px solid transparent; border-radius:999px;
+  padding:7px 10px 6px; white-space:nowrap; background:none; cursor:pointer;
+  transition:.3s var(--ease);
+}
+.nav__search svg{ width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; }
+.nav__search:hover{ color:var(--cinnabar); border-color:var(--line); background:rgba(178,58,44,.04); }
+
+/* ---------- Hero ---------- */
+.hero{
+  min-height:100svh; padding:120px 0 70px;
+  display:grid; grid-template-columns:1fr; align-items:center;
+  position:relative; overflow:hidden;
+}
+/* 淡墨大字水印 */
+.hero__ghost{
+  position:absolute; right:-4vw; top:46%;
+  transform:translateY(-50%);
+  font-family:var(--kai);
+  font-size:clamp(240px,42vw,620px);
+  line-height:.8;
+  color:rgba(23,23,15,.045);
+  writing-mode:vertical-rl;
+  letter-spacing:-.06em;
+  pointer-events:none; user-select:none;
+  z-index:0;
+}
+.hero__inner{ position:relative; z-index:2; display:grid; gap:34px; }
+
+.hero__eyebrow{
+  display:flex; align-items:center; gap:14px;
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.34em;
+  color:var(--ink-3); text-transform:uppercase;
+}
+.hero__eyebrow span{ display:block; width:52px; height:1px; background:var(--ink-4); }
+
+.hero__name{
+  font-family:var(--kai);
+  font-size:clamp(64px,12.5vw,150px);
+  line-height:1.02; letter-spacing:.06em; font-weight:400;
+  margin:0;
+}
+.hero__name em{ font-style:normal; color:var(--cinnabar); }
+.hero__latin{
+  font-family:var(--mono); font-size:12px; letter-spacing:.3em;
+  color:var(--ink-3); margin-top:6px;
+}
+
+.hero__epi{
+  max-width:600px; padding-left:22px;
+  border-left:2px solid var(--cinnabar);
+  font-family:var(--kai); font-size:clamp(19px,2.3vw,25px);
+  line-height:1.9; color:var(--ink-2); letter-spacing:.08em;
+}
+.hero__epi b{ font-weight:400; color:var(--ink); border-bottom:1px solid var(--line); }
+.hero__epi cite{ display:block; margin-top:10px; font-style:normal; font-size:12.5px; letter-spacing:.14em; color:var(--ink-3); font-family:var(--serif); }
+
+.hero__meta{
+  display:flex; flex-wrap:wrap; gap:0;
+  border-top:1px solid var(--line); padding-top:18px;
+}
+.hero__meta div{ padding-right:38px; margin-right:38px; border-right:1px solid var(--line-2); }
+.hero__meta div:last-child{ border:0; }
+.hero__meta dt{ font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; color:var(--ink-3); }
+.hero__meta dd{ margin:4px 0 0; font-family:var(--kai); font-size:17px; letter-spacing:.1em; }
+
+.hero__scroll{
+  position:absolute; left:50%; bottom:26px; transform:translateX(-50%);
+  display:grid; justify-items:center; gap:8px;
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.28em; color:var(--ink-4);
+}
+.hero__scroll i{ display:block; width:1px; height:44px; background:linear-gradient(var(--ink-4),transparent); animation:drop 2.4s var(--ease) infinite; }
+@keyframes drop{ 0%{ transform:scaleY(.2); transform-origin:top; opacity:0 } 40%{opacity:1} 100%{ transform:scaleY(1); transform-origin:top; opacity:0 } }
+
+/* ---------- 章节 ---------- */
+.sec{ padding:clamp(72px,10vw,132px) 0; position:relative; }
+.sec + .sec{ border-top:1px solid var(--line-2); }
+.sec--tint{ background:linear-gradient(180deg, rgba(234,226,210,.55), rgba(234,226,210,0)); }
+
+.sec__head{ display:grid; grid-template-columns:auto 1fr; gap:clamp(16px,3vw,40px); align-items:start; margin-bottom:clamp(38px,5vw,64px); }
+.sec__num{
+  font-family:var(--kai); font-size:13px; letter-spacing:.2em; color:var(--cinnabar);
+  border:1px solid var(--cinnabar); border-radius:2px;
+  padding:5px 7px 4px; line-height:1; margin-top:4px;
+  writing-mode:vertical-rl; text-orientation:upright;
+}
+.sec__title{
+  font-family:var(--kai); font-weight:400;
+  font-size:clamp(27px,4.4vw,44px); line-height:1.35; letter-spacing:.1em;
+  margin:0 0 10px;
+}
+.sec__sub{ color:var(--ink-3); font-size:14px; letter-spacing:.08em; max-width:62ch; margin:0; }
+.sec__sub b{ color:var(--ink-2); font-weight:400; }
+
+/* 竖排小標 */
+.vlabel{
+  writing-mode:vertical-rl; text-orientation:upright;
+  font-family:var(--kai); font-size:12px; letter-spacing:.34em;
+  color:var(--ink-4);
+}
+
+/* ---------- 通用卡片 ---------- */
+.card{
+  background:rgba(255,252,246,.55);
+  border:1px solid var(--line);
+  padding:clamp(22px,3vw,34px);
+  position:relative;
+  transition:.45s var(--ease);
+}
+.card:hover{ background:rgba(255,253,248,.9); border-color:rgba(23,23,15,.3); transform:translateY(-3px); }
+.card h3{
+  font-family:var(--kai); font-weight:400; font-size:21px; letter-spacing:.08em;
+  margin:0 0 10px;
+}
+.card p{ margin:0; font-size:14.5px; color:var(--ink-2); line-height:1.95; }
+.card p + p{ margin-top:10px; }
+
+/* 界格装饰角 */
+.grid-corner::before,.grid-corner::after{
+  content:""; position:absolute; width:9px; height:9px; border-color:var(--cinnabar); border-style:solid; opacity:.55;
+}
+.grid-corner::before{ top:-1px; left:-1px; border-width:1px 0 0 1px; }
+.grid-corner::after{ bottom:-1px; right:-1px; border-width:0 1px 1px 0; }
+
+/* ---------- 概述格 ---------- */
+.grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.6vw,20px); }
+.grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(12px,1.6vw,20px); }
+.grid-4{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,1.6vw,20px); }
+
+.stat{ padding:clamp(20px,2.6vw,30px); border:1px solid var(--line); background:rgba(255,252,246,.4); }
+.stat b{ display:block; font-family:var(--kai); font-size:clamp(30px,4.4vw,46px); line-height:1.1; letter-spacing:.02em; }
+.stat b small{ font-size:.42em; letter-spacing:.14em; margin-left:4px; color:var(--ink-3); }
+.stat span{ display:block; margin-top:8px; font-size:12.5px; letter-spacing:.16em; color:var(--ink-3); }
+
+/* ---------- 引文 ---------- */
+blockquote.big{
+  margin:0; padding:clamp(26px,4vw,44px);
+  border:1px solid var(--line);
+  background:rgba(255,253,248,.55);
+  position:relative;
+}
+blockquote.big p{
+  font-family:var(--kai); font-size:clamp(20px,3.1vw,32px);
+  line-height:1.85; letter-spacing:.08em; margin:0; color:var(--ink);
+}
+blockquote.big p::before{ content:"「"; color:var(--cinnabar); }
+blockquote.big p::after{ content:"」"; color:var(--cinnabar); }
+blockquote.big footer{ margin-top:16px; font-size:12.5px; letter-spacing:.1em; color:var(--ink-3); }
+
+/* ---------- 时间轴 ---------- */
+.timeline{ position:relative; margin-top:8px; }
+.timeline::before{
+  content:""; position:absolute; left:96px; top:6px; bottom:6px; width:1px;
+  background:linear-gradient(var(--line),var(--line-2),var(--line));
+}
+.tl-item{ position:relative; display:grid; grid-template-columns:96px 1fr; gap:clamp(18px,3vw,38px); padding:0 0 clamp(26px,3.4vw,40px); }
+.tl-item:last-child{ padding-bottom:0; }
+.tl-year{
+  font-family:var(--mono); font-size:15px; letter-spacing:.06em; color:var(--ink-2);
+  text-align:right; padding-top:2px; position:relative;
+}
+.tl-year em{ display:block; font-style:normal; font-size:10.5px; color:var(--ink-4); letter-spacing:.14em; margin-top:2px; }
+.tl-dot{
+  position:absolute; right:-5px; top:11px; width:9px; height:9px;
+  border-radius:50%; background:var(--paper); border:1px solid var(--cinnabar);
+  box-shadow:0 0 0 4px var(--paper);
+}
+.tl-item.major .tl-dot{ background:var(--cinnabar); }
+.tl-body{ padding-left:8px; }
+.tl-body h4{
+  font-family:var(--kai); font-weight:400; font-size:19px; letter-spacing:.06em;
+  margin:0 0 6px; display:flex; flex-wrap:wrap; align-items:baseline; gap:10px;
+}
+.tl-body h4 span.tagline{ font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; color:var(--cinnabar); border:1px solid rgba(166,52,42,.35); padding:1px 6px; border-radius:2px; }
+.tl-body p{ margin:0; font-size:14px; color:var(--ink-2); line-height:1.9; max-width:64ch; }
+
+/* ---------- 作品卡 ---------- */
+.filters{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 26px; }
+.chip{
+  font-family:var(--serif); font-size:12.5px; letter-spacing:.1em;
+  padding:6px 14px 5px; border:1px solid var(--line); border-radius:999px;
+  background:transparent; color:var(--ink-2); cursor:pointer;
+  transition:.3s var(--ease);
+}
+.chip:hover{ border-color:var(--ink-3); }
+.chip.on{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+.works{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.6vw,18px); }
+.work{
+  border:1px solid var(--line); background:rgba(255,252,246,.45);
+  padding:20px 22px 22px; position:relative; overflow:hidden;
+  cursor:pointer; transition:.45s var(--ease);
+}
+.work::after{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(circle at 80% 0%, rgba(166,52,42,.10), transparent 60%);
+  opacity:0; transition:.5s;
+}
+.work:hover{ border-color:rgba(23,23,15,.34); transform:translateY(-3px); box-shadow:0 14px 30px -22px rgba(23,23,15,.5); }
+.work:hover::after{ opacity:1; }
+.work__top{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:10px; }
+.work__yr{ font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--ink-3); }
+.work__script{ font-size:10.5px; letter-spacing:.16em; color:var(--cinnabar); border:1px solid rgba(166,52,42,.3); padding:1px 6px; border-radius:2px; }
+.work h4{ font-family:var(--kai); font-weight:400; font-size:19px; letter-spacing:.04em; margin:0 0 8px; line-height:1.4; }
+.work p{ margin:0; font-size:13px; line-height:1.85; color:var(--ink-2); }
+.work__col{ margin-top:10px; font-size:11.5px; letter-spacing:.08em; color:var(--ink-4); }
+.work.is-hidden{ display:none; }
+
+/* ---------- 三期 tabs ---------- */
+.tabs{ display:flex; gap:2px; border-bottom:1px solid var(--line); margin-bottom:28px; flex-wrap:wrap; }
+.tab{
+  background:none; border:0; cursor:pointer; font-family:var(--kai);
+  font-size:16px; letter-spacing:.12em; color:var(--ink-3);
+  padding:12px 22px 12px; position:relative; transition:.3s;
+}
+.tab:hover{ color:var(--ink); }
+.tab.on{ color:var(--ink); }
+.tab.on::after{ content:""; position:absolute; left:14px; right:14px; bottom:-1px; height:2px; background:var(--cinnabar); }
+.tab i{ font-style:normal; font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--ink-4); margin-left:7px; }
+
+.panel{ display:none; animation:fade .55s var(--ease); }
+.panel.on{ display:block; }
+@keyframes fade{ from{ opacity:0; transform:translateY(8px) } to{ opacity:1; transform:none } }
+
+.panel__grid{ display:grid; grid-template-columns:1.35fr .85fr; gap:clamp(20px,3vw,44px); align-items:start; }
+.panel__body p{ margin:0 0 14px; font-size:15px; color:var(--ink-2); }
+.panel__body p:last-child{ margin-bottom:0; }
+.panel__body b{ color:var(--ink); font-weight:400; border-bottom:1px solid rgba(166,52,42,.4); }
+
+.traits{ border:1px solid var(--line); padding:22px 24px; background:rgba(255,253,248,.5); }
+.traits h5{ font-family:var(--mono); font-size:10.5px; letter-spacing:.22em; color:var(--ink-3); margin:0 0 16px; font-weight:400; }
+.trait{ margin-bottom:14px; }
+.trait:last-child{ margin-bottom:0; }
+.trait div{ display:flex; justify-content:space-between; font-size:12px; letter-spacing:.1em; color:var(--ink-2); margin-bottom:5px; }
+.bar{ height:3px; background:var(--line-2); position:relative; overflow:hidden; }
+.bar i{ position:absolute; left:0; top:0; bottom:0; width:0; background:var(--cinnabar); transition:width 1.1s var(--ease); }
+
+/* ---------- 五体 ---------- */
+.acc{ border-top:1px solid var(--line); }
+.acc__item{ border-bottom:1px solid var(--line); }
+.acc__btn{
+  width:100%; background:none; border:0; cursor:pointer; text-align:left;
+  display:grid; grid-template-columns:auto 1fr auto; gap:18px; align-items:center;
+  padding:22px 4px; font-family:var(--kai); color:var(--ink);
+  transition:.3s;
+}
+.acc__btn:hover{ color:var(--cinnabar); }
+.acc__char{ font-size:34px; line-height:1; letter-spacing:0; width:52px; text-align:center; }
+.acc__name{ font-size:19px; letter-spacing:.1em; }
+.acc__name small{ display:block; font-family:var(--serif); font-size:12px; letter-spacing:.06em; color:var(--ink-3); margin-top:3px; }
+.acc__ic{ width:14px; height:14px; position:relative; flex:none; }
+.acc__ic::before,.acc__ic::after{ content:""; position:absolute; background:var(--ink-2); transition:.4s var(--ease); }
+.acc__ic::before{ left:0; right:0; top:6.5px; height:1px; }
+.acc__ic::after{ top:0; bottom:0; left:6.5px; width:1px; }
+.acc__item.open .acc__ic::after{ transform:rotate(90deg); opacity:0; }
+.acc__body{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .5s var(--ease); }
+.acc__item.open .acc__body{ grid-template-rows:1fr; }
+.acc__inner{ overflow:hidden; }
+.acc__inner > div{ padding:0 4px 28px 70px; display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+.acc__inner p{ margin:0; font-size:14.5px; color:var(--ink-2); }
+.acc__inner .k{ font-family:var(--mono); font-size:10.5px; letter-spacing:.18em; color:var(--ink-3); display:block; margin-bottom:7px; }
+
+/* ---------- 师承图 ---------- */
+.genealogy{ border:1px solid var(--line); background:rgba(255,253,248,.42); padding:clamp(10px,2vw,26px); position:relative; overflow-x:auto; }
+.genealogy svg{ display:block; width:100%; min-width:720px; height:auto; }
+.g-node{ cursor:pointer; }
+.g-node text{ font-family:var(--kai); fill:var(--ink); transition:.3s; }
+.g-node .sub{ font-family:var(--serif); font-size:9.5px; fill:var(--ink-3); letter-spacing:.06em; }
+.g-node .dot{ transition:.35s var(--ease); }
+.g-node.dim text{ opacity:.28; }
+.g-node.dim .dot{ opacity:.25; }
+.g-node.on text{ fill:var(--cinnabar); }
+.g-edge{ fill:none; stroke:rgba(23,23,15,.22); stroke-width:1; transition:.35s; }
+.g-edge.dashed{ stroke-dasharray:3 4; }
+.g-edge.on{ stroke:var(--cinnabar); stroke-width:1.6; }
+.g-edge.dim{ opacity:.12; }
+.g-legend{ display:flex; gap:22px; flex-wrap:wrap; margin-top:14px; padding-top:14px; border-top:1px solid var(--line-2); font-size:11.5px; letter-spacing:.1em; color:var(--ink-3); }
+.g-legend i{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:7px; vertical-align:middle; }
+
+/* ---------- 争议双栏 ---------- */
+.debate{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(14px,2vw,26px); }
+.debate__side{ border:1px solid var(--line); padding:clamp(22px,3vw,32px); background:rgba(255,253,248,.42); }
+.debate__side.praise{ border-top:2px solid var(--jade); }
+.debate__side.critic{ border-top:2px solid var(--cinnabar); }
+.debate__side h4{ font-family:var(--mono); font-size:10.5px; letter-spacing:.24em; color:var(--ink-3); margin:0 0 18px; font-weight:400; }
+.quote-item + .quote-item{ margin-top:20px; padding-top:20px; border-top:1px solid var(--line-2); }
+.quote-item p{ margin:0 0 7px; font-family:var(--kai); font-size:16.5px; line-height:1.85; letter-spacing:.05em; }
+.quote-item cite{ font-style:normal; font-size:12px; letter-spacing:.1em; color:var(--ink-3); }
+
+/* ---------- 朱批 / 备考提示 ---------- */
+.note{
+  margin:clamp(24px,3vw,36px) 0 0;
+  border-left:3px solid var(--cinnabar);
+  background:linear-gradient(90deg, rgba(166,52,42,.075), rgba(166,52,42,.02));
+  padding:20px 24px 22px;
+  position:relative;
+}
+.note::before{
+  content:"朱批"; position:absolute; right:14px; top:-9px;
+  background:var(--cinnabar); color:#fff6ee;
+  font-family:var(--kai); font-size:11px; letter-spacing:.2em;
+  padding:2px 7px 3px; border-radius:2px;
+}
+.note h5{ margin:0 0 8px; font-family:var(--kai); font-size:15px; letter-spacing:.1em; color:var(--cinnabar); font-weight:400; }
+.note p{ margin:0; font-size:14px; line-height:1.9; color:var(--ink-2); }
+.note p + p{ margin-top:8px; }
+.note b{ font-weight:400; color:var(--ink); background:linear-gradient(transparent 62%, rgba(166,52,42,.22) 62%); }
+
+/* ---------- 论述题库 ---------- */
+.qs{ display:grid; gap:1px; background:var(--line); border:1px solid var(--line); }
+.q{ background:var(--paper); padding:20px 24px; display:grid; grid-template-columns:auto 1fr; gap:18px; transition:.35s; }
+.q:hover{ background:rgba(255,253,248,.75); }
+.q__n{ font-family:var(--mono); font-size:11px; color:var(--cinnabar); letter-spacing:.1em; padding-top:5px; }
+.q h4{ font-family:var(--kai); font-size:17.5px; font-weight:400; letter-spacing:.05em; margin:0 0 7px; }
+.q p{ margin:0; font-size:13.5px; color:var(--ink-3); line-height:1.85; }
+
+/* ---------- 结语 / Footer ---------- */
+.outro{ text-align:center; padding:clamp(80px,12vw,150px) 0; }
+.outro__line{ font-family:var(--kai); font-size:clamp(24px,4.6vw,44px); letter-spacing:.14em; line-height:1.8; margin:0 0 22px; }
+.outro__sub{ color:var(--ink-3); font-size:13.5px; letter-spacing:.16em; }
+.seal-big{
+  display:inline-grid; place-items:center; width:74px; height:74px;
+  background:var(--cinnabar); color:#fff6ee; border-radius:5px;
+  font-family:var(--kai); font-size:15px; line-height:1.25; letter-spacing:.06em;
+  margin-bottom:26px; transform:rotate(-2.5deg);
+  box-shadow:inset 0 0 0 2px rgba(255,246,238,.35), 0 10px 24px -16px rgba(166,52,42,.9);
+}
+
+footer.foot{
+  border-top:1px solid var(--line);
+  padding:38px 0 46px; font-size:12px; letter-spacing:.1em; color:var(--ink-3);
+}
+footer.foot .wrap{ display:flex; flex-wrap:wrap; gap:16px 30px; justify-content:space-between; align-items:center; }
+footer.foot a{ border-bottom:1px solid var(--line); }
+footer.foot a:hover{ color:var(--cinnabar); border-color:var(--cinnabar); }
+
+/* ---------- 搜索面板 ---------- */
+.search{
+  position:fixed; inset:0; z-index:200; display:none;
+  background:rgba(23,23,15,.42); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+  padding:14vh 20px 20px;
+}
+.search.on{ display:block; animation:fade .25s; }
+.search__box{ max-width:660px; margin:0 auto; background:var(--paper); border:1px solid var(--line); box-shadow:0 40px 80px -40px rgba(0,0,0,.5); }
+.search__in{
+  width:100%; border:0; background:transparent; outline:none;
+  font-family:var(--kai); font-size:21px; letter-spacing:.06em; color:var(--ink);
+  padding:20px 24px; border-bottom:1px solid var(--line);
+}
+.search__in::placeholder{ color:var(--ink-4); }
+.search__res{ max-height:52vh; overflow:auto; }
+.search__res a{ display:grid; grid-template-columns:1fr auto; gap:14px; padding:13px 24px; align-items:baseline; border-bottom:1px solid var(--line-2); }
+.search__res a:hover,.search__res a.sel{ background:rgba(166,52,42,.07); }
+.search__res .t{ font-family:var(--kai); font-size:16px; letter-spacing:.05em; }
+.search__res .m{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--ink-4); }
+.search__hint{ padding:12px 24px; font-size:11px; letter-spacing:.12em; color:var(--ink-4); display:flex; gap:18px; flex-wrap:wrap; }
+kbd{ font-family:var(--mono); font-size:10px; border:1px solid var(--line); border-bottom-width:2px; border-radius:3px; padding:1px 5px; color:var(--ink-2); }
+
+/* ---------- 滚动入场 ---------- */
+.js .rv{ opacity:0; transform:translateY(26px); transition:opacity .85s var(--ease), transform .85s var(--ease); }
+.rv.in{ opacity:1; transform:none; }
+.rv.d1{ transition-delay:.08s } .rv.d2{ transition-delay:.16s } .rv.d3{ transition-delay:.24s } .rv.d4{ transition-delay:.32s }
+
+/* ============================================================
+   日语页组件
+   ============================================================ */
+.verb-tool{
+  border:1px solid var(--line); background:rgba(255,253,248,.55);
+  padding:clamp(20px,3vw,30px);
+}
+.verb-tool__lab{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.22em;
+  color:var(--ink-3); margin-bottom:10px;
+}
+.verb-in{
+  width:100%; border:0; border-bottom:1px solid var(--ink-3); background:transparent;
+  font-family:var(--kai); font-size:34px; letter-spacing:.06em; color:var(--ink);
+  padding:6px 2px 10px; outline:none;
+}
+.verb-in::placeholder{ color:var(--ink-4); font-size:22px; }
+.verb-tip{ margin-top:10px; font-size:12px; letter-spacing:.06em; color:var(--ink-3); display:flex; gap:16px; flex-wrap:wrap; }
+.verb-tip b{ color:var(--cinnabar); font-weight:400; }
+.verb-tip b[data-v]{ cursor:pointer; border-bottom:1px dashed rgba(166,52,42,.45); padding-bottom:1px; }
+.verb-tip b[data-v]:hover{ background:var(--cinnabar-s); }
+.verb-out{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(188px,1fr));
+  gap:0; border:1px solid var(--line); border-right:0; border-bottom:0;
+  margin-top:22px; background:var(--paper);
+}
+.verb-out > div{ padding:13px 15px 14px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+.verb-out b{ display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.15em; color:var(--ink-3); font-weight:400; margin-bottom:3px; }
+.verb-out span{ font-family:var(--kai); font-size:18px; letter-spacing:.03em; color:var(--ink); }
+.verb-out span em{ font-style:normal; font-size:11px; color:var(--ink-4); font-family:var(--serif); margin-left:6px; letter-spacing:.02em; }
+.verb-out > div.hl{ background:rgba(166,52,42,.06); }
+.verb-out > div.hl span{ color:var(--cinnabar); }
+
+.g-list{ border-top:1px solid var(--line); }
+.g-item{
+  border-bottom:1px solid var(--line);
+  padding:15px 0; display:grid; grid-template-columns:196px 1fr; gap:clamp(12px,2vw,26px);
+  align-items:start;
+}
+.g-item h4{
+  margin:0; font-family:var(--kai); font-size:16px; font-weight:400;
+  letter-spacing:.03em; line-height:1.5;
+}
+.g-item .cat{
+  display:block; font-family:var(--mono); font-size:9px; letter-spacing:.14em;
+  color:var(--ink-4); margin-top:5px;
+}
+.g-item p{ margin:0 0 5px; font-size:13px; line-height:1.85; color:var(--ink-2); }
+.g-item p:last-child{ margin-bottom:0; }
+.g-item .setsu{ color:var(--ink-3); font-size:12.5px; }
+.g-item .setsu b{ color:var(--jade); font-weight:400; }
+.g-item .ex{ font-family:var(--kai); font-size:15px; color:var(--ink); line-height:1.8; }
+.g-item .ex small{ display:block; font-family:var(--serif); font-size:12px; color:var(--ink-3); margin-top:2px; letter-spacing:.03em; }
+.g-item.hide{ display:none; }
+
+@media (max-width:760px){
+  .g-item{ grid-template-columns:1fr; gap:6px; }
+  .g-item .cat{ display:inline-block; margin-left:8px; margin-top:0; }
+  .verb-in{ font-size:26px; }
+}
+
+.war-hero{ padding:130px 0 60px; }
+.count{
+  display:flex; align-items:flex-end; gap:clamp(10px,2vw,22px); flex-wrap:wrap;
+  margin:26px 0 6px;
+}
+.count__n{ font-family:var(--mono); font-size:clamp(64px,13vw,132px); line-height:.86; letter-spacing:-.04em; }
+.count__u{ font-family:var(--kai); font-size:20px; letter-spacing:.2em; padding-bottom:12px; color:var(--ink-2); }
+.count__sub{ font-size:12.5px; letter-spacing:.14em; color:var(--ink-3); }
+.count small{ font-family:var(--mono); font-size:12px; color:var(--ink-3); letter-spacing:.08em; }
+
+.ledger{ border:1px solid var(--line); background:rgba(255,253,248,.5); padding:clamp(22px,3vw,34px); }
+.ledger__row{ display:grid; grid-template-columns:96px 1fr 64px; gap:16px; align-items:center; padding:11px 0; border-bottom:1px solid var(--line-2); }
+.ledger__row:last-of-type{ border:0; }
+.ledger__row label{ font-family:var(--kai); font-size:15px; letter-spacing:.08em; }
+input[type=range]{
+  -webkit-appearance:none; appearance:none; width:100%; height:18px; background:transparent; cursor:pointer;
+}
+input[type=range]::-webkit-slider-runnable-track{ height:3px; background:var(--line); }
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none; width:15px; height:15px; border-radius:50%;
+  background:var(--cinnabar); margin-top:-6px; border:2px solid var(--paper);
+  box-shadow:0 0 0 1px var(--cinnabar);
+}
+input[type=range]::-moz-range-track{ height:3px; background:var(--line); }
+input[type=range]::-moz-range-thumb{ width:13px; height:13px; border-radius:50%; background:var(--cinnabar); border:2px solid var(--paper); }
+.ledger__v{ font-family:var(--mono); font-size:15px; text-align:right; color:var(--ink); }
+.ledger__sum{
+  display:flex; justify-content:space-between; align-items:baseline; gap:14px; flex-wrap:wrap;
+  margin-top:18px; padding-top:18px; border-top:1px solid var(--line);
+}
+.ledger__sum b{ font-family:var(--mono); font-size:34px; letter-spacing:-.02em; }
+.ledger__sum .verdict{ font-size:13px; letter-spacing:.1em; padding:5px 12px; border:1px solid; border-radius:2px; }
+.verdict.ok{ color:var(--jade); border-color:rgba(47,82,87,.4); background:rgba(47,82,87,.07); }
+.verdict.no{ color:var(--cinnabar); border-color:rgba(166,52,42,.4); background:var(--cinnabar-s); }
+
+.plan-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(14px,2vw,22px); }
+.phase{ border:1px solid var(--line); background:rgba(255,253,248,.42); padding:clamp(20px,2.6vw,28px); }
+.phase__top{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:14px; }
+.phase__top h4{ font-family:var(--kai); font-size:18.5px; letter-spacing:.08em; margin:0; font-weight:400; }
+.phase__top span{ font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--cinnabar); }
+.phase ul{ margin:0; padding:0; list-style:none; }
+.phase li{ position:relative; padding-left:20px; font-size:14px; color:var(--ink-2); line-height:1.9; margin-bottom:7px; }
+.phase li::before{ content:""; position:absolute; left:2px; top:12px; width:5px; height:5px; border:1px solid var(--cinnabar); transform:rotate(45deg); }
+.phase li b{ font-weight:400; color:var(--ink); }
+
+table.tt{ width:100%; border-collapse:collapse; font-size:13.5px; }
+table.tt th,table.tt td{ text-align:left; padding:11px 12px; border-bottom:1px solid var(--line-2); vertical-align:top; }
+table.tt th{ font-weight:400; font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; color:var(--ink-3); border-bottom:1px solid var(--line); }
+table.tt td b{ font-weight:400; color:var(--cinnabar); }
+table.tt .nw{ white-space:nowrap; }
+table.tt tr:hover td{ background:rgba(166,52,42,.035); }
+.tt-wrap{ overflow-x:auto; border:1px solid var(--line); }
+
+.checklist{ border:1px solid var(--line); }
+.ck{ display:grid; grid-template-columns:auto 1fr auto; gap:14px; align-items:center; padding:13px 18px; border-bottom:1px solid var(--line-2); cursor:pointer; transition:.25s; }
+.ck:last-child{ border:0; }
+.ck:hover{ background:rgba(255,253,248,.8); }
+.ck input{ appearance:none; -webkit-appearance:none; width:15px; height:15px; border:1px solid var(--ink-3); border-radius:2px; cursor:pointer; position:relative; margin:0; flex:none; }
+.ck input:checked{ background:var(--cinnabar); border-color:var(--cinnabar); }
+.ck input:checked::after{ content:""; position:absolute; left:4px; top:0.5px; width:4px; height:8px; border:solid #fff6ee; border-width:0 1.5px 1.5px 0; transform:rotate(45deg); }
+.ck span{ font-size:14px; color:var(--ink-2); }
+.ck input:checked + span{ color:var(--ink-4); text-decoration:line-through; text-decoration-thickness:1px; }
+.ck em{ font-style:normal; font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--ink-4); }
+
+/* ---------- iPad / 触屏优化 ---------- */
+html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+a, button, input, label, .chip, .tab, .ck, .work, .acc__btn{ touch-action:manipulation; }
+*{ -webkit-tap-highlight-color:transparent; }
+
+@media (pointer:coarse){
+  .nav__links a{ padding:11px 3px 9px; }
+  .nav__cta{ padding:10px 16px 9px; }
+  .chip{ padding:10px 17px 9px; font-size:13.5px; }
+  .tab{ padding:14px 20px 13px; }
+  .ck{ padding:16px 18px; }
+  .acc__btn{ padding:24px 4px; }
+  .work{ padding:22px 22px 24px; }
+  .filters{ gap:10px; }
+  .tabs{ flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .tabs::-webkit-scrollbar{ display:none; }
+  .search__res a{ padding:16px 24px; }
+  .ledger__row{ padding:16px 0; }
+  input[type=range]{ height:30px; }
+  input[type=range]::-webkit-slider-thumb{ width:22px; height:22px; margin-top:-9px; }
+  .nav__search{ padding:11px 10px; border-color:var(--line); }
+  .search__in{ font-size:16px; }
+  .search__hint span{ display:none; }
+  .search__hint::after{ content:"输入关键词 → 点结果直接跳转 · 点空白处关闭"; letter-spacing:.08em; }
+}
+
+/* 自测模式（政治页用） */
+.g-item .answer{ transition:filter .28s var(--ease), opacity .28s var(--ease); }
+.quiz .g-item .answer{ filter:blur(6.5px); opacity:.5; cursor:pointer; }
+.quiz .g-item.reveal .answer{ filter:none; opacity:1; }
+.quiz .g-item h4{ position:relative; }
+.quiz .g-item h4::after{
+  content:"轻点揭晓"; display:inline-block; vertical-align:middle;
+  font-family:var(--mono); font-size:9px; letter-spacing:.1em;
+  color:var(--cinnabar); border:1px solid rgba(166,52,42,.35);
+  border-radius:2px; padding:1px 5px; margin-left:8px;
+}
+.quiz .g-item.reveal h4::after{ content:"已显示"; color:var(--ink-4); border-color:var(--line); }
+.quizbtn{
+  font-family:var(--serif); font-size:12.5px; letter-spacing:.1em;
+  padding:8px 16px 7px; border:1px solid var(--cinnabar); border-radius:999px;
+  background:transparent; color:var(--cinnabar); cursor:pointer; transition:.3s var(--ease);
+}
+.quizbtn:hover{ background:var(--cinnabar); color:#fff6ee; }
+.quizbtn.on{ background:var(--cinnabar); color:#fff6ee; }
+
+/* ---------- 响应式 ---------- */
+@media (max-width:1200px){
+  .nav__title small{ display:none; }
+  .nav__brand{ flex:none; }
+  .nav__search span{ display:none; }
+  .nav__search{ padding:8px; }
+  .nav__links{ gap:15px; min-width:0; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .nav__links::-webkit-scrollbar{ display:none; }
+  .nav__links a{ font-size:12.5px; letter-spacing:.06em; }
+}
+@media (max-width:900px){
+  .nav__title{ display:none; }
+  .nav__links{ gap:11px; -webkit-mask-image:linear-gradient(90deg,#000 90%,transparent); mask-image:linear-gradient(90deg,#000 90%,transparent); }
+  .nav__links a{ font-size:12px; }
+  .nav{ gap:16px; }
+}
+@media (max-width:980px){
+  .grid-4{ grid-template-columns:repeat(2,1fr); }
+  .works{ grid-template-columns:repeat(2,1fr); }
+  .panel__grid{ grid-template-columns:1fr; }
+  .plan-grid{ grid-template-columns:1fr; }
+  .acc__inner > div{ grid-template-columns:1fr; }
+}
+@media (max-width:760px){
+  body{ font-size:16px; }
+  .nav__links{ display:none; }
+  .nav{ gap:14px; }
+  .grid-3,.grid-2{ grid-template-columns:1fr; }
+  .works{ grid-template-columns:1fr; }
+  .debate{ grid-template-columns:1fr; }
+  .tl-item{ grid-template-columns:64px 1fr; gap:16px; }
+  .timeline::before{ left:64px; }
+  .hero__meta{ display:grid; grid-template-columns:1fr 1fr; gap:14px 20px; border-top:1px solid var(--line); }
+  .hero__meta div{ padding:0; margin:0; border:0; }
+  .ledger__row{ grid-template-columns:76px 1fr 54px; gap:10px; }
+  .hero__ghost{ font-size:60vw; opacity:.7; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{ animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+  .rv{ opacity:1; transform:none; }
+}
+
+/* ============================================================
+   阅读设置（字体 / 主题 / 字号）—— read.js
+   ============================================================ */
+html[data-font="song"]{ --serif:var(--f-song); --kai:var(--f-kai); }
+html[data-font="kai"]{ --serif:var(--f-kai); --kai:var(--f-kai); }
+html[data-font="hei"]{ --serif:var(--f-hei); --kai:var(--f-hei); }
+html[data-font="hei"] .hero__name,
+html[data-font="hei"] .sec__title,
+html[data-font="hei"] .card h3,
+html[data-font="hei"] .acc__name{ letter-spacing:.06em; font-weight:600; }
+html[data-font="hei"] .hero__ghost{ opacity:.05; }
+
+.read-btn{
+  position:fixed; right:18px; bottom:calc(18px + env(safe-area-inset-bottom));
+  z-index:95; width:46px; height:46px; border-radius:50%;
+  border:1px solid rgba(166,52,42,.45); background:rgba(243,237,225,.92);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  color:var(--cinnabar); font-family:var(--kai); font-size:15px; line-height:1;
+  display:grid; place-items:center; cursor:pointer;
+  box-shadow:0 8px 20px -14px rgba(0,0,0,.45);
+  transition:.3s var(--ease);
+}
+.read-btn:hover{ background:var(--cinnabar); color:#fff6ee; }
+.read-panel{
+  position:fixed; right:18px; bottom:calc(74px + env(safe-area-inset-bottom));
+  z-index:95; width:250px; padding:16px 18px 18px;
+  background:var(--paper); border:1px solid var(--line);
+  box-shadow:0 26px 50px -30px rgba(0,0,0,.55);
+  display:none;
+}
+.read-panel.on{ display:block; animation:fade .22s var(--ease); }
+.read-row{ margin-bottom:13px; }
+.read-row:last-child{ margin-bottom:0; }
+.read-row > span{
+  display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.18em;
+  color:var(--ink-3); margin-bottom:7px;
+}
+.read-seg{ display:flex; gap:6px; }
+.read-seg button{
+  flex:1; padding:7px 4px 6px; font-family:var(--serif); font-size:12.5px;
+  letter-spacing:.06em; color:var(--ink-2); background:transparent;
+  border:1px solid var(--line); cursor:pointer; transition:.25s;
+}
+.read-seg button:hover{ border-color:var(--ink-3); }
+.read-seg button.on{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+/* 夜间纸 */
+html[data-theme="dark"]{
+  --paper:#14140f; --paper-2:#1a1a13; --paper-3:#221f17;
+  --ink:#e9e3d3; --ink-2:#c6c0af; --ink-3:#948e7e; --ink-4:#6b6559;
+  --cinnabar:#d0654f; --cinnabar-2:#e0836c; --cinnabar-s:rgba(208,101,79,.14);
+  --line:rgba(233,227,211,.2); --line-2:rgba(233,227,211,.09);
+  --jade:#7aa3a6; --gold:#b09a6d;
+}
+html[data-theme="dark"] body::before{ opacity:.22; mix-blend-mode:screen; }
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .stat,
+html[data-theme="dark"] .work,
+html[data-theme="dark"] .phase,
+html[data-theme="dark"] .debate__side,
+html[data-theme="dark"] .traits,
+html[data-theme="dark"] .ledger,
+html[data-theme="dark"] .verb-tool,
+html[data-theme="dark"] .genealogy,
+html[data-theme="dark"] blockquote.big,
+html[data-theme="dark"] .q,
+html[data-theme="dark"] .checklist{ background:rgba(255,255,255,.04); }
+html[data-theme="dark"] .q{ background:var(--paper); }
+html[data-theme="dark"] .nav{ background:rgba(20,20,15,.82); }
+html[data-theme="dark"] .read-btn{ background:rgba(20,20,15,.9); }
+html[data-theme="dark"] .seal-big,
+html[data-theme="dark"] .nav__seal{ color:#fff6ee; }
+html[data-theme="dark"] .read-seg button.on{ background:var(--cinnabar); border-color:var(--cinnabar); color:#fff6ee; }
+html[data-theme="dark"] .chip.on{ background:var(--cinnabar); border-color:var(--cinnabar); color:#fff6ee; }
+html[data-theme="dark"] img{ filter:brightness(.92); }
+
+/* 字号（用 zoom，Chromium / HarmonyOS 浏览器均支持，会正常重排） */
+html[data-fs="1"]{ }
+html[data-fs="2"] body{ zoom:1.08; }
+html[data-fs="3"] body{ zoom:1.18; }
+
+@media print{
+  @page{ size:A4; margin:13mm 11mm; }
+
+  /* 不论当前是纸/夜，打印一律走浅色 */
+  html, html[data-theme="dark"]{
+    --paper:#fff; --paper-2:#fff; --paper-3:#f4f1e8;
+    --ink:#111; --ink-2:#2a2a24; --ink-3:#55534a; --ink-4:#7a776c;
+    --cinnabar:#a6342a; --cinnabar-2:#c2543f; --cinnabar-s:rgba(166,52,42,.08);
+    --line:rgba(0,0,0,.22); --line-2:rgba(0,0,0,.1);
+    --jade:#2f5257; --gold:#8a7448;
+  }
+  html[data-fs] body{ zoom:1 !important; }
+  .nav,#progress,.search,.hero__scroll,.filters,.quizbtn,.read-btn,.read-panel,
+  .verb-tool,.hero__ghost,.g-legend,.outro{ display:none !important; }
+  body{ background:#fff !important; color:#111; font-size:10.5pt; }
+  body::before{ display:none !important; }
+  .rv{ opacity:1 !important; transform:none !important; }
+  .hero{ min-height:0 !important; padding:0 0 18px !important; display:block !important; }
+  .hero__inner{ gap:16px !important; }
+  .hero__name{ font-size:30pt !important; line-height:1.34 !important; margin:28px 0 12px !important; color:#111 !important; }
+  .hero__name em{ color:#a6342a !important; }
+  .hero__epi{ font-size:10pt !important; }
+  .sec{ padding:14px 0 !important; border-top:1px solid #d8d2c4 !important; }
+  .sec:first-of-type{ border-top:0 !important; }
+  .card,.work,.tl-item,.phase,.g-item,.q,.stat{ break-inside:avoid; }
+  h2,h3,h4{ break-after:avoid; }
+  .panel{ display:block !important; }
+  .panel::before{
+    display:block; font-family:var(--mono); font-size:8pt; letter-spacing:.2em;
+    color:#a6342a; margin-bottom:8px;
+  }
+  .panel[data-panel="0"]::before{ content:"早年 · 约 1254—1290"; }
+  .panel[data-panel="1"]::before{ content:"中年 · 约 1290—1310"; }
+  .panel[data-panel="2"]::before{ content:"晚年 · 约 1310—1322"; }
+  .acc__body{ grid-template-rows:1fr !important; }
+  .acc__inner > div{ padding:0 0 14px 0 !important; }
+  .works{ grid-template-columns:1fr 1fr !important; }
+  .grid-2,.grid-3,.grid-4{ grid-template-columns:1fr 1fr !important; }
+  .war-hero{ padding:0 0 16px !important; }
+  .count__n{ font-size:46pt !important; }
+  .tl-body p,.card p,.g-item p{ font-size:9.5pt; }
+  a{ color:inherit; text-decoration:none; }
+  .search,.work__n{ display:none !important; }
+  table.tt{ font-size:8.8pt; }
+  table.tt th{ white-space:nowrap; }
+  .card,.stat,.work,.phase,.debate__side,.traits,.ledger,.verb-tool,
+  .genealogy,blockquote.big,.q,.checklist{ background:transparent !important; }
+}
+
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav class="nav" id="nav">
+  <a class="nav__brand" href="index.html">
+    <span class="nav__seal">作战</span>
+    <span class="nav__title">五十日<small>D-45</small></span>
+  </a>
+  <div class="nav__links">
+    <a href="#ledger">分数账本</a>
+    <a href="#politics">政治</a>
+    <a href="#japanese">日语203</a>
+    <a href="#major">专业课</a>
+    <a href="#seal">篆刻</a>
+    <a href="#weekly">检查表</a>
+    <a href="#mind">心态</a>
+  </div>
+  <a class="nav__cta" href="index.html">← 赵孟頫脉络</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="war-hero">
+  <div class="wrap">
+    <div class="hero__eyebrow rv"><span></span>2027 硕士研究生招生考试 · 中国美术学院 · 书法学院</div>
+    <h1 class="hero__name rv d1" style="font-size:clamp(40px,7.6vw,86px);margin-top:22px">五十日<br><em>作战室</em></h1>
+
+    <div class="count rv d2">
+      <span class="count__n" id="cdDays">45</span>
+      <span class="count__u">天</span>
+      <span class="count__u" id="cdHM" style="font-size:15px;color:var(--ink-3)">— 时 — 分</span>
+    </div>
+    <div class="count__sub rv d3">
+      初试：2026 年 12 月 19 日（周六）上午 8:30 思想政治理论 · 下午 14:00 外国语<br>
+      12 月 20 日（周日）上午 8:30 业务课一 · 下午 14:00 业务课二 &nbsp;|&nbsp; 地点：杭州 · 中国美术学院
+    </div>
+
+    <div class="grid-4 rv d3" style="margin-top:clamp(26px,4vw,44px)">
+      <div class="stat"><b>101</b><span>思想政治理论 · 100分</span></div>
+      <div class="stat"><b>203</b><span>日语（统考）· 100分</span></div>
+      <div class="stat"><b>150</b><span>业务课一 · 四体创作</span></div>
+      <div class="stat"><b>150</b><span>业务课二 · 篆刻＋题跋＋断句</span></div>
+    </div>
+
+    <div class="note rv d3">
+      <h5>先把「事实」钉住</h5>
+      <p>2026 年国美「美术与书法（135600）」进入复试的初试成绩要求为 <b>总分 354</b>，单科 <b>政治 38 / 外语 38 / 业务课 90 / 业务课 90</b>（见国美 2026 年复试办法）。这是<b>下限</b>，不是目标。书法方向实际录取普遍在 380–410 区间，<b>把目标定在 400</b>，你才有余量。</p>
+      <p>业务课科目代码：书法学院历年使用 <b>621 书法基础 / 622 书画基础 / 802 古汉语与写作 / 911 古汉语与篆刻 / 912 书画创作</b>，随方向而变。你给的组卷是「四体创作＋篆刻＋题跋＋古汉语断句」，最接近 <b>911 古汉语与篆刻</b>——按它准备，<b>但仍请用你手上那份招生目录再核一次</b>。</p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 分数账本 ============ -->
+<section class="sec" id="ledger">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">算</div>
+      <div>
+        <h2 class="sec__title">分数账本：把 400 拆成每天能干的事</h2>
+        <p class="sec__sub">考研的残酷在于「木桶」：专业课再高，政治 38 分线一卡就废。<b>先拖住短板，再放大长板</b>。拖动滑块，看看你的组合够不够。</p>
+      </div>
+    </div>
+
+    <div class="ledger rv d1">
+      <div class="ledger__row">
+        <label for="s1">政治</label>
+        <input id="s1" type="range" min="30" max="90" value="68" step="1">
+        <span class="ledger__v" id="v1">68</span>
+      </div>
+      <div class="ledger__row">
+        <label for="s2">日语</label>
+        <input id="s2" type="range" min="30" max="95" value="65" step="1">
+        <span class="ledger__v" id="v2">65</span>
+      </div>
+      <div class="ledger__row">
+        <label for="s3">业务课一 · 四体</label>
+        <input id="s3" type="range" min="60" max="145" value="118" step="1">
+        <span class="ledger__v" id="v3">118</span>
+      </div>
+      <div class="ledger__row">
+        <label for="s4">业务课二 · 篆刻题跋</label>
+        <input id="s4" type="range" min="60" max="145" value="122" step="1">
+        <span class="ledger__v" id="v4">122</span>
+      </div>
+      <div class="ledger__sum">
+        <div><span style="font-size:12px;letter-spacing:.16em;color:var(--ink-3)">预估总分</span><br><b id="sum">373</b><span style="font-family:var(--mono);font-size:13px;color:var(--ink-3)"> / 500</span></div>
+        <div class="verdict no" id="verdict">距 400 还差 27</div>
+      </div>
+    </div>
+
+    <div class="grid-3 rv d2" style="margin-top:clamp(16px,2.4vw,26px)">
+      <div class="card grid-corner">
+        <h3>政治 68 → 75</h3>
+        <p>选择题是命门（50 分里拿 40+）。政治从 60 到 70 靠刷题，70 到 78 靠<b>多选题的排除逻辑</b>。这一科性价比最高，也最容易在最后 20 天突进。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>日语 65 → 75</h3>
+        <p>阅读 40 分是主战场。日语从 60 到 75，靠的是<b>「长难句切分」+「选项定位」</b>两个技术动作，不是词汇量。作文 25 分，背 3 个模板就能稳拿 15+。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>专业 118/122 → 130+</h3>
+        <p>书法这行，<b>形准是门槛，气韵是分数</b>。最后 45 天不要再换帖，把一本帖「吃透＋能背临＋能化用」，比泛临十种强十倍。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 政治 ============ -->
+<section class="sec sec--tint" id="politics">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">政</div>
+      <div>
+        <h2 class="sec__title">政治：45 天，从「没背」到「70+」</h2>
+        <p class="sec__sub">政治是唯一一门「投入 45 天就能明显提分」的科目。结构很简单：<b>选择题 50 分（16 单选 + 17 多选）＋ 分析题 50 分（5 题）</b>。选择题决定你能不能上 70，分析题决定你会不会掉到 55。</p>
+      </div>
+    </div>
+
+    <div class="note rv d1" style="margin-top:0;margin-bottom:clamp(20px,3vw,30px)">
+      <h5>零基础版：从「完全没看」到 60–68 分</h5>
+      <p><b>三条原则</b>：① <b>不看书</b>，直接看强化课（1.25–1.5 倍速）＋刷《1000 题》，书只当字典查；② <b>马原只死磕哲学</b>（约 16 分），政经只抓「剩余价值」一条线，计算题不会就果断放弃；③ <b>每天固定 90 分钟</b>，别今天 3 小时、明天 0 小时。</p>
+      <p><b>六周排法</b>：W1 马原哲学 ｜ W2 马原政经＋毛中特前半 ｜ W3 毛中特后半＋史纲 ｜ W4 思修＋二刷错题 ｜ W5 肖八选择＋时政 ｜ W6 肖四选择＋背诵 ｜ 最后 3 天收口。</p>
+      <p><b>现实预期</b>：零基础 45 天，选择题 30+ 是正常发挥，大题靠肖四能拿 25–30，<b>总分 60–68</b>。想上 70 要看你多选的运气——<b>别为这 5 分去挤专业课的时间</b>。专业课 150 分里的一分，比政治里的一分便宜得多。</p>
+    </div>
+
+    <div class="tt-wrap rv d1">
+      <table class="tt">
+        <thead><tr><th>板块</th><th>分值</th><th>45 天策略</th><th>必须拿下的东西</th></tr></thead>
+        <tbody>
+          <tr><td><b>马原</b></td><td class="nw">约 24</td><td>理解为主，别死背。哲学部分吃透「矛盾」「实践—认识」「量变质变」三组，政经部分抓「剩余价值」一条主线。</td><td>对立统一规律、认识的两次飞跃、社会基本矛盾、商品二因素与劳动二重性</td></tr>
+          <tr><td><b>毛中特</b></td><td class="nw">约 30</td><td>分值最大，必须系统过一遍。重点是<b>习近平新时代中国特色社会主义思想</b>与<b>中国式现代化</b>。</td><td>「十个明确」「十四个坚持」、中国式现代化五个特征、新发展理念、新质生产力、全过程人民民主</td></tr>
+          <tr><td><b>史纲</b></td><td class="nw">约 14</td><td>用时间轴记，不用背细节。抓住「几次转折」和「几次会议」。</td><td>1840—1919—1921—1949—1956—1978—2012—2035—2050 时间轴；遵义会议、七大、十一届三中全会、二十大</td></tr>
+          <tr><td><b>思修法基</b></td><td class="nw">约 16</td><td>最容易拿分，考前 10 天集中背。价值观、中国精神、道德、法治四个词。</td><td>社会主义核心价值观三个层面、中国精神（爱国主义＋改革创新）、法治与德治</td></tr>
+          <tr><td><b>时政与当代</b></td><td class="nw">约 16</td><td>不自己整理，直接用市面时政小册子（肖/腿/徐任意一套）。跟一个老师到底，别混着看。</td><td>「十五五」规划、2026 年两会、中央经济工作会议、主场外交、科技自立自强</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="plan-grid rv d2" style="margin-top:clamp(16px,2.4vw,26px)">
+      <div class="phase">
+        <div class="phase__top"><h4>阶段一 · 打地基</h4><span>D-45 → D-30</span></div>
+        <ul>
+          <li><b>每天 90 分钟</b>：40 分钟看课/看书 + 50 分钟做《1000 题》对应章节。</li>
+          <li>马原 + 毛中特 先过一遍，<b>不要求记住，要求「见过」</b>。</li>
+          <li>错题不抄题，只记<b>「错因一句话」</b>：概念混、时态错、还是没读懂题干。</li>
+          <li>每周日：把本周错题的错误类型归类，写在纸上贴墙。</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase__top"><h4>阶段二 · 上强度</h4><span>D-29 → D-15</span></div>
+        <ul>
+          <li>史纲 + 思修 快速过；开始<b>二刷 1000 题</b>（只刷错题＋标记题）。</li>
+          <li>《肖八》到手就做，<b>只做选择题</b>，每套限时 25 分钟，做完立刻对答案、回课本。</li>
+          <li>选择题目标：<b>单套 35+</b>。低于 30 说明基础还有洞，回到章节。</li>
+          <li>开始整理<b>分析题「万能句」</b>：每科 5 句，能套任何题。</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase__top"><h4>阶段三 · 背大题</h4><span>D-14 → D-3</span></div>
+        <ul>
+          <li>《肖四》选择题全做，<b>分析题全背</b>。背法是「框架＋关键词」，不是逐字。</li>
+          <li>每天 2 小时背诵，<b>出声背 + 默写关键词</b>。只默关键词，不默整段。</li>
+          <li>时政专题过 2 遍，配合小册子的「必背 20 题」。</li>
+          <li>每两天做一套完整选择题（含多选），保持手感。</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase__top"><h4>阶段四 · 收口</h4><span>D-2 → 考前</span></div>
+        <ul>
+          <li>只看<b>错题本 + 肖四框架 + 时政必背</b>，不再开新资料。</li>
+          <li>默写 5 道分析题的「骨架」：每道 3 个分点，每点 1 句核心。</li>
+          <li>调整作息：<b>上午 8:30—11:30 做政治</b>，让大脑在考试时段兴奋。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-2 rv d2" style="margin-top:clamp(16px,2.4vw,26px)">
+      <div class="card grid-corner">
+        <h3>选择题：三个技术动作</h3>
+        <p><b>① 抓限定词</b>：「根本」「直接」「前提」「本质」——四个词对应四种答案，看到就圈。<br>
+        <b>② 排除绝对化</b>：出现「一切」「完全」「唯一」「消除」的多半错，除非原文如此。<br>
+        <b>③ 多选题宁缺勿滥</b>：拿不准的选项不选。17 道多选，少选得 1 分、错选 0 分——<b>确定性优先</b>。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>分析题：阅卷人只看三样</h3>
+        <p><b>① 有没有原理</b>（写出教材原话，哪怕只一句）；<br>
+        <b>② 有没有结合材料</b>（抄材料关键词，别整段抄）；<br>
+        <b>③ 有没有分点</b>（①②③，一行一点，字迹清楚）。<br>
+        每题写 200–300 字，<b>五个题写满</b>，别留白。留白是零分，写偏还有分。</p>
+      </div>
+    </div>
+
+    <div class="note rv d3">
+      <h5>给书法考生的「专业联动」加分点</h5>
+      <p>「<b>两个结合</b>」尤其是「第二个结合」（马克思主义基本原理同中华优秀传统文化相结合）、「<b>创造性转化、创新性发展</b>」、「<b>文化自信</b>」——这三个表述，<b>政治大题能用，专业课论述也能用</b>。你在专业论述里写「赵孟頫的复古是对晋唐传统的一次创造性转化」，阅卷老师会觉得你有理论视野；在政治大题里举书法的例子，也是「结合材料」。<b>一套话，两处得分。</b></p>
+    </div>
+
+    <div style="margin-top:clamp(24px,3vw,34px);display:flex;gap:14px;flex-wrap:wrap" class="rv d3">
+      <a class="nav__cta" href="zz.html" style="font-size:14px;padding:12px 22px 11px">打开政治重点页：马原 12 条 · 毛中特 8 条 · 大题模板 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 日语 203 ============ -->
+<section class="sec" id="japanese">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">日</div>
+      <div>
+        <h2 class="sec__title">日语 203：把 100 分拆成四个抽屉</h2>
+        <p class="sec__sub">203 日语（统考）满分 100、时长 180 分钟。题型稳定，<b>套路极强</b>——它不考「你日语好不好」，考「你会不会做这套题」。分值以当年大纲为准，下面是通行结构。</p>
+      </div>
+    </div>
+
+    <div class="tt-wrap rv d1">
+      <table class="tt">
+        <thead><tr><th>题型</th><th>分值</th><th>难度</th><th>提分优先级</th><th>打法</th></tr></thead>
+        <tbody>
+          <tr><td>一、基础知识（完形填空）</td><td><b>20</b></td><td>中</td><td>★★☆</td><td>考语法辨析＋固定搭配。20 题 20 分，<b>性价比高但耗时间</b>，控制在 25 分钟内。</td></tr>
+          <tr><td>二、阅读理解（4 篇 · 20 题）</td><td><b>40</b></td><td>中偏难</td><td>★★★★★</td><td>主战场。先看题干再读文，<b>定位—比对—排除</b>三步走。目标错 3 题以内。</td></tr>
+          <tr><td>三、翻译（日译汉）</td><td><b>15</b></td><td>中</td><td>★★★</td><td>不求雅，求<b>准</b>。长句先切分，主干先译，修饰语后置成中文语序。</td></tr>
+          <tr><td>四、作文</td><td><b>25</b></td><td>可控</td><td>★★★★</td><td>背 3 个模板 + 20 个万能句，<b>考场上只做填空题</b>。450–500 字，三段或四段。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-3 rv d2" style="margin-top:clamp(16px,2.4vw,26px)">
+      <div class="card grid-corner">
+        <h3>阅读：三个动作</h3>
+        <p><b>① 题干划关键词</b>（人名、数字、专有名词），回原文定位；<br>
+        <b>② 比对选项与原文</b>，日语阅读的错项多是「偷换主体」「绝对化」「因果倒置」；<br>
+        <b>③ 长句先找谓语</b>，日语谓语在句末，找到它，句子就塌不了。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>翻译：切分法</h3>
+        <p>把长句按「<b>、</b>」和「<b>て／で／が／から／ので</b>」切成小节，逐节译成短句，最后按中文逻辑重排。<b>宁可译成三句短中文，不要译成一句读不懂的长中文。</b></p>
+      </div>
+      <div class="card grid-corner">
+        <h3>词汇：只背高频</h3>
+        <p>45 天不可能背完 7000 词。<b>只背两样</b>：① 历年真题里出现过 2 次以上的词；② 作文要用的 100 个词。其余靠上下文猜——日语汉字词对中国人有天然优势。</p>
+      </div>
+    </div>
+
+    <h3 class="rv d2" style="font-family:var(--kai);font-weight:400;font-size:22px;letter-spacing:.1em;margin:clamp(30px,4vw,44px) 0 16px">高频语法 24 条（按考频排序）</h3>
+    <div class="tt-wrap rv d2">
+      <table class="tt">
+        <thead><tr><th>语法</th><th>核心意义</th><th>例句（短）</th></tr></thead>
+        <tbody>
+          <tr><td>～わけだ</td><td>理所当然、难怪</td><td>十年も練習したのだから、上手なわけだ。</td></tr>
+          <tr><td>～わけではない</td><td>并非（部分否定）</td><td>日本語が嫌いなわけではない。</td></tr>
+          <tr><td>～わけにはいかない</td><td>（情理上）不能</td><td>約束したから、行かないわけにはいかない。</td></tr>
+          <tr><td>～はずだ／はずがない</td><td>理应／不可能</td><td>彼が来るはずがない。</td></tr>
+          <tr><td>～に違いない</td><td>一定（强推定）</td><td>電気がついている。誰かいるに違いない。</td></tr>
+          <tr><td>～ざるを得ない</td><td>不得不</td><td>事情がこうなった以上、認めざるを得ない。</td></tr>
+          <tr><td>～かねない</td><td>有可能（坏结果）</td><td>そんなに働けば、体を壊しかねない。</td></tr>
+          <tr><td>～かねる</td><td>难以（委婉拒绝）</td><td>そのご提案には賛成しかねます。</td></tr>
+          <tr><td>～つつある</td><td>正在（变化中）</td><td>伝統文化が見直されつつある。</td></tr>
+          <tr><td>～一方だ</td><td>越来越（单向变化）</td><td>書道を学ぶ人が増える一方だ。</td></tr>
+          <tr><td>～ばかりか</td><td>不仅…而且</td><td>漢字ばかりか、仮名も書ける。</td></tr>
+          <tr><td>～どころか</td><td>岂止…反而</td><td>簡単どころか、失敗ばかりだ。</td></tr>
+          <tr><td>～ものの</td><td>虽然…但是</td><td>習ったものの、まだ書けない。</td></tr>
+          <tr><td>～ながらも</td><td>尽管…却</td><td>狭いながらも、落ち着く部屋だ。</td></tr>
+          <tr><td>～にしては</td><td>就…而言（反常）</td><td>初心者にしては、うまい。</td></tr>
+          <tr><td>～わりに（は）</td><td>与…相比（不成比例）</td><td>値段のわりに、質がいい。</td></tr>
+          <tr><td>～に伴って／につれて／に従って</td><td>随着</td><td>時代の変化に伴って、筆の使い方も変わった。</td></tr>
+          <tr><td>～をめぐって</td><td>围绕（争论）</td><td>書道教育のあり方をめぐって議論が続く。</td></tr>
+          <tr><td>～にわたって</td><td>历经（时间/范围）</td><td>十年にわたって臨帖を続けた。</td></tr>
+          <tr><td>～を問わず</td><td>不论</td><td>年齢を問わず、参加できる。</td></tr>
+          <tr><td>～次第（しだい）</td><td>一…就；全凭</td><td>決まり次第、連絡します。</td></tr>
+          <tr><td>～がち／気味／っぽい</td><td>容易…／有点儿…／像…</td><td>冬は風邪をひきがちだ。</td></tr>
+          <tr><td>～てはじめて</td><td>只有…才</td><td>失敗してはじめて、その意味が分かった。</td></tr>
+          <tr><td>～ずにはいられない</td><td>忍不住</td><td>その字を見ると、感動せずにはいられない。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="rv d2" style="font-family:var(--kai);font-weight:400;font-size:22px;letter-spacing:.1em;margin:clamp(30px,4vw,44px) 0 16px">作文：一个模板，套所有题</h3>
+    <div class="grid-2 rv d2">
+      <div class="card grid-corner">
+        <h3>四段骨架</h3>
+        <p><b>① 引题</b>：近年、～が広く注目を集めている。<br>
+        <b>② 两面</b>：確かに～という見方もある。しかし、私は～と考える。<br>
+        <b>③ 理由＋例</b>：その理由は二つある。第一に～。第二に～。例えば、～。<br>
+        <b>④ 结论</b>：したがって、私たちは～べきだと思う。</p>
+        <p style="margin-top:10px"><b>万能句库</b>：～にとって欠かせないものである／～に大きな影響を与えている／重要視すべきだ／バランスを取ることが大切だ。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>书法主题范文（大概率考）</h3>
+        <p style="font-family:var(--kai);font-size:15.5px;line-height:2">
+        　近年、伝統文化の価値が再び見直されつつある。中でも書道は、単なる文字の技術ではなく、心を落ち着かせる精神修養の方法として注目されている。<br>
+        　確かに、パソコンの普及によって筆を持つ機会は減った。しかし、私は書道を学ぶ意義はむしろ大きくなったと考える。その理由は二つある。第一に、一筆一筆丁寧に書くことで、集中力と忍耐力が身につく。第二に、古典を臨書することは、先人の生き方や美意識を学ぶことでもある。例えば、王羲之の『蘭亭序』を臨むとき、私たちは千年の時を超えて彼の筆遣いと向き合っている。<br>
+        　したがって、書道を単なる習い事としてではなく、文化を継承する営みとして大切にすべきだと思う。</p>
+        <p style="margin-top:10px;color:var(--ink-3);font-size:12px">※ 生词：臨書（りんしょ）· 精神修養（せいしんしゅうよう）· 継承（けいしょう）· 筆遣い（ふでづかい）· 美意識（びいしき）</p>
+      </div>
+    </div>
+
+    <div class="note rv d3">
+      <h5>45 天日语日程（每日 90 分钟）</h5>
+      <p><b>D-45 → D-25</b>：每天 30 词（真题高频）＋ 2 篇阅读（精读，查清每个错项为什么错）＋ 5 条语法。<br>
+      <b>D-24 → D-10</b>：每天 1 套真题（只做阅读＋完形，限时 70 分钟）＋ 1 句翻译 ＋ 背模板。<br>
+      <b>D-9 → 考前</b>：每两天 1 篇作文（手写，计时 30 分钟）；重做错题；背诵范文 3 篇。<br>
+      <b>关键</b>：真题至少刷 2 遍。第二遍不是「再做对」，是「说清楚每个错项错在哪」。</p>
+    </div>
+
+    <div style="margin-top:clamp(24px,3vw,34px);display:flex;gap:14px;flex-wrap:wrap" class="rv d3">
+      <a class="nav__cta" href="jp.html" style="font-size:14px;padding:12px 22px 11px">打开日语专项页：变形总表 ＋ 62 条语法 ＋ 变形器 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 专业课 ============ -->
+<section class="sec sec--tint" id="major">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">专</div>
+      <div>
+        <h2 class="sec__title">专业课：45 天的「减法」打法</h2>
+        <p class="sec__sub">这个阶段最忌讳「什么都想练」。正确策略是<b>四体各锁一本帖、篆刻锁一个方向（黄牧甫）、断句每天 10 句</b>——练到能背临、能化用、能在 3 小时内交出一张完整的作品。四体之间不是平均分，是<b>篆书定生死，其余定总分</b>。</p>
+      </div>
+    </div>
+
+    <div class="grid-3 rv d1">
+      <div class="card grid-corner">
+        <h3>业务课一 · 四体创作</h3>
+        <p>考的是<b>「你像不像」＋「你懂不懂」＋「你能不能成幅」</b>。像，是形准（结构、比例、重心）；懂，是笔法（起收、提按、中锋）与章法；成幅，是正文＋落款＋钤印齐整。<b>评分看的是「有没有法」，不是「好不好看」。</b></p>
+      </div>
+      <div class="card grid-corner">
+        <h3>业务课二 · 篆刻与题跋</h3>
+        <p>篆刻考<b>印稿</b>（章法）与<b>刀法</b>（线条光洁、不起毛），边款要能落一行像样的款；题跋考<b>文辞＋位置＋书体</b>三件事，写错位置比写错字更致命。详见下面「篆刻方向」一节。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>古汉语断句</h3>
+        <p>四条硬规则（虚词／对称／语法／双音词）＋五步顺序，<b>每天 10 句</b>，二十天就有手感。它是最「不靠天赋」的一块，也是性价比最高的一块。</p>
+      </div>
+    </div>
+
+    <h3 class="rv d2" style="font-family:var(--kai);font-weight:400;font-size:22px;letter-spacing:.1em;margin:clamp(30px,4vw,44px) 0 16px">赵孟頫专项 45 天临摹路线</h3>
+    <div class="tt-wrap rv d2">
+      <table class="tt">
+        <thead><tr><th>阶段</th><th>日课内容</th><th>目标</th><th>验收标准</th></tr></thead>
+        <tbody>
+          <tr><td><b>D-45 → D-34</b><br>立形</td><td>《胆巴碑》或《妙严寺记》对临，每日 3 行（约 30 字）。先单字，后整行。</td><td>把赵楷的「扁方结体」和「圆中带方」的转折装进手上。</td><td>不看帖能默出 10 个字的骨架；转折处不出现「塌肩」。</td></tr>
+          <tr><td><b>D-33 → D-22</b><br>找骨</td><td>《三门记》＋欧楷《九成宫》对照临（各半）。用欧的「险」校正赵的「平」。</td><td>解决「甜、软、滑」。让线条「立」起来。</td><td>同一字写赵、写欧各一遍，能说出差在哪。</td></tr>
+          <tr><td><b>D-21 → D-10</b><br>入行</td><td>《洛神赋》行书，每日 2 行；穿插《兰亭序》对照。同步练小楷《汲黯传》每日 20 字。</td><td>行书的「势」与小楷的「静」，一放一收。</td><td>行书能背临一段；小楷笔画不扁、气不断。</td></tr>
+          <tr><td><b>D-9 → D-1</b><br>成篇</td><td>集字创作：从所临帖中集字，写 2–3 首七言绝句，严格计时 3 小时；落款、钤印完整。</td><td>把「临」转成「用」。模拟考场节奏。</td><td>3 小时内完成正文＋落款＋印章，无错字、无涂改。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2 rv d2" style="margin-top:clamp(16px,2.4vw,26px)">
+      <div class="card grid-corner">
+        <h3>临摹的三层，别停在第一层</h3>
+        <p><b>① 对临</b>：看一笔写一笔 → 看一字写一字。求「准」。<br>
+        <b>② 背临</b>：不看帖，凭记忆写。求「记」。<b>这一层才是考试真正考的。</b><br>
+        <b>③ 意临</b>：取其意，用自己的手写出来。求「化」。<br>
+        很多人练了三年只在第一层打转——因为「对临」最有成就感。强迫自己每天留 20 分钟做背临。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>创作：格式即分数</h3>
+        <p><b>正文</b>：字体统一，繁简不混（写繁体就全篇繁体）；字距紧、行距松；首行不缩进，末行不写满。<br>
+        <b>落款</b>：时间（干支/岁次）＋ 名 ＋ 「书」。位置低于正文，字号小于正文。<br>
+        <b>钤印</b>：名章一方即可，位置在落款名下，<b>印不大于款字</b>。宁少勿多。</p>
+      </div>
+    </div>
+
+    <div class="note rv d3">
+      <h5>「沉淀年」的正确用法</h5>
+      <p>你今年不打算拼命，这没问题——但请把这一年当<b>「建立系统」的一年</b>，而不是「等明年」的一年。系统是什么？① 一套自己的临摹方法（对临→背临→意临的循环）；② 一份自己的理论笔记（每个书家一张「身世—取法—分期—作品—影响—争议」卡）；③ 一个自己的素材库（论述题骨架、作品清单、原句摘录）。<b>这三样东西，明年会用得上，而且比多练三个月更值钱。</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 篆刻专项 ============ -->
+<section class="sec" id="seal">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">印</div>
+      <div>
+        <h2 class="sec__title">篆刻方向：四体创作＋篆刻＋题跋＋古汉语断句</h2>
+        <p class="sec__sub">按你说的，两门业务课拆开看：<b>业务课一考四体创作</b>（篆隶楷行，临与创都要），<b>业务课二考篆刻＋题跋＋古汉语断句</b>——后两项最像「附加题」，其实最好拿分，也最容易被整年忽略。</p>
+      </div>
+    </div>
+
+    <div class="grid-4 rv d1">
+      <div class="stat"><b>刻</b><span>篆刻创作 · 朱文白文</span></div>
+      <div class="stat"><b>稿</b><span>印稿章法 · 决定成败</span></div>
+      <div class="stat"><b>跋</b><span>题跋 · 文辞与位置</span></div>
+      <div class="stat"><b>句</b><span>断句 · 古汉语句读</span></div>
+    </div>
+
+    <div class="grid-2 rv d2" style="margin-top:clamp(14px,2vw,22px)">
+      <div class="card grid-corner">
+        <h3>业务课一：四体的分工，别平均用力</h3>
+        <p><b>篆书（40%）</b>：唐李阳冰《三坟记》＋北宋申革《说性亭铭》（淳化二年 991，山东阳谷，撰并篆）。这是你的命门——<b>篆书写不好，印就刻不好</b>。玉箸篆要的是「匀、圆、稳」，线条粗细一致、起收圆藏、结字修长对称。</p>
+        <p><b>为什么是这两件</b>：《三坟记》是李阳冰的极致，但拓本漫漶、字口有损；《说性亭铭》晚出一百余年，是宋初接李氏一脉而更整饬的玉箸篆，<b>字口清楚、法度可循</b>——用它来「看清结构」，用《三坟记》来「取气格」。初学常把这两件当同一路字帖练（与《峄山碑》《袁安碑》同调），正是这个道理。</p>
+        <p><b>隶书（20%）</b>：《北大简》。汉简是「写」出来的隶书，不是「刻」出来的碑隶——要抓速度感与笔势连带，<b>千万别写成《曹全》《礼器》那种规整样</b>，那反而不是简牍的味道。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>四体的分工（续）</h3>
+        <p><b>楷书（25%）</b>：《胆巴碑》。赵体的「润」正是你需要的——因为篆刻线条要光洁，赵楷的圆转能给你「干净」的手感。</p>
+        <p><b>行书（15%）</b>：赵孟頫尺牍＋掺文徵明。尺牍见性情，文徵明的严谨正好<b>治赵的「滑」</b>。这一体不用多，但要能写出一张完整的、气息贯通的尺牍样。</p>
+        <p style="margin-top:10px"><b>四体都要「成幅」</b>：考试不是写单字，是交一张作品。正文、落款、钤印、留白，四件齐了才算完成——<b>落款垮掉，整张垮掉</b>。</p>
+      </div>
+    </div>
+
+    <h3 class="rv d2" style="font-family:var(--kai);font-weight:400;font-size:22px;letter-spacing:.1em;margin:clamp(30px,4vw,44px) 0 16px">题跋：写什么、写在哪、用什么体</h3>
+    <div class="grid-2 rv d2">
+      <div class="card grid-corner">
+        <h3>格式：一段跋 = 五件事</h3>
+        <p><b>① 时间</b>：年号＋干支，如「至正三年岁在癸未」；不会写年号就用「岁在××之秋」。<br>
+        <b>② 地点</b>：「观于××斋」「书于××窗下」。<br>
+        <b>③ 事由</b>：「××属题」「为××书」「临××帖毕」。<br>
+        <b>④ 评骘</b>：一句你的判断——这一句是分数所在，别只记事。<br>
+        <b>⑤ 署名</b>：字号＋名，下钤名章。</p>
+        <p style="margin-top:10px">常见收尾：<b>「谨识」「拜观」「雅正」「属正」</b>。给长辈用「教正」，给同辈用「雅正」，别乱用。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>位置与书体：三条不能错</h3>
+        <p><b>① 不压主体。</b>题跋写在画心之外的留白／拖尾／对开页；实在要写在画心上，只占边角，行气顺着画势走。</p>
+        <p><b>② 引首与跋文分体。</b>引首（大字标题）用<b>隶书或篆书</b>；跋文用<b>行楷</b>，字径约为正文的三分之一到二分之一。同一张纸上出现两种体，是规矩不是花哨。</p>
+        <p><b>③ 印不过三。</b>引首章一方，署款下名章一方，最多再加一方闲章。<b>印多则乱，乱则俗</b>——这句话面试能直接用。</p>
+      </div>
+    </div>
+
+    <h3 class="rv d2" style="font-family:var(--kai);font-weight:400;font-size:22px;letter-spacing:.1em;margin:clamp(30px,4vw,44px) 0 16px">古汉语断句：四条硬规则＋一个顺序</h3>
+    <div class="grid-2 rv d2">
+      <div class="card grid-corner">
+        <h3>四条硬规则</h3>
+        <p><b>① 看虚词定句读。</b>句尾：也／矣／焉／耳／乎／哉／耶／而已／云尔。句首：夫／盖／若夫／至若／是以／是故／然则／虽然／且夫／嗟乎。<b>「曰」后必断，「也」后多断。</b></p>
+        <p><b>② 看对称。</b>骈句、排比、对偶，字数与结构一对称，断句点自然浮出来——这是最快的一条，先找它。</p>
+        <p><b>③ 看语法。</b>主语换、宾语出现、状语前置（「以……为……」）都是断点。名词活用作动词处，前面往往要断。</p>
+        <p><b>④ 别拆双音词。</b>地方／可以／然后／虽然／于是／以为／至于／其实／然后——<b>这几个是断句第一大坑</b>，拆开就错。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>顺序：五步，别跳</h3>
+        <p><b>① 通读一遍</b>，先懂大意（不懂大意，标点必错）。<br>
+        <b>② 圈虚词</b>，把句尾句首的虚词全圈出来。<br>
+        <b>③ 找对仗</b>，能对称的地方先断开。<br>
+        <b>④ 试断并回读</b>——读不通就是断错了，退回去改，别硬撑。<br>
+        <b>⑤ 誊写规范</b>：句号、逗号、问号、叹号、冒号、引号、书名号，一个都不能少。</p>
+        <p style="margin-top:10px"><b>每天练 10 句</b>，用王力《古代汉语》第一册的断句练习，或《古文观止》任取一段自己加标点再对照。二十天就有手感。</p>
+      </div>
+    </div>
+
+    <h3 class="rv d2" style="font-family:var(--kai);font-weight:400;font-size:22px;letter-spacing:.1em;margin:clamp(30px,4vw,44px) 0 16px">黄牧甫：把「光洁」做成一种主张</h3>
+    <div class="grid-2 rv d2">
+      <div class="card grid-corner">
+        <h3>风格五条</h3>
+        <p><b>① 平正光洁。</b>线条光洁如新，起收方整，绝不敲边磨角做「残破」。<br>
+        <b>② 冲刀为主。</b>单刀直入，刀痕爽利，不拖不涩。<br>
+        <b>③ 章法疏密极端。</b>「疏可走马，密不透风」，方寸之间制造强烈对比。<br>
+        <b>④ 印外求印。</b>承赵之谦，把汉金文、秦诏版、镜铭、泉布、石鼓入印。<br>
+        <b>⑤ 边款单刀。</b>取北魏楷书与隶书意，字口锋利，如刀削木。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>与吴昌硕：一「全」一「破」</h3>
+        <p>这是印学史最爱考的一组对比，也是你面试时最可能被问的：</p>
+        <p><b>吴昌硕</b>：钝刀硬入、切刀、做印（敲边、磨角），追求<b>浑厚苍茫</b>，是「破」。<br>
+        <b>黄士陵</b>：冲刀、不加修饰，追求<b>光洁妍美</b>，是「全」。</p>
+        <p>黄牧甫反对当时印坛「以破碎为古」的习气——<b>古不在残破，古在秩序</b>。这句话你要能张口就来。</p>
+      </div>
+    </div>
+
+    <div class="tt-wrap rv d2" style="margin-top:clamp(16px,2.4vw,26px)">
+      <table class="tt">
+        <thead><tr><th>印学史节点</th><th>关键人物</th><th>一句话</th></tr></thead>
+        <tbody>
+          <tr><td>秦汉印</td><td>—</td><td>满白文、朱文、玉印，方正典重，是万世之祖</td></tr>
+          <tr><td>元代</td><td>赵孟頫 · 吾丘衍</td><td>圆朱文成立；《学古编·三十五举》确立文人印审美</td></tr>
+          <tr><td>明代</td><td>文彭 · 何震 · 苏宣 · 汪关 · 朱简</td><td>石印时代开启，「三桥派」「雪渔派」</td></tr>
+          <tr><td>清代前期</td><td>程邃 · 丁敬</td><td>徽派；浙派「西泠八家」，切刀涩进</td></tr>
+          <tr><td>清代中期</td><td>邓石如 · 吴让之</td><td><b>「印从书出」</b>——以自家书法入印</td></tr>
+          <tr><td>晚清</td><td>赵之谦 · 黄士陵 · 吴昌硕</td><td><b>「印外求印」</b>；黟山派与吴派双峰并峙</td></tr>
+          <tr><td>近代</td><td>齐白石 · 陈巨来</td><td>单刀直入的猛利；元朱文的精绝</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note rv d3">
+      <h5>「古汉语与篆刻」这块暗桩，按 911 准备</h5>
+      <p><b>文字学</b>：六书（象形·指事·会意·形声·转注·假借）、许慎《说文解字》540 部首、古今字／异体字／通假字。<br>
+      <b>文言</b>：句读（断句）＋常用词，用王力《古代汉语》第一册，每天 20 分钟，<b>只读通论与断句练习</b>。<br>
+      <b>篆法</b>：小篆的对称、上紧下松、圆转——最便宜的基本功是<b>每天临《说文》部首 10 个</b>，既练篆法又背部首，一举两得。<br>
+      <b>提醒</b>：这里按你给的「四体创作＋篆刻＋题跋＋断句」组卷来备，<b>但仍要用你手上那份招生目录／真题再核一遍科目代码</b>（621 / 911 / 912 之间差得不小），核完告诉我，我把这条改准。</p>
+    </div>
+
+    <h3 class="rv d2" style="font-family:var(--kai);font-weight:400;font-size:22px;letter-spacing:.1em;margin:clamp(30px,4vw,44px) 0 16px">篆刻方向 45 天路线</h3>
+    <div class="tt-wrap rv d2">
+      <table class="tt">
+        <thead><tr><th>阶段</th><th>日课</th><th>目标</th><th>验收</th></tr></thead>
+        <tbody>
+          <tr><td><b>D-45 → D-32</b><br>筑基</td><td>篆书《三坟记》单字 20 个／日；汉印临摹 5 方／周（先满白文）；黄牧甫朱文<b>读印</b> 20 方（只看不刻）；<b>断句 5 句／日</b></td><td>把玉箸篆的「匀线」装进手上；看懂黄印的疏密；断句先上手</td><td>能默写 10 个篆字，线条粗细误差肉眼不可见</td></tr>
+          <tr><td><b>D-31 → D-20</b><br>转换</td><td>《北大简》隶书 2 行／日；黄牧甫朱文临摹 6 方；<b>印稿设计 10 方</b>（只画不上石）；<b>断句 10 句／日</b></td><td>从「临」转向「设计」——篆刻真正的功夫在印稿；断句练到能一眼圈出虚词</td><td>10 方印稿里，有 6 方能说出章法理由</td></tr>
+          <tr><td><b>D-19 → D-10</b><br>上手</td><td>黄牧甫白文 4 方；边款单刀练习 10 次；<b>题跋 2 则／周</b>（写在旧作留白上即可）；四体轮转各 20 分钟；印学史背诵</td><td>刀要稳、线要光；题跋能把「时间·事由·评骘·署名」四件写全</td><td>一方白文印线条不起毛；一则跋文文辞通顺、位置不压主体</td></tr>
+          <tr><td><b>D-9 → D-1</b><br>模拟</td><td>3 小时完成 2 方印（一朱一白）＋四体临摹各 1 张；<b>完整题跋 1 则＋断句 20 句</b>；错印复盘</td><td>把「考场三小时」变成肌肉记忆</td><td>3 小时内交得出完整作品，无返工</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note rv d3">
+      <h5>面试的 3 分钟陈述，现在就写</h5>
+      <p>复试几乎一定会问：「你为什么学黄牧甫？」<b>别答「喜欢」</b>。给一个有结构的答案：<b>取法</b>（他以汉金文、诏版入印，是「印外求印」的延续）→ <b>审美</b>（以「光洁」反「残破」，把古意落在秩序上）→ <b>技术</b>（冲刀的单刀直入，要求篆法极准，逼我把篆书练扎实）→ <b>自己</b>（我学他，是为了治自己线条「软」的毛病）。<b>四句话，四个层次，老师会记住你。</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 检查表 ============ -->
+<section class="sec" id="weekly">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">查</div>
+      <div>
+        <h2 class="sec__title">每周检查表（会自己记住）</h2>
+        <p class="sec__sub">勾选状态保存在本机浏览器里，关掉再打开还在。每周日晚上过一遍，<b>没打勾的，就是下周的第一优先级</b>。</p>
+      </div>
+    </div>
+
+    <div class="grid-2 rv d1">
+      <div>
+        <h4 style="font-family:var(--kai);font-weight:400;font-size:17px;letter-spacing:.1em;margin:0 0 12px;color:var(--ink-2)">政治 · 每周</h4>
+        <div class="checklist" data-ck="pol">
+          <label class="ck"><input type="checkbox" data-k="pol1"><span>完成本周章节的选择题，并把错题归因写下来</span><em>WEEKLY</em></label>
+          <label class="ck"><input type="checkbox" data-k="pol2"><span>背 5 条分析题「万能句」，能默写关键词</span><em>WEEKLY</em></label>
+          <label class="ck"><input type="checkbox" data-k="pol3"><span>过一遍本周时政（跟一个小册子即可）</span><em>WEEKLY</em></label>
+          <label class="ck"><input type="checkbox" data-k="pol4"><span>一套完整选择题限时训练（25 分钟）</span><em>WEEKLY</em></label>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-family:var(--kai);font-weight:400;font-size:17px;letter-spacing:.1em;margin:0 0 12px;color:var(--ink-2)">日语 · 每周</h4>
+        <div class="checklist" data-ck="jp">
+          <label class="ck"><input type="checkbox" data-k="jp1"><span>精读 8 篇真题阅读，每道错题说清「错在哪」</span><em>WEEKLY</em></label>
+          <label class="ck"><input type="checkbox" data-k="jp2"><span>手写 1 篇作文（计时 30 分钟，450 字以上）</span><em>WEEKLY</em></label>
+          <label class="ck"><input type="checkbox" data-k="jp3"><span>背诵并默写 1 个作文模板</span><em>WEEKLY</em></label>
+          <label class="ck"><input type="checkbox" data-k="jp4"><span>翻译 5 个长句，做「切分—重排」练习</span><em>WEEKLY</em></label>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-family:var(--kai);font-weight:400;font-size:17px;letter-spacing:.1em;margin:0 0 12px;color:var(--ink-2)">专业课 · 每周</h4>
+        <div class="checklist" data-ck="art">
+          <label class="ck"><input type="checkbox" data-k="art1"><span>对临 15 行以上，且完成 3 次「背临」检验</span><em>WEEKLY</em></label>
+          <label class="ck"><input type="checkbox" data-k="art2"><span>完成 1 张完整创作（正文＋落款＋钤印）</span><em>WEEKLY</em></label>
+          <label class="ck"><input type="checkbox" data-k="art3"><span>整理 1 位书家的「六维卡」（身世/取法/分期/作品/影响/争议）</span><em>WEEKLY</em></label>
+          <label class="ck"><input type="checkbox" data-k="art4"><span>手写 1 篇论述（40 分钟，800 字，三段式）</span><em>WEEKLY</em></label>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-family:var(--kai);font-weight:400;font-size:17px;letter-spacing:.1em;margin:0 0 12px;color:var(--ink-2)">状态 · 每周</h4>
+        <div class="checklist" data-ck="self">
+          <label class="ck"><input type="checkbox" data-k="self1"><span>有 3 天在 23:30 前睡</span><em>WEEKLY</em></label>
+          <label class="ck"><input type="checkbox" data-k="self2"><span>有 2 次连续 40 分钟不看手机的专注</span><em>WEEKLY</em></label>
+          <label class="ck"><input type="checkbox" data-k="self3"><span>周日复盘：写下「本周最大的一个进步」</span><em>WEEKLY</em></label>
+          <label class="ck"><input type="checkbox" data-k="self4"><span>允许自己休息半天，且不愧疚</span><em>WEEKLY</em></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 心态 ============ -->
+<section class="sec sec--tint" id="mind">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">心</div>
+      <div>
+        <h2 class="sec__title">最后：把「沉淀」翻译成动作</h2>
+        <p class="sec__sub">你说今年打算沉淀，明年再战。这其实是个很好的位置——<b>没有输赢的压力，只剩下「能长多少」的问题</b>。但「沉淀」这个词有个陷阱：它听起来像「等」。</p>
+      </div>
+    </div>
+
+    <div class="grid-2 rv d1">
+      <div class="card grid-corner">
+        <h3>沉淀 ≠ 等待</h3>
+        <p>沉淀是<b>把经验变成结构</b>。今年这 45 天，你真正该带走的是三样：<br>
+        ① 一套<b>可复用的方法</b>（怎么临一幅帖、怎么拆一道论述题）；<br>
+        ② 一份<b>属于自己的资料</b>（这个网站可以是一个起点，但最终要长成你的笔记）；<br>
+        ③ 一个<b>准确的自我诊断</b>（哪一科是真的弱，弱在哪个环节）。<br>
+        明年再战时，你不需要从零开始——这才是「沉淀」的意思。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>关于 AI 辅助的边界</h3>
+        <p>AI 能帮你做的：<b>整理脉络、生成框架、批改逻辑、出题自测、解释语法、模拟对话</b>。<br>
+        AI 不能帮你做的：<b>手上功夫</b>（笔法只能靠手练）、<b>背诵的苦</b>（记忆没有捷径）、<b>考场上的三小时</b>（只能靠模拟）。<br>
+        所以正确的用法是：<b>让 AI 承担「结构与检索」，把省下来的时间全部投给「手感与记忆」。</b>这也是这个网站存在的理由。</p>
+      </div>
+    </div>
+
+    <div class="note rv d2">
+      <h5>如果只做三件事</h5>
+      <p>① <b>政治</b>：每天 90 分钟，把选择题正确率刷到 80%。<br>
+      ② <b>日语</b>：把近 10 年真题的阅读做两遍，每道错题说清原因。<br>
+      ③ <b>专业</b>：一本帖练到能背临，每周交一张完整创作。<br>
+      其余的，都是锦上添花。</p>
+    </div>
+
+    <div style="margin-top:clamp(30px,4vw,44px);display:flex;gap:14px;flex-wrap:wrap" class="rv d2">
+      <a class="nav__cta" href="index.html" style="font-size:14px;padding:12px 22px 11px">← 回到赵孟頫脉络</a>
+      <a class="nav__cta" href="index.html#exam" style="font-size:14px;padding:12px 22px 11px">七道论述题骨架 →</a>
+    </div>
+  </div>
+</section>
+
+<section class="outro">
+  <div class="wrap">
+    <div class="seal-big rv">日日<br>不斷</div>
+    <p class="outro__line rv d1">「昔人得古刻数行，<br>专心而学之，便可名世。」</p>
+    <p class="outro__sub rv d2">五十天不够改变一切，但足够让你知道自己能走多远。</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>五十日作战室 &nbsp;|&nbsp; 为中国美术学院书法专硕（日语 203）整理 &nbsp;|&nbsp; 分值结构与科目以当年大纲、招生目录为准</span>
+    <span><a href="index.html">赵孟頫脉络</a> &nbsp;·&nbsp; <a href="jp.html">日语 203</a> &nbsp;·&nbsp; <a href="zz.html">政治重点</a> &nbsp;·&nbsp; <a href="#ledger">分数账本</a></span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   阅读设置：字体 / 字号 / 主题
+   —— 纯前端，记住选择；华为平板/安卓/iOS 通用
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var KEY = 'zmf-read-v1';
+  var root = document.documentElement;
+
+  /* ---------- 有没有衬线中文字体？ ----------
+     CJK 字符宽度都等于 1em，量宽度没用；
+     改成把同一个字分别用 serif / sans-serif 画到 canvas 上，
+     比较像素指纹——若完全一致，说明两者回退到了同一个字面。 */
+  function sig(family) {
+    var c = document.createElement('canvas');
+    c.width = 72; c.height = 72;
+    var x = c.getContext('2d');
+    x.font = '52px ' + family;
+    x.textBaseline = 'top';
+    x.fillStyle = '#000';
+    x.fillText('书', 2, 2);
+    var d = x.getImageData(0, 0, 72, 72).data;
+    var h = 0;
+    for (var i = 0; i < d.length; i += 5) { h = (h * 31 + d[i]) | 0; }
+    return h;
+  }
+
+  function hasSerif() {
+    try {
+      return sig('serif') !== sig('sans-serif');
+    } catch (e) { return true; }
+  }
+
+  /* ---------- 读取已保存的设置 ---------- */
+  var def = { font: hasSerif() ? 'song' : 'hei', fs: '1', theme: 'paper' };
+  var state = def;
+  try {
+    var saved = JSON.parse(localStorage.getItem(KEY) || '{}');
+    state = {
+      font: saved.font || def.font,
+      fs: saved.fs || def.fs,
+      theme: saved.theme || def.theme
+    };
+  } catch (e) { state = def; }
+
+  function apply() {
+    root.setAttribute('data-font', state.font);
+    root.setAttribute('data-fs', state.fs);
+    root.setAttribute('data-theme', state.theme);
+    if (state.theme === 'dark') root.style.colorScheme = 'dark';
+    else root.style.colorScheme = 'light';
+  }
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  // 尽早应用，避免闪一下
+  apply();
+
+  /* ---------- 面板 ---------- */
+  var GROUPS = [
+    { k: 'font', label: '字体', opts: [['song', '宋'], ['kai', '楷'], ['hei', '黑']] },
+    { k: 'fs', label: '字号', opts: [['1', '小'], ['2', '中'], ['3', '大']] },
+    { k: 'theme', label: '主题', opts: [['paper', '纸'], ['dark', '夜']] }
+  ];
+
+  function build() {
+    var btn = document.createElement('button');
+    btn.className = 'read-btn';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', '阅读设置');
+    btn.textContent = 'Aa';
+
+    var panel = document.createElement('div');
+    panel.className = 'read-panel';
+    panel.innerHTML = GROUPS.map(function (g) {
+      return '<div class="read-row"><span>' + g.label + '</span><div class="read-seg" data-k="' + g.k + '">' +
+        g.opts.map(function (o) {
+          return '<button type="button" data-v="' + o[0] + '">' + o[1] + '</button>';
+        }).join('') + '</div></div>';
+    }).join('');
+
+    document.body.appendChild(btn);
+    document.body.appendChild(panel);
+
+    function sync() {
+      panel.querySelectorAll('.read-seg').forEach(function (seg) {
+        var k = seg.getAttribute('data-k');
+        seg.querySelectorAll('button').forEach(function (b) {
+          b.classList.toggle('on', b.getAttribute('data-v') === state[k]);
+        });
+      });
+    }
+    sync();
+
+    panel.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-v]');
+      if (!b) return;
+      var k = b.parentElement.getAttribute('data-k');
+      state[k] = b.getAttribute('data-v');
+      apply();
+      save();
+      sync();
+    });
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      panel.classList.toggle('on');
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!panel.classList.contains('on')) return;
+      if (panel.contains(e.target) || btn.contains(e.target)) return;
+      panel.classList.remove('on');
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') panel.classList.remove('on');
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', build);
+  } else {
+    build();
+  }
+
+  /* ---------- 跟随系统深色（仅首次） ---------- */
+  if (!localStorage.getItem(KEY) && window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    state.theme = 'dark';
+    apply();
+  }
+})();
+
+</script>
+<script>
+/* ============================================================
+   五十日作战室 — 交互脚本
+   ============================================================ */
+(function () {
+  'use strict';
+
+  /* ---------------------------------------------------------
+     1. 倒计时
+     --------------------------------------------------------- */
+  var TARGET = new Date('2026-12-19T08:30:00+08:00').getTime();
+  var elD = document.getElementById('cdDays');
+  var elHM = document.getElementById('cdHM');
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function tick() {
+    var now = Date.now();
+    var diff = TARGET - now;
+    if (!elD) return;
+    if (diff <= 0) {
+      elD.textContent = '0';
+      if (elHM) elHM.textContent = '考试已开始 · 愿你从容';
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor(diff % 86400000 / 3600000);
+    var m = Math.floor(diff % 3600000 / 60000);
+    elD.textContent = d;
+    if (elHM) elHM.textContent = formatDay(d) + ' · ' + pad(h) + ' 时 ' + pad(m) + ' 分';
+  }
+
+  function formatDay(d) {
+    if (d > 30) return '约 ' + Math.round(d / 7) + ' 周';
+    if (d > 7) return '整 ' + Math.floor(d / 7) + ' 周余 ' + (d % 7) + ' 天';
+    return '最后冲刺';
+  }
+
+  tick();
+  setInterval(tick, 20000);
+
+  /* ---------------------------------------------------------
+     2. 分数账本
+     --------------------------------------------------------- */
+  var ids = ['s1', 's2', 's3', 's4'];
+  var out = document.getElementById('sum');
+  var verdict = document.getElementById('verdict');
+
+  function recalc() {
+    var total = 0;
+    ids.forEach(function (id, i) {
+      var s = document.getElementById(id);
+      var v = document.getElementById('v' + (i + 1));
+      if (!s) return;
+      total += parseInt(s.value, 10);
+      if (v) v.textContent = s.value;
+    });
+    if (out) out.textContent = total;
+    if (verdict) {
+      var gap = 400 - total;
+      if (total >= 400) {
+        verdict.className = 'verdict ok';
+        verdict.textContent = '稳（超 400 目标 ' + (total - 400) + ' 分）';
+      } else if (total >= 354) {
+        verdict.className = 'verdict no';
+        verdict.textContent = '过线，但距 400 还差 ' + gap;
+      } else {
+        verdict.className = 'verdict no';
+        verdict.textContent = '低于复试线 354，差 ' + (354 - total);
+      }
+    }
+  }
+
+  ids.forEach(function (id) {
+    var s = document.getElementById(id);
+    if (s) s.addEventListener('input', recalc);
+  });
+  recalc();
+
+  /* ---------------------------------------------------------
+     3. 检查表（localStorage）
+     --------------------------------------------------------- */
+  var KEY = 'zmf-plan-checks-v1';
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { saved = {}; }
+
+  document.querySelectorAll('.checklist input[type=checkbox]').forEach(function (cb) {
+    var k = cb.getAttribute('data-k');
+    if (saved[k]) cb.checked = true;
+    cb.addEventListener('change', function () {
+      saved[k] = cb.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+
+  // 点击整行也能切换
+  document.querySelectorAll('.ck').forEach(function (row) {
+    row.addEventListener('click', function (e) {
+      if (e.target.tagName === 'INPUT') return;
+      var cb = row.querySelector('input');
+      if (!cb) return;
+      cb.checked = !cb.checked;
+      cb.dispatchEvent(new Event('change'));
+    });
+  });
+
+  /* ---------------------------------------------------------
+     4. 导航 / 进度条 / 入场（与主页同逻辑）
+     --------------------------------------------------------- */
+  var nav = document.getElementById('nav');
+  var prog = document.getElementById('progress');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav__links a'));
+  var secs = links.map(function (a) {
+    var id = a.getAttribute('href').slice(1);
+    return document.getElementById(id);
+  }).filter(Boolean);
+
+  var lastY = 0;
+  function onScroll() {
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    if (prog) {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+    }
+    if (nav) {
+      if (y > 300) nav.classList.toggle('hide', y > lastY && y > 520);
+      else nav.classList.remove('hide');
+    }
+    lastY = y;
+    var cur = -1;
+    for (var i = 0; i < secs.length; i++) {
+      if (secs[i].getBoundingClientRect().top <= 160) cur = i;
+    }
+    links.forEach(function (a, i) { a.classList.toggle('on', i === cur); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var rvEls = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+    rvEls.forEach(function (e) { io.observe(e); });
+  } else {
+    rvEls.forEach(function (e) { e.classList.add('in'); });
+  }
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    if (!id) return;
+    var t = document.getElementById(id);
+    if (!t) return;
+    e.preventDefault();
+    var top = t.getBoundingClientRect().top + window.pageYOffset - 70;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+    history.replaceState(null, '', '#' + id);
+  });
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1895 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="日语 203">
+<meta name="theme-color" content="#f3ede1">
+<title>日本語 203 — 变形总表与高频考点</title>
+<meta name="description" content="考研日语203：动词形容词变形总表、可变形的交互工具、60条高频语法、助词辨析、敬语、完形、作文模板与翻译技巧。">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ============================================================
+   松雪·脉络  —  赵孟頫书法脉络
+   设计语言：宣纸 / 墨 / 朱砂 / 界格
+   ============================================================ */
+
+:root{
+  --paper:      #f3ede1;
+  --paper-2:    #eae2d2;
+  --paper-3:    #e0d6c2;
+  --ink:        #17170f;
+  --ink-2:      #3c3b31;
+  --ink-3:      #6f6d60;
+  --ink-4:      #9c998b;
+  --cinnabar:   #a6342a;
+  --cinnabar-2: #c2543f;
+  --cinnabar-s: rgba(166,52,42,.12);
+  --gold:       #8a7448;
+  --jade:       #2f5257;
+  --line:       rgba(23,23,15,.16);
+  --line-2:     rgba(23,23,15,.07);
+
+  --f-song: "Songti SC","STSong","SimSun","Source Han Serif SC","Noto Serif SC","Noto Serif CJK SC",serif;
+  --f-kai:  "Kaiti SC","STKaiti","KaiTi","楷体","Kaiti TC","Songti SC","Noto Serif CJK SC",serif;
+  --f-hei:  "PingFang SC","HarmonyOS Sans SC","MiSans","Microsoft YaHei","Noto Sans CJK SC","Noto Sans SC",sans-serif;
+
+  --serif: var(--f-song);
+  --kai:   var(--f-kai);
+  --mono:  "SF Mono","JetBrains Mono","Cascadia Mono",Consolas,"Courier New",monospace;
+
+  --maxw: 1120px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:17px;
+  line-height:1.95;
+  letter-spacing:.02em;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* 宣纸肌理 */
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    radial-gradient(ellipse 70% 50% at 12% 8%, rgba(255,255,255,.55), transparent 60%),
+    radial-gradient(ellipse 60% 55% at 88% 92%, rgba(140,120,80,.10), transparent 62%),
+    repeating-linear-gradient(0deg, rgba(90,75,45,.030) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(90,75,45,.024) 0 1px, transparent 1px 4px),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='220' height='220' filter='url(%23n)' opacity='.055'/></svg>");
+  mix-blend-mode:multiply;
+  opacity:.9;
+}
+
+main,header.hero,footer{ position:relative; z-index:1; }
+
+::selection{ background:var(--cinnabar); color:var(--paper); }
+
+a{ color:inherit; text-decoration:none; }
+
+img{ max-width:100%; }
+
+.wrap{ width:min(100% - 48px, var(--maxw)); margin-inline:auto; }
+
+/* ---------- 顶部阅读进度 ---------- */
+#progress{
+  position:fixed; top:0; left:0; height:2px; width:0%;
+  background:linear-gradient(90deg,var(--cinnabar),var(--cinnabar-2));
+  z-index:120; transition:width .1s linear;
+}
+
+/* ---------- 导航 ---------- */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; gap:28px;
+  padding:14px clamp(20px,4vw,44px);
+  background:rgba(243,237,225,.78);
+  -webkit-backdrop-filter:blur(14px) saturate(1.1);
+  backdrop-filter:blur(14px) saturate(1.1);
+  border-bottom:1px solid var(--line-2);
+  transform:translateY(0);
+  transition:transform .45s var(--ease), background .3s;
+}
+.nav.hide{ transform:translateY(-102%); }
+.nav__brand{ display:flex; align-items:center; gap:11px; margin-right:auto; }
+.nav__seal{
+  width:30px; height:30px; flex:none;
+  display:grid; place-items:center;
+  background:var(--cinnabar); color:#fff6ee;
+  font-family:var(--kai); font-size:13px; line-height:1; letter-spacing:0;
+  border-radius:3px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.28);
+}
+.nav__title{ font-family:var(--kai); font-size:19px; letter-spacing:.18em; }
+.nav__title small{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--ink-3); margin-left:8px; }
+.nav__links{ display:flex; gap:22px; align-items:center; }
+.nav__links a{
+  font-size:13.5px; letter-spacing:.12em; color:var(--ink-2);
+  position:relative; padding:4px 0; white-space:nowrap;
+}
+.nav__links a::after{
+  content:""; position:absolute; left:0; bottom:0; height:1px; width:0;
+  background:var(--cinnabar); transition:width .35s var(--ease);
+}
+.nav__links a:hover::after,.nav__links a.on::after{ width:100%; }
+.nav__links a.on{ color:var(--cinnabar); }
+.nav__cta{
+  font-size:12.5px; letter-spacing:.1em; color:var(--ink-2);
+  border:1px solid var(--line); border-radius:999px;
+  padding:7px 14px 6px; white-space:nowrap;
+  transition:.3s var(--ease);
+}
+.nav__cta:hover{ border-color:var(--cinnabar); color:var(--cinnabar); }
+/* 触屏也能打开的搜索入口（替代 Ctrl+K） */
+.nav__search{
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:inherit; font-size:12.5px; letter-spacing:.1em; color:var(--ink-2);
+  border:1px solid transparent; border-radius:999px;
+  padding:7px 10px 6px; white-space:nowrap; background:none; cursor:pointer;
+  transition:.3s var(--ease);
+}
+.nav__search svg{ width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; }
+.nav__search:hover{ color:var(--cinnabar); border-color:var(--line); background:rgba(178,58,44,.04); }
+
+/* ---------- Hero ---------- */
+.hero{
+  min-height:100svh; padding:120px 0 70px;
+  display:grid; grid-template-columns:1fr; align-items:center;
+  position:relative; overflow:hidden;
+}
+/* 淡墨大字水印 */
+.hero__ghost{
+  position:absolute; right:-4vw; top:46%;
+  transform:translateY(-50%);
+  font-family:var(--kai);
+  font-size:clamp(240px,42vw,620px);
+  line-height:.8;
+  color:rgba(23,23,15,.045);
+  writing-mode:vertical-rl;
+  letter-spacing:-.06em;
+  pointer-events:none; user-select:none;
+  z-index:0;
+}
+.hero__inner{ position:relative; z-index:2; display:grid; gap:34px; }
+
+.hero__eyebrow{
+  display:flex; align-items:center; gap:14px;
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.34em;
+  color:var(--ink-3); text-transform:uppercase;
+}
+.hero__eyebrow span{ display:block; width:52px; height:1px; background:var(--ink-4); }
+
+.hero__name{
+  font-family:var(--kai);
+  font-size:clamp(64px,12.5vw,150px);
+  line-height:1.02; letter-spacing:.06em; font-weight:400;
+  margin:0;
+}
+.hero__name em{ font-style:normal; color:var(--cinnabar); }
+.hero__latin{
+  font-family:var(--mono); font-size:12px; letter-spacing:.3em;
+  color:var(--ink-3); margin-top:6px;
+}
+
+.hero__epi{
+  max-width:600px; padding-left:22px;
+  border-left:2px solid var(--cinnabar);
+  font-family:var(--kai); font-size:clamp(19px,2.3vw,25px);
+  line-height:1.9; color:var(--ink-2); letter-spacing:.08em;
+}
+.hero__epi b{ font-weight:400; color:var(--ink); border-bottom:1px solid var(--line); }
+.hero__epi cite{ display:block; margin-top:10px; font-style:normal; font-size:12.5px; letter-spacing:.14em; color:var(--ink-3); font-family:var(--serif); }
+
+.hero__meta{
+  display:flex; flex-wrap:wrap; gap:0;
+  border-top:1px solid var(--line); padding-top:18px;
+}
+.hero__meta div{ padding-right:38px; margin-right:38px; border-right:1px solid var(--line-2); }
+.hero__meta div:last-child{ border:0; }
+.hero__meta dt{ font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; color:var(--ink-3); }
+.hero__meta dd{ margin:4px 0 0; font-family:var(--kai); font-size:17px; letter-spacing:.1em; }
+
+.hero__scroll{
+  position:absolute; left:50%; bottom:26px; transform:translateX(-50%);
+  display:grid; justify-items:center; gap:8px;
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.28em; color:var(--ink-4);
+}
+.hero__scroll i{ display:block; width:1px; height:44px; background:linear-gradient(var(--ink-4),transparent); animation:drop 2.4s var(--ease) infinite; }
+@keyframes drop{ 0%{ transform:scaleY(.2); transform-origin:top; opacity:0 } 40%{opacity:1} 100%{ transform:scaleY(1); transform-origin:top; opacity:0 } }
+
+/* ---------- 章节 ---------- */
+.sec{ padding:clamp(72px,10vw,132px) 0; position:relative; }
+.sec + .sec{ border-top:1px solid var(--line-2); }
+.sec--tint{ background:linear-gradient(180deg, rgba(234,226,210,.55), rgba(234,226,210,0)); }
+
+.sec__head{ display:grid; grid-template-columns:auto 1fr; gap:clamp(16px,3vw,40px); align-items:start; margin-bottom:clamp(38px,5vw,64px); }
+.sec__num{
+  font-family:var(--kai); font-size:13px; letter-spacing:.2em; color:var(--cinnabar);
+  border:1px solid var(--cinnabar); border-radius:2px;
+  padding:5px 7px 4px; line-height:1; margin-top:4px;
+  writing-mode:vertical-rl; text-orientation:upright;
+}
+.sec__title{
+  font-family:var(--kai); font-weight:400;
+  font-size:clamp(27px,4.4vw,44px); line-height:1.35; letter-spacing:.1em;
+  margin:0 0 10px;
+}
+.sec__sub{ color:var(--ink-3); font-size:14px; letter-spacing:.08em; max-width:62ch; margin:0; }
+.sec__sub b{ color:var(--ink-2); font-weight:400; }
+
+/* 竖排小標 */
+.vlabel{
+  writing-mode:vertical-rl; text-orientation:upright;
+  font-family:var(--kai); font-size:12px; letter-spacing:.34em;
+  color:var(--ink-4);
+}
+
+/* ---------- 通用卡片 ---------- */
+.card{
+  background:rgba(255,252,246,.55);
+  border:1px solid var(--line);
+  padding:clamp(22px,3vw,34px);
+  position:relative;
+  transition:.45s var(--ease);
+}
+.card:hover{ background:rgba(255,253,248,.9); border-color:rgba(23,23,15,.3); transform:translateY(-3px); }
+.card h3{
+  font-family:var(--kai); font-weight:400; font-size:21px; letter-spacing:.08em;
+  margin:0 0 10px;
+}
+.card p{ margin:0; font-size:14.5px; color:var(--ink-2); line-height:1.95; }
+.card p + p{ margin-top:10px; }
+
+/* 界格装饰角 */
+.grid-corner::before,.grid-corner::after{
+  content:""; position:absolute; width:9px; height:9px; border-color:var(--cinnabar); border-style:solid; opacity:.55;
+}
+.grid-corner::before{ top:-1px; left:-1px; border-width:1px 0 0 1px; }
+.grid-corner::after{ bottom:-1px; right:-1px; border-width:0 1px 1px 0; }
+
+/* ---------- 概述格 ---------- */
+.grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.6vw,20px); }
+.grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(12px,1.6vw,20px); }
+.grid-4{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,1.6vw,20px); }
+
+.stat{ padding:clamp(20px,2.6vw,30px); border:1px solid var(--line); background:rgba(255,252,246,.4); }
+.stat b{ display:block; font-family:var(--kai); font-size:clamp(30px,4.4vw,46px); line-height:1.1; letter-spacing:.02em; }
+.stat b small{ font-size:.42em; letter-spacing:.14em; margin-left:4px; color:var(--ink-3); }
+.stat span{ display:block; margin-top:8px; font-size:12.5px; letter-spacing:.16em; color:var(--ink-3); }
+
+/* ---------- 引文 ---------- */
+blockquote.big{
+  margin:0; padding:clamp(26px,4vw,44px);
+  border:1px solid var(--line);
+  background:rgba(255,253,248,.55);
+  position:relative;
+}
+blockquote.big p{
+  font-family:var(--kai); font-size:clamp(20px,3.1vw,32px);
+  line-height:1.85; letter-spacing:.08em; margin:0; color:var(--ink);
+}
+blockquote.big p::before{ content:"「"; color:var(--cinnabar); }
+blockquote.big p::after{ content:"」"; color:var(--cinnabar); }
+blockquote.big footer{ margin-top:16px; font-size:12.5px; letter-spacing:.1em; color:var(--ink-3); }
+
+/* ---------- 时间轴 ---------- */
+.timeline{ position:relative; margin-top:8px; }
+.timeline::before{
+  content:""; position:absolute; left:96px; top:6px; bottom:6px; width:1px;
+  background:linear-gradient(var(--line),var(--line-2),var(--line));
+}
+.tl-item{ position:relative; display:grid; grid-template-columns:96px 1fr; gap:clamp(18px,3vw,38px); padding:0 0 clamp(26px,3.4vw,40px); }
+.tl-item:last-child{ padding-bottom:0; }
+.tl-year{
+  font-family:var(--mono); font-size:15px; letter-spacing:.06em; color:var(--ink-2);
+  text-align:right; padding-top:2px; position:relative;
+}
+.tl-year em{ display:block; font-style:normal; font-size:10.5px; color:var(--ink-4); letter-spacing:.14em; margin-top:2px; }
+.tl-dot{
+  position:absolute; right:-5px; top:11px; width:9px; height:9px;
+  border-radius:50%; background:var(--paper); border:1px solid var(--cinnabar);
+  box-shadow:0 0 0 4px var(--paper);
+}
+.tl-item.major .tl-dot{ background:var(--cinnabar); }
+.tl-body{ padding-left:8px; }
+.tl-body h4{
+  font-family:var(--kai); font-weight:400; font-size:19px; letter-spacing:.06em;
+  margin:0 0 6px; display:flex; flex-wrap:wrap; align-items:baseline; gap:10px;
+}
+.tl-body h4 span.tagline{ font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; color:var(--cinnabar); border:1px solid rgba(166,52,42,.35); padding:1px 6px; border-radius:2px; }
+.tl-body p{ margin:0; font-size:14px; color:var(--ink-2); line-height:1.9; max-width:64ch; }
+
+/* ---------- 作品卡 ---------- */
+.filters{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 26px; }
+.chip{
+  font-family:var(--serif); font-size:12.5px; letter-spacing:.1em;
+  padding:6px 14px 5px; border:1px solid var(--line); border-radius:999px;
+  background:transparent; color:var(--ink-2); cursor:pointer;
+  transition:.3s var(--ease);
+}
+.chip:hover{ border-color:var(--ink-3); }
+.chip.on{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+.works{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.6vw,18px); }
+.work{
+  border:1px solid var(--line); background:rgba(255,252,246,.45);
+  padding:20px 22px 22px; position:relative; overflow:hidden;
+  cursor:pointer; transition:.45s var(--ease);
+}
+.work::after{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(circle at 80% 0%, rgba(166,52,42,.10), transparent 60%);
+  opacity:0; transition:.5s;
+}
+.work:hover{ border-color:rgba(23,23,15,.34); transform:translateY(-3px); box-shadow:0 14px 30px -22px rgba(23,23,15,.5); }
+.work:hover::after{ opacity:1; }
+.work__top{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:10px; }
+.work__yr{ font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--ink-3); }
+.work__script{ font-size:10.5px; letter-spacing:.16em; color:var(--cinnabar); border:1px solid rgba(166,52,42,.3); padding:1px 6px; border-radius:2px; }
+.work h4{ font-family:var(--kai); font-weight:400; font-size:19px; letter-spacing:.04em; margin:0 0 8px; line-height:1.4; }
+.work p{ margin:0; font-size:13px; line-height:1.85; color:var(--ink-2); }
+.work__col{ margin-top:10px; font-size:11.5px; letter-spacing:.08em; color:var(--ink-4); }
+.work.is-hidden{ display:none; }
+
+/* ---------- 三期 tabs ---------- */
+.tabs{ display:flex; gap:2px; border-bottom:1px solid var(--line); margin-bottom:28px; flex-wrap:wrap; }
+.tab{
+  background:none; border:0; cursor:pointer; font-family:var(--kai);
+  font-size:16px; letter-spacing:.12em; color:var(--ink-3);
+  padding:12px 22px 12px; position:relative; transition:.3s;
+}
+.tab:hover{ color:var(--ink); }
+.tab.on{ color:var(--ink); }
+.tab.on::after{ content:""; position:absolute; left:14px; right:14px; bottom:-1px; height:2px; background:var(--cinnabar); }
+.tab i{ font-style:normal; font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--ink-4); margin-left:7px; }
+
+.panel{ display:none; animation:fade .55s var(--ease); }
+.panel.on{ display:block; }
+@keyframes fade{ from{ opacity:0; transform:translateY(8px) } to{ opacity:1; transform:none } }
+
+.panel__grid{ display:grid; grid-template-columns:1.35fr .85fr; gap:clamp(20px,3vw,44px); align-items:start; }
+.panel__body p{ margin:0 0 14px; font-size:15px; color:var(--ink-2); }
+.panel__body p:last-child{ margin-bottom:0; }
+.panel__body b{ color:var(--ink); font-weight:400; border-bottom:1px solid rgba(166,52,42,.4); }
+
+.traits{ border:1px solid var(--line); padding:22px 24px; background:rgba(255,253,248,.5); }
+.traits h5{ font-family:var(--mono); font-size:10.5px; letter-spacing:.22em; color:var(--ink-3); margin:0 0 16px; font-weight:400; }
+.trait{ margin-bottom:14px; }
+.trait:last-child{ margin-bottom:0; }
+.trait div{ display:flex; justify-content:space-between; font-size:12px; letter-spacing:.1em; color:var(--ink-2); margin-bottom:5px; }
+.bar{ height:3px; background:var(--line-2); position:relative; overflow:hidden; }
+.bar i{ position:absolute; left:0; top:0; bottom:0; width:0; background:var(--cinnabar); transition:width 1.1s var(--ease); }
+
+/* ---------- 五体 ---------- */
+.acc{ border-top:1px solid var(--line); }
+.acc__item{ border-bottom:1px solid var(--line); }
+.acc__btn{
+  width:100%; background:none; border:0; cursor:pointer; text-align:left;
+  display:grid; grid-template-columns:auto 1fr auto; gap:18px; align-items:center;
+  padding:22px 4px; font-family:var(--kai); color:var(--ink);
+  transition:.3s;
+}
+.acc__btn:hover{ color:var(--cinnabar); }
+.acc__char{ font-size:34px; line-height:1; letter-spacing:0; width:52px; text-align:center; }
+.acc__name{ font-size:19px; letter-spacing:.1em; }
+.acc__name small{ display:block; font-family:var(--serif); font-size:12px; letter-spacing:.06em; color:var(--ink-3); margin-top:3px; }
+.acc__ic{ width:14px; height:14px; position:relative; flex:none; }
+.acc__ic::before,.acc__ic::after{ content:""; position:absolute; background:var(--ink-2); transition:.4s var(--ease); }
+.acc__ic::before{ left:0; right:0; top:6.5px; height:1px; }
+.acc__ic::after{ top:0; bottom:0; left:6.5px; width:1px; }
+.acc__item.open .acc__ic::after{ transform:rotate(90deg); opacity:0; }
+.acc__body{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .5s var(--ease); }
+.acc__item.open .acc__body{ grid-template-rows:1fr; }
+.acc__inner{ overflow:hidden; }
+.acc__inner > div{ padding:0 4px 28px 70px; display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+.acc__inner p{ margin:0; font-size:14.5px; color:var(--ink-2); }
+.acc__inner .k{ font-family:var(--mono); font-size:10.5px; letter-spacing:.18em; color:var(--ink-3); display:block; margin-bottom:7px; }
+
+/* ---------- 师承图 ---------- */
+.genealogy{ border:1px solid var(--line); background:rgba(255,253,248,.42); padding:clamp(10px,2vw,26px); position:relative; overflow-x:auto; }
+.genealogy svg{ display:block; width:100%; min-width:720px; height:auto; }
+.g-node{ cursor:pointer; }
+.g-node text{ font-family:var(--kai); fill:var(--ink); transition:.3s; }
+.g-node .sub{ font-family:var(--serif); font-size:9.5px; fill:var(--ink-3); letter-spacing:.06em; }
+.g-node .dot{ transition:.35s var(--ease); }
+.g-node.dim text{ opacity:.28; }
+.g-node.dim .dot{ opacity:.25; }
+.g-node.on text{ fill:var(--cinnabar); }
+.g-edge{ fill:none; stroke:rgba(23,23,15,.22); stroke-width:1; transition:.35s; }
+.g-edge.dashed{ stroke-dasharray:3 4; }
+.g-edge.on{ stroke:var(--cinnabar); stroke-width:1.6; }
+.g-edge.dim{ opacity:.12; }
+.g-legend{ display:flex; gap:22px; flex-wrap:wrap; margin-top:14px; padding-top:14px; border-top:1px solid var(--line-2); font-size:11.5px; letter-spacing:.1em; color:var(--ink-3); }
+.g-legend i{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:7px; vertical-align:middle; }
+
+/* ---------- 争议双栏 ---------- */
+.debate{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(14px,2vw,26px); }
+.debate__side{ border:1px solid var(--line); padding:clamp(22px,3vw,32px); background:rgba(255,253,248,.42); }
+.debate__side.praise{ border-top:2px solid var(--jade); }
+.debate__side.critic{ border-top:2px solid var(--cinnabar); }
+.debate__side h4{ font-family:var(--mono); font-size:10.5px; letter-spacing:.24em; color:var(--ink-3); margin:0 0 18px; font-weight:400; }
+.quote-item + .quote-item{ margin-top:20px; padding-top:20px; border-top:1px solid var(--line-2); }
+.quote-item p{ margin:0 0 7px; font-family:var(--kai); font-size:16.5px; line-height:1.85; letter-spacing:.05em; }
+.quote-item cite{ font-style:normal; font-size:12px; letter-spacing:.1em; color:var(--ink-3); }
+
+/* ---------- 朱批 / 备考提示 ---------- */
+.note{
+  margin:clamp(24px,3vw,36px) 0 0;
+  border-left:3px solid var(--cinnabar);
+  background:linear-gradient(90deg, rgba(166,52,42,.075), rgba(166,52,42,.02));
+  padding:20px 24px 22px;
+  position:relative;
+}
+.note::before{
+  content:"朱批"; position:absolute; right:14px; top:-9px;
+  background:var(--cinnabar); color:#fff6ee;
+  font-family:var(--kai); font-size:11px; letter-spacing:.2em;
+  padding:2px 7px 3px; border-radius:2px;
+}
+.note h5{ margin:0 0 8px; font-family:var(--kai); font-size:15px; letter-spacing:.1em; color:var(--cinnabar); font-weight:400; }
+.note p{ margin:0; font-size:14px; line-height:1.9; color:var(--ink-2); }
+.note p + p{ margin-top:8px; }
+.note b{ font-weight:400; color:var(--ink); background:linear-gradient(transparent 62%, rgba(166,52,42,.22) 62%); }
+
+/* ---------- 论述题库 ---------- */
+.qs{ display:grid; gap:1px; background:var(--line); border:1px solid var(--line); }
+.q{ background:var(--paper); padding:20px 24px; display:grid; grid-template-columns:auto 1fr; gap:18px; transition:.35s; }
+.q:hover{ background:rgba(255,253,248,.75); }
+.q__n{ font-family:var(--mono); font-size:11px; color:var(--cinnabar); letter-spacing:.1em; padding-top:5px; }
+.q h4{ font-family:var(--kai); font-size:17.5px; font-weight:400; letter-spacing:.05em; margin:0 0 7px; }
+.q p{ margin:0; font-size:13.5px; color:var(--ink-3); line-height:1.85; }
+
+/* ---------- 结语 / Footer ---------- */
+.outro{ text-align:center; padding:clamp(80px,12vw,150px) 0; }
+.outro__line{ font-family:var(--kai); font-size:clamp(24px,4.6vw,44px); letter-spacing:.14em; line-height:1.8; margin:0 0 22px; }
+.outro__sub{ color:var(--ink-3); font-size:13.5px; letter-spacing:.16em; }
+.seal-big{
+  display:inline-grid; place-items:center; width:74px; height:74px;
+  background:var(--cinnabar); color:#fff6ee; border-radius:5px;
+  font-family:var(--kai); font-size:15px; line-height:1.25; letter-spacing:.06em;
+  margin-bottom:26px; transform:rotate(-2.5deg);
+  box-shadow:inset 0 0 0 2px rgba(255,246,238,.35), 0 10px 24px -16px rgba(166,52,42,.9);
+}
+
+footer.foot{
+  border-top:1px solid var(--line);
+  padding:38px 0 46px; font-size:12px; letter-spacing:.1em; color:var(--ink-3);
+}
+footer.foot .wrap{ display:flex; flex-wrap:wrap; gap:16px 30px; justify-content:space-between; align-items:center; }
+footer.foot a{ border-bottom:1px solid var(--line); }
+footer.foot a:hover{ color:var(--cinnabar); border-color:var(--cinnabar); }
+
+/* ---------- 搜索面板 ---------- */
+.search{
+  position:fixed; inset:0; z-index:200; display:none;
+  background:rgba(23,23,15,.42); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+  padding:14vh 20px 20px;
+}
+.search.on{ display:block; animation:fade .25s; }
+.search__box{ max-width:660px; margin:0 auto; background:var(--paper); border:1px solid var(--line); box-shadow:0 40px 80px -40px rgba(0,0,0,.5); }
+.search__in{
+  width:100%; border:0; background:transparent; outline:none;
+  font-family:var(--kai); font-size:21px; letter-spacing:.06em; color:var(--ink);
+  padding:20px 24px; border-bottom:1px solid var(--line);
+}
+.search__in::placeholder{ color:var(--ink-4); }
+.search__res{ max-height:52vh; overflow:auto; }
+.search__res a{ display:grid; grid-template-columns:1fr auto; gap:14px; padding:13px 24px; align-items:baseline; border-bottom:1px solid var(--line-2); }
+.search__res a:hover,.search__res a.sel{ background:rgba(166,52,42,.07); }
+.search__res .t{ font-family:var(--kai); font-size:16px; letter-spacing:.05em; }
+.search__res .m{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--ink-4); }
+.search__hint{ padding:12px 24px; font-size:11px; letter-spacing:.12em; color:var(--ink-4); display:flex; gap:18px; flex-wrap:wrap; }
+kbd{ font-family:var(--mono); font-size:10px; border:1px solid var(--line); border-bottom-width:2px; border-radius:3px; padding:1px 5px; color:var(--ink-2); }
+
+/* ---------- 滚动入场 ---------- */
+.js .rv{ opacity:0; transform:translateY(26px); transition:opacity .85s var(--ease), transform .85s var(--ease); }
+.rv.in{ opacity:1; transform:none; }
+.rv.d1{ transition-delay:.08s } .rv.d2{ transition-delay:.16s } .rv.d3{ transition-delay:.24s } .rv.d4{ transition-delay:.32s }
+
+/* ============================================================
+   日语页组件
+   ============================================================ */
+.verb-tool{
+  border:1px solid var(--line); background:rgba(255,253,248,.55);
+  padding:clamp(20px,3vw,30px);
+}
+.verb-tool__lab{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.22em;
+  color:var(--ink-3); margin-bottom:10px;
+}
+.verb-in{
+  width:100%; border:0; border-bottom:1px solid var(--ink-3); background:transparent;
+  font-family:var(--kai); font-size:34px; letter-spacing:.06em; color:var(--ink);
+  padding:6px 2px 10px; outline:none;
+}
+.verb-in::placeholder{ color:var(--ink-4); font-size:22px; }
+.verb-tip{ margin-top:10px; font-size:12px; letter-spacing:.06em; color:var(--ink-3); display:flex; gap:16px; flex-wrap:wrap; }
+.verb-tip b{ color:var(--cinnabar); font-weight:400; }
+.verb-tip b[data-v]{ cursor:pointer; border-bottom:1px dashed rgba(166,52,42,.45); padding-bottom:1px; }
+.verb-tip b[data-v]:hover{ background:var(--cinnabar-s); }
+.verb-out{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(188px,1fr));
+  gap:0; border:1px solid var(--line); border-right:0; border-bottom:0;
+  margin-top:22px; background:var(--paper);
+}
+.verb-out > div{ padding:13px 15px 14px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+.verb-out b{ display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.15em; color:var(--ink-3); font-weight:400; margin-bottom:3px; }
+.verb-out span{ font-family:var(--kai); font-size:18px; letter-spacing:.03em; color:var(--ink); }
+.verb-out span em{ font-style:normal; font-size:11px; color:var(--ink-4); font-family:var(--serif); margin-left:6px; letter-spacing:.02em; }
+.verb-out > div.hl{ background:rgba(166,52,42,.06); }
+.verb-out > div.hl span{ color:var(--cinnabar); }
+
+.g-list{ border-top:1px solid var(--line); }
+.g-item{
+  border-bottom:1px solid var(--line);
+  padding:15px 0; display:grid; grid-template-columns:196px 1fr; gap:clamp(12px,2vw,26px);
+  align-items:start;
+}
+.g-item h4{
+  margin:0; font-family:var(--kai); font-size:16px; font-weight:400;
+  letter-spacing:.03em; line-height:1.5;
+}
+.g-item .cat{
+  display:block; font-family:var(--mono); font-size:9px; letter-spacing:.14em;
+  color:var(--ink-4); margin-top:5px;
+}
+.g-item p{ margin:0 0 5px; font-size:13px; line-height:1.85; color:var(--ink-2); }
+.g-item p:last-child{ margin-bottom:0; }
+.g-item .setsu{ color:var(--ink-3); font-size:12.5px; }
+.g-item .setsu b{ color:var(--jade); font-weight:400; }
+.g-item .ex{ font-family:var(--kai); font-size:15px; color:var(--ink); line-height:1.8; }
+.g-item .ex small{ display:block; font-family:var(--serif); font-size:12px; color:var(--ink-3); margin-top:2px; letter-spacing:.03em; }
+.g-item.hide{ display:none; }
+
+@media (max-width:760px){
+  .g-item{ grid-template-columns:1fr; gap:6px; }
+  .g-item .cat{ display:inline-block; margin-left:8px; margin-top:0; }
+  .verb-in{ font-size:26px; }
+}
+
+.war-hero{ padding:130px 0 60px; }
+.count{
+  display:flex; align-items:flex-end; gap:clamp(10px,2vw,22px); flex-wrap:wrap;
+  margin:26px 0 6px;
+}
+.count__n{ font-family:var(--mono); font-size:clamp(64px,13vw,132px); line-height:.86; letter-spacing:-.04em; }
+.count__u{ font-family:var(--kai); font-size:20px; letter-spacing:.2em; padding-bottom:12px; color:var(--ink-2); }
+.count__sub{ font-size:12.5px; letter-spacing:.14em; color:var(--ink-3); }
+.count small{ font-family:var(--mono); font-size:12px; color:var(--ink-3); letter-spacing:.08em; }
+
+.ledger{ border:1px solid var(--line); background:rgba(255,253,248,.5); padding:clamp(22px,3vw,34px); }
+.ledger__row{ display:grid; grid-template-columns:96px 1fr 64px; gap:16px; align-items:center; padding:11px 0; border-bottom:1px solid var(--line-2); }
+.ledger__row:last-of-type{ border:0; }
+.ledger__row label{ font-family:var(--kai); font-size:15px; letter-spacing:.08em; }
+input[type=range]{
+  -webkit-appearance:none; appearance:none; width:100%; height:18px; background:transparent; cursor:pointer;
+}
+input[type=range]::-webkit-slider-runnable-track{ height:3px; background:var(--line); }
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none; width:15px; height:15px; border-radius:50%;
+  background:var(--cinnabar); margin-top:-6px; border:2px solid var(--paper);
+  box-shadow:0 0 0 1px var(--cinnabar);
+}
+input[type=range]::-moz-range-track{ height:3px; background:var(--line); }
+input[type=range]::-moz-range-thumb{ width:13px; height:13px; border-radius:50%; background:var(--cinnabar); border:2px solid var(--paper); }
+.ledger__v{ font-family:var(--mono); font-size:15px; text-align:right; color:var(--ink); }
+.ledger__sum{
+  display:flex; justify-content:space-between; align-items:baseline; gap:14px; flex-wrap:wrap;
+  margin-top:18px; padding-top:18px; border-top:1px solid var(--line);
+}
+.ledger__sum b{ font-family:var(--mono); font-size:34px; letter-spacing:-.02em; }
+.ledger__sum .verdict{ font-size:13px; letter-spacing:.1em; padding:5px 12px; border:1px solid; border-radius:2px; }
+.verdict.ok{ color:var(--jade); border-color:rgba(47,82,87,.4); background:rgba(47,82,87,.07); }
+.verdict.no{ color:var(--cinnabar); border-color:rgba(166,52,42,.4); background:var(--cinnabar-s); }
+
+.plan-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(14px,2vw,22px); }
+.phase{ border:1px solid var(--line); background:rgba(255,253,248,.42); padding:clamp(20px,2.6vw,28px); }
+.phase__top{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:14px; }
+.phase__top h4{ font-family:var(--kai); font-size:18.5px; letter-spacing:.08em; margin:0; font-weight:400; }
+.phase__top span{ font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--cinnabar); }
+.phase ul{ margin:0; padding:0; list-style:none; }
+.phase li{ position:relative; padding-left:20px; font-size:14px; color:var(--ink-2); line-height:1.9; margin-bottom:7px; }
+.phase li::before{ content:""; position:absolute; left:2px; top:12px; width:5px; height:5px; border:1px solid var(--cinnabar); transform:rotate(45deg); }
+.phase li b{ font-weight:400; color:var(--ink); }
+
+table.tt{ width:100%; border-collapse:collapse; font-size:13.5px; }
+table.tt th,table.tt td{ text-align:left; padding:11px 12px; border-bottom:1px solid var(--line-2); vertical-align:top; }
+table.tt th{ font-weight:400; font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; color:var(--ink-3); border-bottom:1px solid var(--line); }
+table.tt td b{ font-weight:400; color:var(--cinnabar); }
+table.tt .nw{ white-space:nowrap; }
+table.tt tr:hover td{ background:rgba(166,52,42,.035); }
+.tt-wrap{ overflow-x:auto; border:1px solid var(--line); }
+
+.checklist{ border:1px solid var(--line); }
+.ck{ display:grid; grid-template-columns:auto 1fr auto; gap:14px; align-items:center; padding:13px 18px; border-bottom:1px solid var(--line-2); cursor:pointer; transition:.25s; }
+.ck:last-child{ border:0; }
+.ck:hover{ background:rgba(255,253,248,.8); }
+.ck input{ appearance:none; -webkit-appearance:none; width:15px; height:15px; border:1px solid var(--ink-3); border-radius:2px; cursor:pointer; position:relative; margin:0; flex:none; }
+.ck input:checked{ background:var(--cinnabar); border-color:var(--cinnabar); }
+.ck input:checked::after{ content:""; position:absolute; left:4px; top:0.5px; width:4px; height:8px; border:solid #fff6ee; border-width:0 1.5px 1.5px 0; transform:rotate(45deg); }
+.ck span{ font-size:14px; color:var(--ink-2); }
+.ck input:checked + span{ color:var(--ink-4); text-decoration:line-through; text-decoration-thickness:1px; }
+.ck em{ font-style:normal; font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--ink-4); }
+
+/* ---------- iPad / 触屏优化 ---------- */
+html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+a, button, input, label, .chip, .tab, .ck, .work, .acc__btn{ touch-action:manipulation; }
+*{ -webkit-tap-highlight-color:transparent; }
+
+@media (pointer:coarse){
+  .nav__links a{ padding:11px 3px 9px; }
+  .nav__cta{ padding:10px 16px 9px; }
+  .chip{ padding:10px 17px 9px; font-size:13.5px; }
+  .tab{ padding:14px 20px 13px; }
+  .ck{ padding:16px 18px; }
+  .acc__btn{ padding:24px 4px; }
+  .work{ padding:22px 22px 24px; }
+  .filters{ gap:10px; }
+  .tabs{ flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .tabs::-webkit-scrollbar{ display:none; }
+  .search__res a{ padding:16px 24px; }
+  .ledger__row{ padding:16px 0; }
+  input[type=range]{ height:30px; }
+  input[type=range]::-webkit-slider-thumb{ width:22px; height:22px; margin-top:-9px; }
+  .nav__search{ padding:11px 10px; border-color:var(--line); }
+  .search__in{ font-size:16px; }
+  .search__hint span{ display:none; }
+  .search__hint::after{ content:"输入关键词 → 点结果直接跳转 · 点空白处关闭"; letter-spacing:.08em; }
+}
+
+/* 自测模式（政治页用） */
+.g-item .answer{ transition:filter .28s var(--ease), opacity .28s var(--ease); }
+.quiz .g-item .answer{ filter:blur(6.5px); opacity:.5; cursor:pointer; }
+.quiz .g-item.reveal .answer{ filter:none; opacity:1; }
+.quiz .g-item h4{ position:relative; }
+.quiz .g-item h4::after{
+  content:"轻点揭晓"; display:inline-block; vertical-align:middle;
+  font-family:var(--mono); font-size:9px; letter-spacing:.1em;
+  color:var(--cinnabar); border:1px solid rgba(166,52,42,.35);
+  border-radius:2px; padding:1px 5px; margin-left:8px;
+}
+.quiz .g-item.reveal h4::after{ content:"已显示"; color:var(--ink-4); border-color:var(--line); }
+.quizbtn{
+  font-family:var(--serif); font-size:12.5px; letter-spacing:.1em;
+  padding:8px 16px 7px; border:1px solid var(--cinnabar); border-radius:999px;
+  background:transparent; color:var(--cinnabar); cursor:pointer; transition:.3s var(--ease);
+}
+.quizbtn:hover{ background:var(--cinnabar); color:#fff6ee; }
+.quizbtn.on{ background:var(--cinnabar); color:#fff6ee; }
+
+/* ---------- 响应式 ---------- */
+@media (max-width:1200px){
+  .nav__title small{ display:none; }
+  .nav__brand{ flex:none; }
+  .nav__search span{ display:none; }
+  .nav__search{ padding:8px; }
+  .nav__links{ gap:15px; min-width:0; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .nav__links::-webkit-scrollbar{ display:none; }
+  .nav__links a{ font-size:12.5px; letter-spacing:.06em; }
+}
+@media (max-width:900px){
+  .nav__title{ display:none; }
+  .nav__links{ gap:11px; -webkit-mask-image:linear-gradient(90deg,#000 90%,transparent); mask-image:linear-gradient(90deg,#000 90%,transparent); }
+  .nav__links a{ font-size:12px; }
+  .nav{ gap:16px; }
+}
+@media (max-width:980px){
+  .grid-4{ grid-template-columns:repeat(2,1fr); }
+  .works{ grid-template-columns:repeat(2,1fr); }
+  .panel__grid{ grid-template-columns:1fr; }
+  .plan-grid{ grid-template-columns:1fr; }
+  .acc__inner > div{ grid-template-columns:1fr; }
+}
+@media (max-width:760px){
+  body{ font-size:16px; }
+  .nav__links{ display:none; }
+  .nav{ gap:14px; }
+  .grid-3,.grid-2{ grid-template-columns:1fr; }
+  .works{ grid-template-columns:1fr; }
+  .debate{ grid-template-columns:1fr; }
+  .tl-item{ grid-template-columns:64px 1fr; gap:16px; }
+  .timeline::before{ left:64px; }
+  .hero__meta{ display:grid; grid-template-columns:1fr 1fr; gap:14px 20px; border-top:1px solid var(--line); }
+  .hero__meta div{ padding:0; margin:0; border:0; }
+  .ledger__row{ grid-template-columns:76px 1fr 54px; gap:10px; }
+  .hero__ghost{ font-size:60vw; opacity:.7; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{ animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+  .rv{ opacity:1; transform:none; }
+}
+
+/* ============================================================
+   阅读设置（字体 / 主题 / 字号）—— read.js
+   ============================================================ */
+html[data-font="song"]{ --serif:var(--f-song); --kai:var(--f-kai); }
+html[data-font="kai"]{ --serif:var(--f-kai); --kai:var(--f-kai); }
+html[data-font="hei"]{ --serif:var(--f-hei); --kai:var(--f-hei); }
+html[data-font="hei"] .hero__name,
+html[data-font="hei"] .sec__title,
+html[data-font="hei"] .card h3,
+html[data-font="hei"] .acc__name{ letter-spacing:.06em; font-weight:600; }
+html[data-font="hei"] .hero__ghost{ opacity:.05; }
+
+.read-btn{
+  position:fixed; right:18px; bottom:calc(18px + env(safe-area-inset-bottom));
+  z-index:95; width:46px; height:46px; border-radius:50%;
+  border:1px solid rgba(166,52,42,.45); background:rgba(243,237,225,.92);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  color:var(--cinnabar); font-family:var(--kai); font-size:15px; line-height:1;
+  display:grid; place-items:center; cursor:pointer;
+  box-shadow:0 8px 20px -14px rgba(0,0,0,.45);
+  transition:.3s var(--ease);
+}
+.read-btn:hover{ background:var(--cinnabar); color:#fff6ee; }
+.read-panel{
+  position:fixed; right:18px; bottom:calc(74px + env(safe-area-inset-bottom));
+  z-index:95; width:250px; padding:16px 18px 18px;
+  background:var(--paper); border:1px solid var(--line);
+  box-shadow:0 26px 50px -30px rgba(0,0,0,.55);
+  display:none;
+}
+.read-panel.on{ display:block; animation:fade .22s var(--ease); }
+.read-row{ margin-bottom:13px; }
+.read-row:last-child{ margin-bottom:0; }
+.read-row > span{
+  display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.18em;
+  color:var(--ink-3); margin-bottom:7px;
+}
+.read-seg{ display:flex; gap:6px; }
+.read-seg button{
+  flex:1; padding:7px 4px 6px; font-family:var(--serif); font-size:12.5px;
+  letter-spacing:.06em; color:var(--ink-2); background:transparent;
+  border:1px solid var(--line); cursor:pointer; transition:.25s;
+}
+.read-seg button:hover{ border-color:var(--ink-3); }
+.read-seg button.on{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+/* 夜间纸 */
+html[data-theme="dark"]{
+  --paper:#14140f; --paper-2:#1a1a13; --paper-3:#221f17;
+  --ink:#e9e3d3; --ink-2:#c6c0af; --ink-3:#948e7e; --ink-4:#6b6559;
+  --cinnabar:#d0654f; --cinnabar-2:#e0836c; --cinnabar-s:rgba(208,101,79,.14);
+  --line:rgba(233,227,211,.2); --line-2:rgba(233,227,211,.09);
+  --jade:#7aa3a6; --gold:#b09a6d;
+}
+html[data-theme="dark"] body::before{ opacity:.22; mix-blend-mode:screen; }
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .stat,
+html[data-theme="dark"] .work,
+html[data-theme="dark"] .phase,
+html[data-theme="dark"] .debate__side,
+html[data-theme="dark"] .traits,
+html[data-theme="dark"] .ledger,
+html[data-theme="dark"] .verb-tool,
+html[data-theme="dark"] .genealogy,
+html[data-theme="dark"] blockquote.big,
+html[data-theme="dark"] .q,
+html[data-theme="dark"] .checklist{ background:rgba(255,255,255,.04); }
+html[data-theme="dark"] .q{ background:var(--paper); }
+html[data-theme="dark"] .nav{ background:rgba(20,20,15,.82); }
+html[data-theme="dark"] .read-btn{ background:rgba(20,20,15,.9); }
+html[data-theme="dark"] .seal-big,
+html[data-theme="dark"] .nav__seal{ color:#fff6ee; }
+html[data-theme="dark"] .read-seg button.on{ background:var(--cinnabar); border-color:var(--cinnabar); color:#fff6ee; }
+html[data-theme="dark"] .chip.on{ background:var(--cinnabar); border-color:var(--cinnabar); color:#fff6ee; }
+html[data-theme="dark"] img{ filter:brightness(.92); }
+
+/* 字号（用 zoom，Chromium / HarmonyOS 浏览器均支持，会正常重排） */
+html[data-fs="1"]{ }
+html[data-fs="2"] body{ zoom:1.08; }
+html[data-fs="3"] body{ zoom:1.18; }
+
+@media print{
+  @page{ size:A4; margin:13mm 11mm; }
+
+  /* 不论当前是纸/夜，打印一律走浅色 */
+  html, html[data-theme="dark"]{
+    --paper:#fff; --paper-2:#fff; --paper-3:#f4f1e8;
+    --ink:#111; --ink-2:#2a2a24; --ink-3:#55534a; --ink-4:#7a776c;
+    --cinnabar:#a6342a; --cinnabar-2:#c2543f; --cinnabar-s:rgba(166,52,42,.08);
+    --line:rgba(0,0,0,.22); --line-2:rgba(0,0,0,.1);
+    --jade:#2f5257; --gold:#8a7448;
+  }
+  html[data-fs] body{ zoom:1 !important; }
+  .nav,#progress,.search,.hero__scroll,.filters,.quizbtn,.read-btn,.read-panel,
+  .verb-tool,.hero__ghost,.g-legend,.outro{ display:none !important; }
+  body{ background:#fff !important; color:#111; font-size:10.5pt; }
+  body::before{ display:none !important; }
+  .rv{ opacity:1 !important; transform:none !important; }
+  .hero{ min-height:0 !important; padding:0 0 18px !important; display:block !important; }
+  .hero__inner{ gap:16px !important; }
+  .hero__name{ font-size:30pt !important; line-height:1.34 !important; margin:28px 0 12px !important; color:#111 !important; }
+  .hero__name em{ color:#a6342a !important; }
+  .hero__epi{ font-size:10pt !important; }
+  .sec{ padding:14px 0 !important; border-top:1px solid #d8d2c4 !important; }
+  .sec:first-of-type{ border-top:0 !important; }
+  .card,.work,.tl-item,.phase,.g-item,.q,.stat{ break-inside:avoid; }
+  h2,h3,h4{ break-after:avoid; }
+  .panel{ display:block !important; }
+  .panel::before{
+    display:block; font-family:var(--mono); font-size:8pt; letter-spacing:.2em;
+    color:#a6342a; margin-bottom:8px;
+  }
+  .panel[data-panel="0"]::before{ content:"早年 · 约 1254—1290"; }
+  .panel[data-panel="1"]::before{ content:"中年 · 约 1290—1310"; }
+  .panel[data-panel="2"]::before{ content:"晚年 · 约 1310—1322"; }
+  .acc__body{ grid-template-rows:1fr !important; }
+  .acc__inner > div{ padding:0 0 14px 0 !important; }
+  .works{ grid-template-columns:1fr 1fr !important; }
+  .grid-2,.grid-3,.grid-4{ grid-template-columns:1fr 1fr !important; }
+  .war-hero{ padding:0 0 16px !important; }
+  .count__n{ font-size:46pt !important; }
+  .tl-body p,.card p,.g-item p{ font-size:9.5pt; }
+  a{ color:inherit; text-decoration:none; }
+  .search,.work__n{ display:none !important; }
+  table.tt{ font-size:8.8pt; }
+  table.tt th{ white-space:nowrap; }
+  .card,.stat,.work,.phase,.debate__side,.traits,.ledger,.verb-tool,
+  .genealogy,blockquote.big,.q,.checklist{ background:transparent !important; }
+}
+
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav class="nav" id="nav">
+  <a class="nav__brand" href="index.html">
+    <span class="nav__seal">日语</span>
+    <span class="nav__title">203<small>変形 · 頻出</small></span>
+  </a>
+  <div class="nav__links">
+    <a href="#conj">变形总表</a>
+    <a href="#tool">变形器</a>
+    <a href="#adj">形・名</a>
+    <a href="#grammar">语法60</a>
+    <a href="#particle">助词</a>
+    <a href="#keigo">敬语</a>
+    <a href="#cloze">完形</a>
+    <a href="#writing">作文</a>
+    <a href="#trans">翻译</a>
+  </div>
+  <a class="nav__cta" href="plan.html">作战室 →</a>
+</nav>
+
+<header class="war-hero">
+  <div class="wrap">
+    <div class="hero__eyebrow rv"><span></span>考研日语 203 · 100 分 · 180 分钟</div>
+    <h1 class="hero__name rv d1" style="font-size:clamp(38px,7.2vw,80px);margin-top:20px;letter-spacing:.04em">変形と<br><em>頻出考点</em></h1>
+    <div class="hero__epi rv d2" style="max-width:640px">
+      日语的分数不在「你背了多少词」，<br>在<b>「变形是否条件反射」</b>与<b>「句型是否认得」</b>。
+      <cite>—— 这两件事，45 天足够做到</cite>
+    </div>
+    <dl class="hero__meta rv d3">
+      <div><dt>你的水平</dt><dd>N2/N3 之间 · 有线下班</dd></div>
+      <div><dt>主战场</dt><dd>阅读 40 分</dd></div>
+      <div><dt>最易提分</dt><dd>作文 25 分</dd></div>
+      <div><dt>本页目标</dt><dd>变形 0 失误 · 语法认得出</dd></div>
+    </dl>
+  </div>
+  <div class="hero__scroll" aria-hidden="true"><i></i>SCROLL</div>
+</header>
+
+<main>
+
+<!-- ============ 壹 变形总表 ============ -->
+<section class="sec" id="conj">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">壹</div>
+      <div>
+        <h2 class="sec__title">动词变形总表：一张表管到底</h2>
+        <p class="sec__sub">N2/N3 水平的人，阅读错题里至少三分之一不是「不认识词」，而是<b>把一个变形看成了另一个形</b>。这张表要能做到「看到就能还原到辞书形」，反之亦然。以 <b>書く・食べる・する・来る</b> 四类为标本。<br><b>术语对照</b>：本页按国内教材叫 <b>一类（五段）／二类（一段）／三类（サ変・カ変）</b>，跟日本学校语法的叫法是一回事——教材和真题里遇到哪个都别慌。</p>
+      </div>
+    </div>
+
+    <div class="tt-wrap rv d1">
+      <table class="tt">
+        <thead><tr><th>形</th><th>一类 · 書く</th><th>二类 · 食べる</th><th>三类 · する</th><th>三类 · 来る</th><th>干什么用</th></tr></thead>
+        <tbody>
+          <tr><td><b>辞書形</b></td><td>書く</td><td>食べる</td><td>する</td><td>来る（くる）</td><td>查词典、简体句、名词修饰</td></tr>
+          <tr><td><b>ます形</b></td><td>書きます</td><td>食べます</td><td>します</td><td>来ます（きます）</td><td>敬体现在/将来</td></tr>
+          <tr><td><b>ません</b></td><td>書きません</td><td>食べません</td><td>しません</td><td>来ません</td><td>敬体否定</td></tr>
+          <tr><td><b>ました</b></td><td>書きました</td><td>食べました</td><td>しました</td><td>来ました</td><td>敬体过去</td></tr>
+          <tr><td><b>ませんでした</b></td><td>書きませんでした</td><td>食べませんでした</td><td>しませんでした</td><td>来ませんでした</td><td>敬体过去否定</td></tr>
+          <tr><td><b>て形</b></td><td>書いて</td><td>食べて</td><td>して</td><td>来て（きて）</td><td>连接、进行、请求、原因</td></tr>
+          <tr><td><b>た形</b></td><td>書いた</td><td>食べた</td><td>した</td><td>来た（きた）</td><td>过去、完成、经验</td></tr>
+          <tr><td><b>ない形</b></td><td>書かない</td><td>食べない</td><td>しない</td><td>来ない（こない）</td><td>简体否定、各种句型底座</td></tr>
+          <tr><td><b>なかった</b></td><td>書かなかった</td><td>食べなかった</td><td>しなかった</td><td>来なかった</td><td>简体过去否定</td></tr>
+          <tr><td><b>可能形</b></td><td>書ける</td><td>食べられる</td><td><b>できる</b></td><td>来られる</td><td>能…、会…</td></tr>
+          <tr><td><b>意志形</b></td><td>書こう</td><td>食べよう</td><td>しよう</td><td>来よう（こよう）</td><td>…吧、打算…</td></tr>
+          <tr><td><b>条件形（ば）</b></td><td>書けば</td><td>食べれば</td><td>すれば</td><td>来れば（くれば）</td><td>如果…就…</td></tr>
+          <tr><td><b>命令形</b></td><td>書け</td><td>食べろ</td><td>しろ</td><td>来い（こい）</td><td>命令（男性口语）</td></tr>
+          <tr><td><b>禁止形</b></td><td>書くな</td><td>食べるな</td><td>するな</td><td>来るな</td><td>不许…</td></tr>
+          <tr><td><b>使役形</b></td><td>書かせる</td><td>食べさせる</td><td>させる</td><td>来させる</td><td>让/叫…做</td></tr>
+          <tr><td><b>受身形</b></td><td>書かれる</td><td>食べられる</td><td>される</td><td>来られる</td><td>被…</td></tr>
+          <tr><td><b>使役受身</b></td><td>書かされる</td><td>食べさせられる</td><td>させられる</td><td>来させられる</td><td>被迫…</td></tr>
+          <tr><td><b>尊敬語</b></td><td>お書きになる</td><td>お食べになる</td><td>なさる</td><td>いらっしゃる</td><td>尊他（对方动作）</td></tr>
+          <tr><td><b>謙譲語</b></td><td>お書きする</td><td>お食べする</td><td>いたす</td><td>伺う・参る</td><td>自谦（自己动作）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2 rv d2" style="margin-top:clamp(16px,2.4vw,26px)">
+      <div class="card grid-corner">
+        <h3>一类的「音便」：て／た 只有五条</h3>
+        <p><b>う・つ・る → って／った</b>　買う→買って　待つ→待って　取る→取って<br>
+        <b>む・ぶ・ぬ → んで／んだ</b>　読む→読んで　遊ぶ→遊んで　死ぬ→死んで<br>
+        <b>く → いて／いた</b>　書く→書いて　（<b>例外：行く→行って</b>）<br>
+        <b>ぐ → いで／いだ</b>　泳ぐ→泳いで<br>
+        <b>す → して／した</b>　話す→話して</p>
+        <p style="margin-top:10px">背这五条，比背 100 个动词划算——因为规则只有五条。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>一类的「段」：a / i / e / o 各管一片</h3>
+        <p><b>a 段＋ない</b>（書かない）　※<b>う→わ</b>：買わない、言わない<br>
+        <b>i 段＋ます</b>（書きます）<br>
+        <b>e 段＋ば／命令／可能</b>（書けば・書け・書ける）<br>
+        <b>o 段＋う</b>（書こう）</p>
+        <p style="margin-top:10px">做题时倒过来用：看见「書か」就想 a 段，只可能是否定或使役/被动——<b>一步就把选项砍一半</b>。</p>
+      </div>
+    </div>
+
+    <div class="note rv d3">
+      <h5>最容易混的四对，先记它们</h5>
+      <p>① <b>可能形 vs 受身形</b>：二类动词两者同形（食べられる），只能靠上下文——「食べられる」前面是「が」多半是可能，是「に」多半是被动。<br>
+      ② <b>使役 vs 使役受身</b>：書かせる（让他写）／書かされる（被迫写），差一个「さ」。<br>
+      ③ <b>意志形 vs 推量</b>：書こう（吧）／書くでしょう（大概）。<br>
+      ④ <b>そうだ</b> 两种：动词ます形＋そうだ＝样态（眼看要）；普通形＋そうだ＝传闻（听说）。<b>这是完形的高频陷阱。</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 贰 变形器 ============ -->
+<section class="sec sec--tint" id="tool">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">贰</div>
+      <div>
+        <h2 class="sec__title">变形器：输入一个动词，全部给你</h2>
+        <p class="sec__sub">随便输一个日语动词（辞书形），自动判断<b>一类 / 二类 / 三类</b>，并把 19 个形一次列完。<b>用它自查</b>：先自己默写，再来对答案。支持「勉強する」「持って来る」这类复合词。</p>
+      </div>
+    </div>
+
+    <div class="verb-tool rv d1">
+      <div class="verb-tool__lab">INPUT / 辞書形</div>
+      <input class="verb-in" id="verbIn" type="text" value="書く" placeholder="例：書く / 食べる / 勉強する" autocomplete="off" spellcheck="false">
+      <div class="verb-tip">
+        <span>判定：<b id="verbType">一类动词（五段）</b></span>
+        <span>试试：<b data-v="彫る">彫る</b> · <b data-v="刻む">刻む</b> · <b data-v="臨む">臨む</b> · <b data-v="食べる">食べる</b> · <b data-v="する">する</b> · <b data-v="来る">来る</b> · <b data-v="行く">行く</b></span>
+      </div>
+      <div class="verb-out" id="verbOut"></div>
+    </div>
+
+    <div class="note rv d2">
+      <h5>为什么值得天天用</h5>
+      <p>203 的完形 20 分，考的几乎全是「接续」：给一个空，四个选项是四种变形。<b>你对变形的反应速度，直接等于这 20 分的得分速度。</b>每天花 3 分钟，随机点 10 个动词，自己先默写再对——两周之后你会发现自己读长句时不再「卡在那个 て 形上」。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 叁 形容词・名词 ============ -->
+<section class="sec" id="adj">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">叁</div>
+      <div>
+        <h2 class="sec__title">形容词与名词：三个小表，别记混</h2>
+        <p class="sec__sub">い形容词和な形容词的变形<b>只差一个「だ」</b>，但考试就爱在这里设坑。特别是「高くて／静かで」「高ければ／静かなら」这两组。</p>
+      </div>
+    </div>
+
+    <div class="tt-wrap rv d1">
+      <table class="tt">
+        <thead><tr><th>形</th><th>い形容词 · 高い</th><th>な形容词 · 静か</th><th>名词 · 学生</th></tr></thead>
+        <tbody>
+          <tr><td><b>现在肯定</b></td><td>高い</td><td>静かだ</td><td>学生だ</td></tr>
+          <tr><td><b>现在否定</b></td><td>高くない／高くありません</td><td>静かではない／静かじゃない</td><td>学生ではない</td></tr>
+          <tr><td><b>过去肯定</b></td><td>高かった</td><td>静かだった</td><td>学生だった</td></tr>
+          <tr><td><b>过去否定</b></td><td>高くなかった</td><td>静かではなかった</td><td>学生ではなかった</td></tr>
+          <tr><td><b>て形（并列/原因）</b></td><td>高くて</td><td>静かで</td><td>学生で</td></tr>
+          <tr><td><b>条件（ば／なら）</b></td><td>高ければ</td><td>静かなら（ば）</td><td>学生なら</td></tr>
+          <tr><td><b>副词化</b></td><td>高く</td><td>静かに</td><td>—</td></tr>
+          <tr><td><b>名词化</b></td><td>高さ</td><td>静かさ</td><td>—</td></tr>
+          <tr><td><b>修饰名词</b></td><td>高い本</td><td>静かな部屋（要「な」）</td><td>学生の本（要「の」）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note rv d2">
+      <h5>三个必考例外</h5>
+      <p>① <b>いい</b> 的变形全部走 <b>よい</b>：よくない・よかった・よければ（不是「いくない」）。<br>
+      ② <b>ない</b> 本身是い形容词：なさそう／なさすぎる。<br>
+      ③ い形容词<b>不能</b>直接加「だ」：×高いだ、×おいしいだ——这是中国人最容易犯的错，作文里出现必扣分。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 肆 高频语法 ============ -->
+<section class="sec sec--tint" id="grammar">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">肆</div>
+      <div>
+        <h2 class="sec__title">高频语法 62 条：按「功能」记，不按字母记</h2>
+        <p class="sec__sub">一条语法＝<b>一个功能</b>。阅读时你不需要「翻译」，只需要「认出它在这一句里干什么」——是转折、是原因、还是限定。下面按功能分组，点标签筛选。</p>
+      </div>
+    </div>
+    <div class="filters rv d1" id="gFilters">
+      <button class="chip on" data-g="all">全部 62</button>
+      <button class="chip" data-g="时间">时间</button>
+      <button class="chip" data-g="原因">原因</button>
+      <button class="chip" data-g="条件">条件</button>
+      <button class="chip" data-g="逆接">逆接</button>
+      <button class="chip" data-g="程度">程度·限定</button>
+      <button class="chip" data-g="推断">推断</button>
+      <button class="chip" data-g="意志">意志·义务</button>
+      <button class="chip" data-g="授受">授受·敬语</button>
+    </div>
+    <div class="g-list rv d1" id="gList"></div>
+  </div>
+</section>
+
+<!-- ============ 伍 助词 ============ -->
+<section class="sec" id="particle">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">伍</div>
+      <div>
+        <h2 class="sec__title">助词：完形填空的第一考点</h2>
+        <p class="sec__sub">203 完形的 20 题里，助词类通常占 5–7 题。助词没有「意思」，只有「功能」——所以只能靠<b>对比记</b>，不能靠背。</p>
+      </div>
+    </div>
+
+    <div class="tt-wrap rv d1">
+      <table class="tt">
+        <thead><tr><th>对比</th><th>区别</th><th>例句</th></tr></thead>
+        <tbody>
+          <tr><td><b>は vs が</b></td><td>は＝主题（已知信息，「至于…」）；が＝主语（新信息、焦点、排他）</td><td>象は鼻が長い。（主题は＋小主语が）<br>誰が来ましたか。（疑问词做主语用が）</td></tr>
+          <tr><td><b>に vs で</b></td><td>に＝存在的地点、时间点、对象、去向；で＝动作发生的场所、手段、材料、原因</td><td>教室にいる／教室で勉強する<br>バスに乗る／バスで行く</td></tr>
+          <tr><td><b>を vs が</b></td><td>他动词用を；可能形、希望（たい）、喜好（好き）用が</td><td>水を飲む／水が飲める／水が飲みたい</td></tr>
+          <tr><td><b>と vs ば vs たら vs なら</b></td><td>と＝必然·恒常（一…就）；ば＝假定条件；たら＝假定＋「…之后」；なら＝承接话题（如果是…的话）</td><td>春になると咲く／練習すれば上手になる／着いたら連絡して／篆刻なら黄牧甫だ</td></tr>
+          <tr><td><b>も／しか／だけ／ばかり</b></td><td>も＝也（肯定）；しか＋否定＝只；だけ＝只（肯定）；ばかり＝光是、刚刚</td><td>水しかない／水だけある／水ばかり飲む</td></tr>
+          <tr><td><b>から／ので／ため／により</b></td><td>から＝主观原因；ので＝客观、委婉；ため＝原因/目的（较硬）；により＝由于（书面）</td><td>寒いから窓を閉める／雨なので中止だ</td></tr>
+          <tr><td><b>まで／までに</b></td><td>まで＝持续到…；までに＝在…之前（截止）</td><td>5時まで待つ／5時までに出す</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2 rv d2" style="margin-top:clamp(16px,2.4vw,26px)">
+      <div class="card grid-corner">
+        <h3>自动词 / 他动词（必考 5 组）</h3>
+        <p>開く／開ける　閉まる／閉める<br>
+        始まる／始める　止まる／止める<br>
+        落ちる／落とす　入る／入れる<br>
+        出る／出す　消える／消す<br>
+        見つかる／見つける　割れる／割る</p>
+        <p style="margin-top:10px">规律：<b>～aru／～eru 多为自动词，～su 多为他动词</b>。但「割れる／割る」是例外，要单独记。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>阅读里的「指代题」怎么破</h3>
+        <p>「これ／それ／あれ」回指时，答案永远在<b>前一句</b>；「この／その＋名词」要看<b>紧挨着的那句</b>。<br>
+        指示词在段首，多半指<b>上一段整段</b>；在段尾，指<b>本段核心</b>。<br>
+        记住一句话：<b>答案在「これ」的前面，不在后面。</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 陆 敬语 ============ -->
+<section class="sec sec--tint" id="keigo">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">陆</div>
+      <div>
+        <h2 class="sec__title">敬语：一套表，三类词</h2>
+        <p class="sec__sub">203 每年必考 1–2 题敬语。别背整段课文，只背这张<b>特殊动词对照表</b>——因为考试就考这些。</p>
+      </div>
+    </div>
+
+    <div class="tt-wrap rv d1">
+      <table class="tt">
+        <thead><tr><th>普通</th><th>尊敬語（对方）</th><th>謙譲語（自己）</th></tr></thead>
+        <tbody>
+          <tr><td>行く・来る</td><td>いらっしゃる／おいでになる</td><td>伺う／参る</td></tr>
+          <tr><td>いる</td><td>いらっしゃる</td><td>おる</td></tr>
+          <tr><td>言う</td><td>おっしゃる</td><td>申す／申し上げる</td></tr>
+          <tr><td>見る</td><td>ご覧になる</td><td>拝見する</td></tr>
+          <tr><td>食べる・飲む</td><td>召し上がる</td><td>いただく</td></tr>
+          <tr><td>する</td><td>なさる</td><td>いたす</td></tr>
+          <tr><td>知る</td><td>ご存じだ</td><td>存じる</td></tr>
+          <tr><td>聞く</td><td>お聞きになる</td><td>伺う</td></tr>
+          <tr><td>会う</td><td>お会いになる</td><td>お目にかかる</td></tr>
+          <tr><td>あげる</td><td>—</td><td>差し上げる</td></tr>
+          <tr><td>もらう</td><td>お受けになる</td><td>いただく</td></tr>
+          <tr><td>くれる</td><td>くださる</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2 rv d2" style="margin-top:clamp(16px,2.4vw,26px)">
+      <div class="card grid-corner">
+        <h3>通用公式（没有特殊动词时）</h3>
+        <p><b>尊敬</b>：お＋ます形＋になる　／　ご＋漢語＋になる<br>
+        書く→お書きになる　出席する→ご出席になる<br><br>
+        <b>谦让</b>：お＋ます形＋する　／　ご＋漢語＋する<br>
+        書く→お書きする　連絡する→ご連絡する</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>汉字圈考生的两个坑</h3>
+        <p>① <b>「お」还是「ご」</b>：和语词用お（お話・お名前），汉语词用ご（ご連絡・ご説明）。<b>例外：お電話・お時間・ご飯</b>——这三个要单记。<br>
+        ② <b>双重敬语</b>：×お召し上がりになる、×お伺いする。考场上看到这种选项，<b>直接排除</b>。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 柒 完形 ============ -->
+<section class="sec" id="cloze">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">柒</div>
+      <div>
+        <h2 class="sec__title">完形填空 20 分：只考五类东西</h2>
+        <p class="sec__sub">一篇短文挖 20 个空，考的无非：<b>接续词、助词、形式名词、变形、敬语/授受</b>。把这五类做成条件反射，这 20 分就是白送的。</p>
+      </div>
+    </div>
+
+    <div class="tt-wrap rv d1">
+      <table class="tt">
+        <thead><tr><th>接续词</th><th>功能</th><th>中文</th></tr></thead>
+        <tbody>
+          <tr><td>しかし／だが／ところが</td><td>逆接</td><td>但是／然而／不料</td></tr>
+          <tr><td>そこで／それで／だから／したがって</td><td>因果（顺）</td><td>于是／所以／因此</td></tr>
+          <tr><td>なぜなら～からだ</td><td>因果（解释）</td><td>因为…</td></tr>
+          <tr><td>つまり／すなわち／要するに</td><td>总结·换言</td><td>也就是说／总之</td></tr>
+          <tr><td>また／さらに／そのうえ</td><td>并列·递加</td><td>而且／再加上</td></tr>
+          <tr><td>ただし／もっとも／なお</td><td>补充·限定</td><td>不过／话虽如此／另外</td></tr>
+          <tr><td>むしろ／かえって</td><td>逆说</td><td>宁可说／反而</td></tr>
+          <tr><td>ところで／ちなみに</td><td>转换话题</td><td>话说／顺便一提</td></tr>
+          <tr><td>一方（で）</td><td>对比</td><td>另一方面</td></tr>
+          <tr><td>その結果／そのため</td><td>结果</td><td>结果／因此</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2 rv d2" style="margin-top:clamp(16px,2.4vw,26px)">
+      <div class="card grid-corner">
+        <h3>形式名词：七个「没有意思」的名词</h3>
+        <p><b>こと</b>＝事情（抽象）<br>
+        <b>もの</b>＝东西/道理（具体、感叹）<br>
+        <b>わけ</b>＝缘由（わけだ＝难怪）<br>
+        <b>はず</b>＝理应（はずがない＝不可能）<br>
+        <b>ところ</b>＝场面/时候（たところ＝刚刚）<br>
+        <b>つもり</b>＝打算　<b>まま</b>＝原样　<b>うち</b>＝期间</p>
+        <p style="margin-top:8px">判断题眼：<b>わけ</b>问「为什么」，<b>はず</b>问「该不该」，<b>こと</b>是「把动词名词化」。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>做题顺序（别从头读到尾）</h3>
+        <p>① 先扫<b>接续词空</b>——看前后句是顺是反，一秒定；<br>
+        ② 再扫<b>助词空</b>——看动词是自动他动、前面是场所还是对象；<br>
+        ③ 最后啃<b>变形空</b>——看时态（过去/现在）和语气（推量/意志）。<br>
+        20 题控制在 25 分钟，<b>超过 25 分钟就猜</b>，把时间留给阅读。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 捌 作文 ============ -->
+<section class="sec sec--tint" id="writing">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">捌</div>
+      <div>
+        <h2 class="sec__title">作文 25 分：考场上只做「填空题」</h2>
+        <p class="sec__sub">作文是整张卷子里<b>唯一可以提前准备到 80% 的题</b>。四段骨架＋20 个万能句＋两个主题素材，足够应付绝大多数题目。</p>
+      </div>
+    </div>
+
+    <div class="grid-2 rv d1">
+      <div class="card grid-corner">
+        <h3>四段骨架（背下来）</h3>
+        <p><b>① 引题</b>：近年、～が広く注目を集めている。／～については、さまざまな意見がある。<br>
+        <b>② 两面</b>：確かに～という見方もある。しかし、私は～と考える。<br>
+        <b>③ 理由＋例</b>：その理由は二つある。第一に～。第二に～。例えば、～。<br>
+        <b>④ 结论</b>：したがって、私たちは～べきだと思う。／～ことが大切だ。</p>
+        <p style="margin-top:10px"><b>字数</b>：450–500 字。<b>段落</b>：4 段，每段 3–5 句。<b>忌</b>：一段到底、无接续词、です・ます混用简体。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>20 个万能句（挑 8 个背熟）</h3>
+        <p>～にとって欠かせないものである<br>
+        ～に大きな影響を与えている<br>
+        ～を重要な課題として捉えるべきだ<br>
+        ～には両面がある<br>
+        一概に～とは言えない<br>
+        ～という点が挙げられる<br>
+        このことは～を意味している<br>
+        ～を通じて、～が分かる<br>
+        バランスを取ることが大切だ<br>
+        今後も～が期待される</p>
+      </div>
+    </div>
+
+    <div class="grid-2 rv d2" style="margin-top:clamp(14px,2vw,20px)">
+      <div class="card grid-corner">
+        <h3>范文 A ·「篆刻と私」（专业向）</h3>
+        <p style="font-family:var(--kai);font-size:15px;line-height:2;letter-spacing:.02em">
+        　私が篆刻を始めたのは、大学に入ってからである。最初は石に文字を彫るという作業が、ただ面白いだけだった。<br>
+        　しかし、学べば学ぶほど、篆刻が単なる技術ではないと分かってきた。確かに、今はパソコンで簡単に印影を作ることができる。しかし、私は手で彫る意味はむしろ大きくなったと考える。その理由は二つある。第一に、一刀一刀に自分の呼吸が込められるからだ。第二に、古代の文字や金石の文化に触れることができるからだ。<br>
+        　現在、私は黄牧甫の印風を学んでいる。彼の作品は、一見すると平明だが、細部には強い緊張感がある。その「光潔」な線を出すために、私は毎日同じ印を彫り続けている。<br>
+        　篆刻は、私にとって自分と向き合う時間である。これからも、一印一印を大切にしていきたい。</p>
+        <p style="margin-top:8px;color:var(--ink-3);font-size:11.5px">※ 约 400 字。生词：印影（いんえい）・金石（きんせき）・平明（へいめい）・光潔（こうけつ）・一印一印（いちいんいちいん）</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>范文 B ·「伝統文化の継承」（通用向）</h3>
+        <p style="font-family:var(--kai);font-size:15px;line-height:2;letter-spacing:.02em">
+        　近年、伝統文化の価値が再び見直されつつある。中でも書道や篆刻は、単なる技術ではなく、精神修養の方法として注目されている。<br>
+        　確かに、生活の変化によって筆や刀に触れる機会は減った。しかし、私は伝統文化を学ぶ意義はむしろ大きくなったと考える。その理由は二つある。第一に、一筆一筆丁寧に向き合うことで、集中力と忍耐力が身につく。第二に、古典を学ぶことは、先人の生き方や美意識を知ることでもある。<br>
+        　例えば、秦漢の印を臨むとき、私たちは二千年の時を超えて、その時代の人々と向き合っている。<br>
+        　したがって、伝統文化を単なる習い事としてではなく、文化を継承する営みとして大切にすべきだと思う。</p>
+        <p style="margin-top:8px;color:var(--ink-3);font-size:11.5px">※ 约 380 字。这篇更「通用」，任何文化类题目都能改。</p>
+      </div>
+    </div>
+
+    <div class="note rv d3">
+      <h5>作文的两个硬规则</h5>
+      <p>① <b>不确定的语法不要用。</b>用错一个「～わけだ」比少用一个句型扣得更多。你不会的句型，就写「～と思う」——安全。<br>
+      ② <b>必须写完。</b>没写完的作文直接掉档。写到最后一段哪怕只有一句「したがって、～べきだ」，也要把结构闭合。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 玖 翻译 ============ -->
+<section class="sec" id="trans">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">玖</div>
+      <div>
+        <h2 class="sec__title">翻译 15 分：切分—找主干—重排</h2>
+        <p class="sec__sub">日语长句的结构是「修饰语在前，谓语在最后」。翻译的本质是<b>把倒装的积木拆开，按中文顺序重搭</b>。三步法，够用。</p>
+      </div>
+    </div>
+
+    <div class="grid-3 rv d1">
+      <div class="card grid-corner">
+        <h3>① 切分</h3>
+        <p>在「、」「て」「で」「が」「から」「ので」「のに」「ば」处下刀，把长句切成 3–4 个小节。<b>每节只做一件事。</b></p>
+      </div>
+      <div class="card grid-corner">
+        <h3>② 找主干</h3>
+        <p>先找句末的<b>谓语</b>（动词/形容词），再回头找它的<b>主语</b>（が/は）。主干立住，句子就塌不了。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>③ 重排</h3>
+        <p>把「～を～した」译成「把…做了」；把长定语「～という～」拆成「…的…，这种…」。<b>宁可三句短中文，不要一句看不懂的长中文。</b></p>
+      </div>
+    </div>
+
+    <div class="note rv d2">
+      <h5>三种必考的「绕」</h5>
+      <p><b>被动</b>：日本語の文章はよく「～れる／られる」で書かれる → 中文可以用「被」「由」「人们」三种译法，别死译「被」。<br>
+      <b>使役</b>：「～させる」常译成「使…」「让…」，但「～させていただく」是谦让，译「请允许我…」。<br>
+      <b>双重否定</b>：「～ないわけではない」＝「并非不…」，即「还是…的」。看到两个否定，先数清楚再下笔。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 拾 日程 ============ -->
+<section class="sec sec--tint" id="schedule">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">拾</div>
+      <div>
+        <h2 class="sec__title">45 天日语日程（配合你的线下班）</h2>
+        <p class="sec__sub">你有班、有单词量、N2/N3 之间——说明<b>基础不缺，缺的是「考试化」</b>。所以课要上，但课后 60–90 分钟必须做这三件事，否则上课只是「听懂」。</p>
+      </div>
+    </div>
+
+    <div class="plan-grid rv d1">
+      <div class="phase">
+        <div class="phase__top"><h4>阶段一 · 变形与语法归位</h4><span>D-45 → D-28</span></div>
+        <ul>
+          <li><b>每天 5 分钟</b>：用上面那个变形器，随机 10 个动词，<b>先默写再对</b>。</li>
+          <li><b>每天 15 分钟</b>：语法 62 条，一天吃 4 条，只记「功能＋接续」，例句读两遍。</li>
+          <li><b>每天 30 分钟</b>：真题阅读 2 篇，精读——错项必须说出「错在哪一类」。</li>
+          <li><b>每周 1 篇</b>：作文，手写，计时 30 分钟。</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase__top"><h4>阶段二 · 真题化</h4><span>D-27 → D-12</span></div>
+        <ul>
+          <li><b>隔天一套</b>：阅读＋完形，限时 70 分钟，做完立刻对答案。</li>
+          <li><b>错题本</b>只记三样：不认识的词、看错的变形、误判的接续词。</li>
+          <li>语法 62 条<b>第二轮</b>：只看「接续」，遮住意思自测。</li>
+          <li>作文<b>每两天 1 篇</b>，用同一套模板换不同题目，练到 25 分钟能写完。</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase__top"><h4>阶段三 · 收口</h4><span>D-11 → 考前</span></div>
+        <ul>
+          <li>整套卷<b>限时 180 分钟</b>做 2 次，练时间分配：完形 25′＋阅读 70′＋翻译 20′＋作文 30′＋涂卡 10′。</li>
+          <li>背熟 2 篇范文（篆刻篇＋文化篇），能做到<b>不看稿默写 80%</b>。</li>
+          <li>敬语表、接续词表各过 3 遍——这两块是「看一遍就得一分」的地方。</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase__top"><h4>分数预期</h4><span>现实区间</span></div>
+        <ul>
+          <li>N2/N3 底子＋45 天考试化：<b>65–75 分</b>是合理区间。</li>
+          <li>想到 80+：阅读最多错 3 题，作文必须 18 分以上。</li>
+          <li>别追 85——那 5 分花的时间，够你政治从 55 到 65。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note rv d2">
+      <h5>一句提醒</h5>
+      <p>你已经在背单词、在上课——这是最稳的底子。<b>现在唯一缺的，是把「学过的」变成「考得出来的」</b>。变形器每天 5 分钟，是这个转换里最便宜的投资。</p>
+    </div>
+  </div>
+</section>
+
+<section class="outro">
+  <div class="wrap">
+    <div class="seal-big rv">日日<br>練習</div>
+    <p class="outro__line rv d1">「継続は力なり。」</p>
+    <p class="outro__sub rv d2">每天 5 分钟变形，45 天后就是 225 分钟的条件反射。</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>日本語 203 · 变形与高频考点 &nbsp;|&nbsp; 为中国美术学院书法（篆刻）方向整理 &nbsp;|&nbsp; 分值结构以当年大纲为准</span>
+    <span><a href="index.html">赵孟頫脉络</a> &nbsp;·&nbsp; <a href="zz.html">政治重点</a> &nbsp;·&nbsp; <a href="plan.html">五十日作战室</a></span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   阅读设置：字体 / 字号 / 主题
+   —— 纯前端，记住选择；华为平板/安卓/iOS 通用
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var KEY = 'zmf-read-v1';
+  var root = document.documentElement;
+
+  /* ---------- 有没有衬线中文字体？ ----------
+     CJK 字符宽度都等于 1em，量宽度没用；
+     改成把同一个字分别用 serif / sans-serif 画到 canvas 上，
+     比较像素指纹——若完全一致，说明两者回退到了同一个字面。 */
+  function sig(family) {
+    var c = document.createElement('canvas');
+    c.width = 72; c.height = 72;
+    var x = c.getContext('2d');
+    x.font = '52px ' + family;
+    x.textBaseline = 'top';
+    x.fillStyle = '#000';
+    x.fillText('书', 2, 2);
+    var d = x.getImageData(0, 0, 72, 72).data;
+    var h = 0;
+    for (var i = 0; i < d.length; i += 5) { h = (h * 31 + d[i]) | 0; }
+    return h;
+  }
+
+  function hasSerif() {
+    try {
+      return sig('serif') !== sig('sans-serif');
+    } catch (e) { return true; }
+  }
+
+  /* ---------- 读取已保存的设置 ---------- */
+  var def = { font: hasSerif() ? 'song' : 'hei', fs: '1', theme: 'paper' };
+  var state = def;
+  try {
+    var saved = JSON.parse(localStorage.getItem(KEY) || '{}');
+    state = {
+      font: saved.font || def.font,
+      fs: saved.fs || def.fs,
+      theme: saved.theme || def.theme
+    };
+  } catch (e) { state = def; }
+
+  function apply() {
+    root.setAttribute('data-font', state.font);
+    root.setAttribute('data-fs', state.fs);
+    root.setAttribute('data-theme', state.theme);
+    if (state.theme === 'dark') root.style.colorScheme = 'dark';
+    else root.style.colorScheme = 'light';
+  }
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  // 尽早应用，避免闪一下
+  apply();
+
+  /* ---------- 面板 ---------- */
+  var GROUPS = [
+    { k: 'font', label: '字体', opts: [['song', '宋'], ['kai', '楷'], ['hei', '黑']] },
+    { k: 'fs', label: '字号', opts: [['1', '小'], ['2', '中'], ['3', '大']] },
+    { k: 'theme', label: '主题', opts: [['paper', '纸'], ['dark', '夜']] }
+  ];
+
+  function build() {
+    var btn = document.createElement('button');
+    btn.className = 'read-btn';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', '阅读设置');
+    btn.textContent = 'Aa';
+
+    var panel = document.createElement('div');
+    panel.className = 'read-panel';
+    panel.innerHTML = GROUPS.map(function (g) {
+      return '<div class="read-row"><span>' + g.label + '</span><div class="read-seg" data-k="' + g.k + '">' +
+        g.opts.map(function (o) {
+          return '<button type="button" data-v="' + o[0] + '">' + o[1] + '</button>';
+        }).join('') + '</div></div>';
+    }).join('');
+
+    document.body.appendChild(btn);
+    document.body.appendChild(panel);
+
+    function sync() {
+      panel.querySelectorAll('.read-seg').forEach(function (seg) {
+        var k = seg.getAttribute('data-k');
+        seg.querySelectorAll('button').forEach(function (b) {
+          b.classList.toggle('on', b.getAttribute('data-v') === state[k]);
+        });
+      });
+    }
+    sync();
+
+    panel.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-v]');
+      if (!b) return;
+      var k = b.parentElement.getAttribute('data-k');
+      state[k] = b.getAttribute('data-v');
+      apply();
+      save();
+      sync();
+    });
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      panel.classList.toggle('on');
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!panel.classList.contains('on')) return;
+      if (panel.contains(e.target) || btn.contains(e.target)) return;
+      panel.classList.remove('on');
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') panel.classList.remove('on');
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', build);
+  } else {
+    build();
+  }
+
+  /* ---------- 跟随系统深色（仅首次） ---------- */
+  if (!localStorage.getItem(KEY) && window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    state.theme = 'dark';
+    apply();
+  }
+})();
+
+</script>
+<script>
+/* ============================================================
+   日本語 203 — 语法数据 / 变形器 / 交互
+   ============================================================ */
+(function () {
+  'use strict';
+
+  /* ---------------------------------------------------------
+     1. 高频语法 62 条
+     --------------------------------------------------------- */
+  var GRAMMAR = [
+    /* --- 時間 --- */
+    { g: '～たびに', c: '時間', s: 'V辞書形／Nの＋たびに', m: '每当…就…',
+      e: 'この写真を見るたびに、故郷を思い出す。', t: '每次看到这张照片，就会想起故乡。' },
+    { g: '～ついでに', c: '時間', s: 'V辞書形・Vた形／Nの＋ついでに', m: '顺便…',
+      e: '買い物のついでに、郵便局へ寄った。', t: '买东西时顺便去了趟邮局。' },
+    { g: '～うちに', c: '時間', s: 'V辞書形・Vない形／い形／な形な＋うちに', m: '趁着…／不知不觉',
+      e: '若いうちに、たくさん臨書しておきたい。', t: '想趁着年轻多临一些帖。' },
+    { g: '～最中に', c: '時間', s: 'Nの／Vている＋最中に', m: '正在…的时候',
+      e: '食事の最中に、電話が鳴った。', t: '正吃饭的时候，电话响了。' },
+    { g: '～たところ', c: '時間', s: 'Vた形＋ところ', m: '刚刚…',
+      e: '今、駅に着いたところです。', t: '我刚到车站。' },
+    { g: '～たばかり', c: '時間', s: 'Vた形＋ばかり', m: '刚…（主观上觉得才刚）',
+      e: '先月、この印材を買ったばかりだ。', t: '上个月才刚买的这块印石。' },
+    { g: '～て以来', c: '時間', s: 'Vて形＋以来', m: '自从…以来',
+      e: '篆刻を始めて以来、毎日印を彫っている。', t: '自从开始学篆刻，每天都在刻印。' },
+    { g: '～次第', c: '時間', s: 'Vます形＋次第', m: '一…就…（马上）',
+      e: '決まり次第、ご連絡します。', t: '一定下来就联系您。' },
+    { g: '～とたん（に）', c: '時間', s: 'Vた形＋とたん', m: '刚一…就…（意外）',
+      e: '家を出たとたん、雨が降り出した。', t: '刚出门就下起雨来。' },
+    { g: '～か～ないかのうちに', c: '時間', s: 'V辞書形／Vた形＋か＋Vない形＋かのうちに', m: '刚一…就…（几乎同时）',
+      e: 'ベルが鳴るか鳴らないかのうちに、教室を出た。', t: '铃声刚响就出了教室。' },
+
+    /* --- 原因 --- */
+    { g: '～おかげで', c: '原因', s: 'Nの／Vた形＋おかげで', m: '多亏…（好结果）',
+      e: '先生のおかげで、腕が上がった。', t: '多亏老师，手上功夫进步了。' },
+    { g: '～せいで', c: '原因', s: 'Nの／Vた形＋せいで', m: '都怪…（坏结果）',
+      e: '寝坊したせいで、遅刻した。', t: '都怪睡过头，迟到了。' },
+    { g: '～ものだから', c: '原因', s: '普通形＋ものだから（な形＋な）', m: '因为…（辩解、委婉）',
+      e: '雨がひどいものだから、出かけなかった。', t: '因为雨太大了，就没出门。' },
+    { g: '～ばかりに', c: '原因', s: '普通形＋ばかりに', m: '就因为…（招致坏结果）',
+      e: '一言多いばかりに、誤解された。', t: '就因为多说了句嘴，被误会了。' },
+    { g: '～だけに', c: '原因', s: '普通形＋だけに', m: '正因为…（更加）',
+      e: '有名なだけに、評価も厳しい。', t: '正因为有名，评价也更严苛。' },
+    { g: '～とあって', c: '原因', s: 'N／普通形＋とあって', m: '正因为（特殊情况）',
+      e: '連休とあって、観光地は人でいっぱいだ。', t: '正因为是长假，景点里全是人。' },
+
+    /* --- 条件 --- */
+    { g: '～と', c: '条件', s: 'V辞書形＋と', m: '一…就…（必然、恒常）',
+      e: '春になると、桜が咲く。', t: '一到春天，樱花就开。' },
+    { g: '～ば', c: '条件', s: 'Vば形＋ば', m: '如果…就…（假定）',
+      e: '練習すれば、必ず上達する。', t: '只要练习，就一定会进步。' },
+    { g: '～たら', c: '条件', s: 'Vた形＋ら', m: '如果…／…之后',
+      e: '時間があったら、印譜を見に行こう。', t: '如果有时间，就去看印谱吧。' },
+    { g: '～なら', c: '条件', s: 'N／普通形＋なら', m: '如果是…的话（承接话题）',
+      e: '篆刻なら、黄牧甫が好きだ。', t: '要说篆刻，我喜欢黄牧甫。' },
+    { g: '～ないことには', c: '条件', s: 'Vない形＋ことには', m: '不…就不能…',
+      e: '実際に見ないことには、良さが分からない。', t: '不实际看一次，就不知道好在哪。' },
+    { g: '～さえ～ば', c: '条件', s: 'Nさえ＋Vば形', m: '只要…就…',
+      e: '印材さえあれば、すぐ彫れる。', t: '只要有印石，马上就能刻。' },
+    { g: '～としても', c: '条件', s: '普通形＋としても', m: '即使…也…',
+      e: '失敗したとしても、後悔しない。', t: '即使失败了，也不后悔。' },
+    { g: '～にしても', c: '条件', s: 'N／普通形＋にしても', m: '即使…／无论…',
+      e: '忙しいにしても、連絡ぐらいしてほしい。', t: '就算忙，也希望你联系一下。' },
+    { g: '～にしろ～にしろ', c: '条件', s: 'N／普通形＋にしろ', m: '无论…还是…',
+      e: '楷書にしろ行書にしろ、基本が大事だ。', t: '无论是楷书还是行书，基本功都重要。' },
+
+    /* --- 逆接 --- */
+    { g: '～ものの', c: '逆接', s: '普通形＋ものの', m: '虽然…但是…',
+      e: '買ったものの、使い方が分からない。', t: '虽然买了，却不知道怎么用。' },
+    { g: '～ながらも', c: '逆接', s: 'Vます形／い形／な形＋ながらも', m: '尽管…却…',
+      e: '狭いながらも、自分の書斎だ。', t: '虽然小，却是自己的书房。' },
+    { g: '～とはいえ', c: '逆接', s: 'N／普通形＋とはいえ', m: '虽说…',
+      e: '名人とはいえ、失敗することもある。', t: '虽说是名家，也有失手的时候。' },
+    { g: '～にもかかわらず', c: '逆接', s: 'N／普通形＋にもかかわらず', m: '尽管…（书面）',
+      e: '雨にもかかわらず、多くの人が集まった。', t: '尽管下雨，还是来了很多人。' },
+    { g: '～つつ（も）', c: '逆接', s: 'Vます形＋つつ', m: '一边…／虽然…（书面）',
+      e: '悪いと知りつつ、やめられない。', t: '明知不好，却停不下来。' },
+    { g: '～といっても', c: '逆接', s: 'N／普通形＋といっても', m: '虽说…（其实不过）',
+      e: '篆刻といっても、範囲は広い。', t: '虽说是篆刻，范围可很广。' },
+    { g: '～からといって', c: '逆接', s: '普通形＋からといって', m: '不能因为…就…',
+      e: '有名だからといって、必ず良いとは限らない。', t: '不能因为有名，就一定是好的。' },
+
+    /* --- 程度・限定 --- */
+    { g: '～だけあって', c: '程度', s: 'N／普通形＋だけあって', m: '不愧是…',
+      e: '名人だけあって、線が違う。', t: '不愧是名家，线条就是不一样。' },
+    { g: '～くらい／ほど', c: '程度', s: '普通形＋くらい／ほど', m: '到了…的程度',
+      e: '泣きたいくらい、悔しかった。', t: '后悔得都想哭了。' },
+    { g: '～に限る', c: '程度', s: 'N／V辞書形＋に限る', m: '最好是…',
+      e: '篆刻は、やはり青田石に限る。', t: '篆刻还是青田石最好。' },
+    { g: '～に限って', c: '程度', s: 'N＋に限って', m: '偏偏…',
+      e: '急ぐ日に限って、電車が遅れる。', t: '偏偏赶时间的那天电车晚点。' },
+    { g: '～しかない', c: '程度', s: 'V辞書形＋しかない', m: '只好…',
+      e: 'やるしかない。', t: '只能干了。' },
+    { g: '～にすぎない', c: '程度', s: 'N／普通形＋にすぎない', m: '不过是…',
+      e: 'これは一つの例にすぎない。', t: '这不过是一个例子。' },
+    { g: '～ばかりか', c: '程度', s: 'N／普通形＋ばかりか', m: '不仅…而且…',
+      e: '漢字ばかりか、仮名も書ける。', t: '不仅汉字，假名也会写。' },
+    { g: '～どころか', c: '程度', s: 'N／普通形＋どころか', m: '岂止…反而…',
+      e: '簡単どころか、とても難しい。', t: '别说简单了，非常难。' },
+
+    /* --- 推断 --- */
+    { g: '～はずだ／はずがない', c: '推断', s: '普通形＋はず（だ／がない）', m: '理应…／不可能…',
+      e: '彼が来るはずがない。', t: '他不可能来。' },
+    { g: '～わけだ', c: '推断', s: '普通形＋わけだ', m: '难怪…／也就是说…',
+      e: '十年練習したのだから、上手なわけだ。', t: '练了十年，难怪写得好。' },
+    { g: '～わけではない', c: '推断', s: '普通形＋わけではない', m: '并非…（部分否定）',
+      e: '日本語が嫌いなわけではない。', t: '并不是讨厌日语。' },
+    { g: '～わけにはいかない', c: '推断', s: 'V辞書形＋わけにはいかない', m: '（情理上）不能…',
+      e: '約束したから、行かないわけにはいかない。', t: '约好了，不能不去。' },
+    { g: '～に違いない', c: '推断', s: '普通形＋に違いない', m: '一定…（强推定）',
+      e: '電気がついている。誰かいるに違いない。', t: '灯亮着。一定有人在。' },
+    { g: '～かもしれない', c: '推断', s: '普通形＋かもしれない', m: '也许…',
+      e: '明日は雨かもしれない。', t: '明天也许下雨。' },
+    { g: '～ようだ／らしい／みたいだ', c: '推断', s: '普通形＋ようだ（な形＋な）', m: '好像…／似乎…',
+      e: '外は静かなようだ。', t: '外面好像很安静。' },
+    { g: '～おそれがある', c: '推断', s: 'N／V辞書形＋おそれがある', m: '有…之虞（书面）',
+      e: '大雨で、災害が起きるおそれがある。', t: '因大雨，有发生灾害的危险。' },
+    { g: '～得る／得ない', c: '推断', s: 'Vます形＋得る（える／うる）', m: '可能…／不可能…',
+      e: 'そんなことはあり得ない。', t: '那种事不可能有。' },
+    { g: '～そうだ（様態）', c: '推断', s: 'Vます形／い形／な形＋そうだ', m: '眼看就要…／看起来…',
+      e: '今にも雨が降りそうだ。', t: '眼看就要下雨了。' },
+
+    /* --- 意志・義務 --- */
+    { g: '～ざるを得ない', c: '意志', s: 'Vない形＋ざるを得ない（する→せざるを得ない）', m: '不得不…',
+      e: '事情がこうなった以上、認めざるを得ない。', t: '事已至此，不得不承认。' },
+    { g: '～べきだ', c: '意志', s: 'V辞書形＋べきだ', m: '应该…',
+      e: 'もっと練習するべきだ。', t: '应该多练习。' },
+    { g: '～ことになっている', c: '意志', s: 'V辞書形／Vない形＋ことになっている', m: '（按规定）要…',
+      e: 'ここでは写真を撮ってはいけないことになっている。', t: '这里规定不许拍照。' },
+    { g: '～ようにする／ことにする／ことになる', c: '意志', s: 'V辞書形＋ようにする／ことにする', m: '努力做到／自己决定／（客观）决定',
+      e: '毎日一時間、印を彫るようにしている。', t: '每天都尽量刻一小时印。' },
+    { g: '～てはじめて', c: '意志', s: 'Vて形＋はじめて', m: '只有…才…',
+      e: '失敗してはじめて、その意味が分かった。', t: '只有失败过，才明白那个意思。' },
+    { g: '～ずにはいられない', c: '意志', s: 'Vない形＋ずにはいられない（する→せずにはいられない）', m: '忍不住…',
+      e: 'その字を見ると、感動せずにはいられない。', t: '看到那字，忍不住感动。' },
+    { g: '～かねない／かねる', c: '意志', s: 'Vます形＋かねない／かねる', m: '有可能…（坏）／难以…',
+      e: 'そんなに働けば、体を壊しかねない。', t: '这么干下去，可能把身体搞坏。' },
+
+    /* --- 変化 --- */
+    { g: '～つつある', c: '時間', s: 'Vます形＋つつある', m: '正在…（变化中）',
+      e: '伝統文化が見直されつつある。', t: '传统文化正在被重新审视。' },
+    { g: '～一方だ', c: '時間', s: 'V辞書形＋一方だ', m: '越来越…（单向）',
+      e: '書道人口は減る一方だ。', t: '学书法的人越来越少。' },
+    { g: '～てくる／ていく', c: '時間', s: 'Vて形＋くる／いく', m: '…起来／…下去（变化趋向）',
+      e: '少しずつ分かってきた。', t: '渐渐明白起来了。' },
+
+    /* --- 授受 --- */
+    { g: '～てあげる／てくれる／てもらう', c: '授受', s: 'Vて形＋あげる／くれる／もらう', m: '为别人做／别人为我做／请别人做',
+      e: '友達が印を彫ってくれた。', t: '朋友（为我）刻了一方印。' },
+    { g: '～てさしあげる／てくださる／ていただく', c: '授受', s: 'Vて形＋（敬语形）', m: '授受的敬语版',
+      e: '先生に印譜を見ていただいた。', t: '请老师看了印谱。' }
+  ];
+
+  var list = document.getElementById('gList');
+  if (list) {
+    list.innerHTML = GRAMMAR.map(function (x) {
+      return '<div class="g-item" data-g="' + x.c + '">' +
+        '<h4>' + x.g + '<span class="cat">' + x.c + '</span></h4>' +
+        '<div>' +
+          '<p class="setsu"><b>接续</b> ' + x.s + '　<b>意义</b> ' + x.m + '</p>' +
+          '<p class="ex">' + x.e + '<small>' + x.t + '</small></p>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  var gb = document.getElementById('gFilters');
+  if (gb && list) {
+    gb.addEventListener('click', function (e) {
+      var b = e.target.closest('.chip');
+      if (!b) return;
+      gb.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); });
+      b.classList.add('on');
+      var f = b.getAttribute('data-g');
+      list.querySelectorAll('.g-item').forEach(function (el) {
+        var show = (f === 'all') || (el.getAttribute('data-g') === f);
+        el.classList.toggle('hide', !show);
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------
+     2. 动词变形器
+     --------------------------------------------------------- */
+  var A = { 'う': 'わ', 'く': 'か', 'ぐ': 'が', 'す': 'さ', 'つ': 'た', 'ぬ': 'な', 'ぶ': 'ば', 'む': 'ま', 'る': 'ら' };
+  var I = { 'う': 'い', 'く': 'き', 'ぐ': 'ぎ', 'す': 'し', 'つ': 'ち', 'ぬ': 'に', 'ぶ': 'び', 'む': 'み', 'る': 'り' };
+  var E = { 'う': 'え', 'く': 'け', 'ぐ': 'げ', 'す': 'せ', 'つ': 'て', 'ぬ': 'ね', 'ぶ': 'べ', 'む': 'め', 'る': 'れ' };
+  var O = { 'う': 'お', 'く': 'こ', 'ぐ': 'ご', 'す': 'そ', 'つ': 'と', 'ぬ': 'の', 'ぶ': 'ぼ', 'む': 'も', 'る': 'ろ' };
+
+  // 二类动词判断：る 前面是 い段/え段 假名
+  var ICHIDAN_PREV = 'いきしちにひみりぎじびぴえけせてねへめれげぜでべぺ';
+  // 外形像二类、实为一类（五段）的「陷阱动词」
+  var GODAN_RU = ['帰る', '入る', '走る', '切る', '知る', '要る', '散る', '蹴る', '滑る', '握る', '減る',
+    '照る', '参る', '限る', '焦る', '湿る', '茂る', '遮る', '捻る', '罵る', '混じる', '陥る',
+    '覆る', '甦る', '蘇る', '契る', '競る', '漲る', '奢る', '込める'];
+
+  function classify(v) {
+    if (v.length < 2) return null;
+    if (v.slice(-2) === 'する') return 'suru';
+    if (v === '来る' || v === 'くる') return 'kuru';
+    if (v.slice(-1) === 'る') {
+      var prev = v.slice(-2, -1);
+      if (ICHIDAN_PREV.indexOf(prev) > -1 && GODAN_RU.indexOf(v) === -1) return 'ichidan';
+    }
+    return 'godan';
+  }
+
+  function teTa(v, stem, last) {
+    switch (last) {
+      case 'う': case 'つ': case 'る': return [stem + 'って', stem + 'った'];
+      case 'む': case 'ぶ': case 'ぬ': return [stem + 'んで', stem + 'んだ'];
+      case 'く': return v === '行く' ? ['行って', '行った'] : [stem + 'いて', stem + 'いた'];
+      case 'ぐ': return [stem + 'いで', stem + 'いだ'];
+      case 'す': return [stem + 'して', stem + 'した'];
+      default: return ['', ''];
+    }
+  }
+
+  function conjugate(v) {
+    var type = classify(v);
+    if (!type) return null;
+    var out = [];
+    var t;
+
+    if (type === 'godan') {
+      var stem = v.slice(0, -1), last = v.slice(-1);
+      var a = A[last], i = I[last], e = E[last], o = O[last];
+      if (!a) return null;
+      var tt = teTa(v, stem, last);
+      out = [
+        ['ます形', stem + i + 'ます'], ['ません', stem + i + 'ません'], ['ました', stem + i + 'ました'],
+        ['ませんでした', stem + i + 'ませんでした'],
+        ['て形', tt[0]], ['た形', tt[1]],
+        ['ない形', stem + a + 'ない'], ['なかった', stem + a + 'なかった'],
+        ['可能形', stem + e + 'る'], ['意志形', stem + o + 'う'], ['条件形（ば）', stem + e + 'ば'],
+        ['命令形', stem + e], ['禁止形', v + 'な'],
+        ['使役形', stem + a + 'せる'], ['受身形', stem + a + 'れる'], ['使役受身', stem + a + 'される'],
+        ['尊敬語', 'お' + stem + i + 'になる'], ['謙譲語', 'お' + stem + i + 'する']
+      ];
+      t = '一类动词（五段）';
+    } else if (type === 'ichidan') {
+      var st = v.slice(0, -1);
+      out = [
+        ['ます形', st + 'ます'], ['ません', st + 'ません'], ['ました', st + 'ました'],
+        ['ませんでした', st + 'ませんでした'],
+        ['て形', st + 'て'], ['た形', st + 'た'],
+        ['ない形', st + 'ない'], ['なかった', st + 'なかった'],
+        ['可能形', st + 'られる'], ['意志形', st + 'よう'], ['条件形（ば）', st + 'れば'],
+        ['命令形', st + 'ろ'], ['禁止形', v + 'な'],
+        ['使役形', st + 'させる'], ['受身形', st + 'られる'], ['使役受身', st + 'させられる'],
+        ['尊敬語', 'お' + st + 'になる'], ['謙譲語', 'お' + st + 'する']
+      ];
+      t = '二类动词（一段）';
+    } else if (type === 'suru') {
+      var base = v.slice(0, -2);
+      out = [
+        ['ます形', base + 'します'], ['ません', base + 'しません'], ['ました', base + 'しました'],
+        ['ませんでした', base + 'しませんでした'],
+        ['て形', base + 'して'], ['た形', base + 'した'],
+        ['ない形', base + 'しない'], ['なかった', base + 'しなかった'],
+        ['可能形', base + 'できる'], ['意志形', base + 'しよう'], ['条件形（ば）', base + 'すれば'],
+        ['命令形', base + 'しろ'], ['禁止形', base + 'するな'],
+        ['使役形', base + 'させる'], ['受身形', base + 'される'], ['使役受身', base + 'させられる'],
+        ['尊敬語', base + 'なさる'], ['謙譲語', base + 'いたす']
+      ];
+      t = '三类动词（する）';
+    } else {
+      out = [
+        ['ます形', ['来ます', 'きます']], ['ません', ['来ません', 'きません']],
+        ['ました', ['来ました', 'きました']], ['ませんでした', ['来ませんでした', 'きませんでした']],
+        ['て形', ['来て', 'きて']], ['た形', ['来た', 'きた']],
+        ['ない形', ['来ない', 'こない']], ['なかった', ['来なかった', 'こなかった']],
+        ['可能形', ['来られる', 'こられる']], ['意志形', ['来よう', 'こよう']],
+        ['条件形（ば）', ['来れば', 'くれば']], ['命令形', ['来い', 'こい']],
+        ['禁止形', ['来るな', 'くるな']],
+        ['使役形', ['来させる', 'こさせる']], ['受身形', ['来られる', 'こられる']],
+        ['使役受身', ['来させられる', 'こさせられる']],
+        ['尊敬語', 'いらっしゃる'], ['謙譲語', '伺う・参る']
+      ];
+      t = '三类动词（来る）';
+    }
+
+    return { type: t, forms: [['辞書形', v]].concat(out) };
+  }
+
+  var vIn = document.getElementById('verbIn');
+  var vOut = document.getElementById('verbOut');
+  var vType = document.getElementById('verbType');
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function renderVerb() {
+    if (!vIn || !vOut) return;
+    var v = vIn.value.trim();
+    var r = v ? conjugate(v) : null;
+    if (!r) {
+      vType.textContent = v ? '无法判断（请输入以假名结尾的日语动词辞书形）' : '—';
+      vOut.innerHTML = '<div style="grid-column:1/-1;padding:18px 16px;color:var(--ink-4);font-size:13px">输入一个辞书形动词试试：書く / 食べる / 勉強する / 来る</div>';
+      return;
+    }
+    vType.textContent = r.type;
+    vOut.innerHTML = r.forms.map(function (f) {
+      var val = f[1], extra = '';
+      if (Array.isArray(val)) { extra = val[1]; val = val[0]; }
+      var hl = (f[0] === 'て形' || f[0] === 'ない形' || f[0] === '可能形') ? ' class="hl"' : '';
+      return '<div' + hl + '><b>' + f[0] + '</b><span>' + esc(val) +
+        (extra ? '<em>' + esc(extra) + '</em>' : '') + '</span></div>';
+    }).join('');
+  }
+
+  if (vIn) {
+    vIn.addEventListener('input', renderVerb);
+    vIn.addEventListener('keydown', function (e) { if (e.key === 'Enter') e.preventDefault(); });
+    renderVerb();
+  }
+
+  document.querySelectorAll('.verb-tip b[data-v]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!vIn) return;
+      vIn.value = b.getAttribute('data-v');
+      renderVerb();
+      vIn.focus();
+    });
+  });
+
+  /* ---------------------------------------------------------
+     3. 导航 / 进度 / 入场
+     --------------------------------------------------------- */
+  var nav = document.getElementById('nav');
+  var prog = document.getElementById('progress');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav__links a'));
+  var secs = links.map(function (a) {
+    var id = a.getAttribute('href').slice(1);
+    return document.getElementById(id);
+  }).filter(Boolean);
+
+  var lastY = 0;
+  function onScroll() {
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    if (prog) {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+    }
+    if (nav) {
+      if (y > 300) nav.classList.toggle('hide', y > lastY && y > 520);
+      else nav.classList.remove('hide');
+    }
+    lastY = y;
+    var cur = -1;
+    for (var i = 0; i < secs.length; i++) {
+      if (secs[i].getBoundingClientRect().top <= 160) cur = i;
+    }
+    links.forEach(function (a, i) { a.classList.toggle('on', i === cur); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var rvEls = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+    rvEls.forEach(function (e) { io.observe(e); });
+  } else {
+    rvEls.forEach(function (e) { e.classList.add('in'); });
+  }
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    if (!id) return;
+    var t = document.getElementById(id);
+    if (!t) return;
+    e.preventDefault();
+    var top = t.getBoundingClientRect().top + window.pageYOffset - 70;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+    history.replaceState(null, '', '#' + id);
+  });
+})();
+
+</script>
+</body>
+</html>
