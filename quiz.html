@@ -1,0 +1,2365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="刷题">
+<meta name="theme-color" content="#f3ede1">
+<title>刷题台 — 政治 · 日语 203</title>
+<meta name="description" content="考研政治与日语203选择题随机练习：历年真题改编、每题带解析、错题自动归档。">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ============================================================
+   松雪·脉络  —  赵孟頫书法脉络
+   设计语言：宣纸 / 墨 / 朱砂 / 界格
+   ============================================================ */
+
+:root{
+  --paper:      #f3ede1;
+  --paper-2:    #eae2d2;
+  --paper-3:    #e0d6c2;
+  --ink:        #17170f;
+  --ink-2:      #3c3b31;
+  --ink-3:      #6f6d60;
+  --ink-4:      #9c998b;
+  --cinnabar:   #a6342a;
+  --cinnabar-2: #c2543f;
+  --cinnabar-s: rgba(166,52,42,.12);
+  --gold:       #8a7448;
+  --jade:       #2f5257;
+  --line:       rgba(23,23,15,.16);
+  --line-2:     rgba(23,23,15,.07);
+
+  --f-song: "Songti SC","STSong","SimSun","Source Han Serif SC","Noto Serif SC","Noto Serif CJK SC",serif;
+  --f-kai:  "Kaiti SC","STKaiti","KaiTi","楷体","Kaiti TC","Songti SC","Noto Serif CJK SC",serif;
+  --f-hei:  "PingFang SC","HarmonyOS Sans SC","MiSans","Microsoft YaHei","Noto Sans CJK SC","Noto Sans SC",sans-serif;
+
+  --serif: var(--f-song);
+  --kai:   var(--f-kai);
+  --mono:  "SF Mono","JetBrains Mono","Cascadia Mono",Consolas,"Courier New",monospace;
+
+  --maxw: 1120px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:17px;
+  line-height:1.95;
+  letter-spacing:.02em;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* 宣纸肌理 */
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    radial-gradient(ellipse 70% 50% at 12% 8%, rgba(255,255,255,.55), transparent 60%),
+    radial-gradient(ellipse 60% 55% at 88% 92%, rgba(140,120,80,.10), transparent 62%),
+    repeating-linear-gradient(0deg, rgba(90,75,45,.030) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(90,75,45,.024) 0 1px, transparent 1px 4px),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='220' height='220' filter='url(%23n)' opacity='.055'/></svg>");
+  mix-blend-mode:multiply;
+  opacity:.9;
+}
+
+main,header.hero,footer{ position:relative; z-index:1; }
+
+::selection{ background:var(--cinnabar); color:var(--paper); }
+
+a{ color:inherit; text-decoration:none; }
+
+img{ max-width:100%; }
+
+.wrap{ width:min(100% - 48px, var(--maxw)); margin-inline:auto; }
+
+/* ---------- 顶部阅读进度 ---------- */
+#progress{
+  position:fixed; top:0; left:0; height:2px; width:0%;
+  background:linear-gradient(90deg,var(--cinnabar),var(--cinnabar-2));
+  z-index:120; transition:width .1s linear;
+}
+
+/* ---------- 导航 ---------- */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; gap:28px;
+  padding:14px clamp(20px,4vw,44px);
+  background:rgba(243,237,225,.78);
+  -webkit-backdrop-filter:blur(14px) saturate(1.1);
+  backdrop-filter:blur(14px) saturate(1.1);
+  border-bottom:1px solid var(--line-2);
+  transform:translateY(0);
+  transition:transform .45s var(--ease), background .3s;
+}
+.nav.hide{ transform:translateY(-102%); }
+.nav__brand{ display:flex; align-items:center; gap:11px; margin-right:auto; }
+.nav__seal{
+  width:30px; height:30px; flex:none;
+  display:grid; place-items:center;
+  background:var(--cinnabar); color:#fff6ee;
+  font-family:var(--kai); font-size:13px; line-height:1; letter-spacing:0;
+  border-radius:3px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.28);
+}
+.nav__title{ font-family:var(--kai); font-size:19px; letter-spacing:.18em; }
+.nav__title small{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--ink-3); margin-left:8px; }
+.nav__links{ display:flex; gap:22px; align-items:center; }
+.nav__links a{
+  font-size:13.5px; letter-spacing:.12em; color:var(--ink-2);
+  position:relative; padding:4px 0; white-space:nowrap;
+}
+.nav__links a::after{
+  content:""; position:absolute; left:0; bottom:0; height:1px; width:0;
+  background:var(--cinnabar); transition:width .35s var(--ease);
+}
+.nav__links a:hover::after,.nav__links a.on::after{ width:100%; }
+.nav__links a.on{ color:var(--cinnabar); }
+.nav__cta{
+  font-size:12.5px; letter-spacing:.1em; color:var(--ink-2);
+  border:1px solid var(--line); border-radius:999px;
+  padding:7px 14px 6px; white-space:nowrap;
+  transition:.3s var(--ease);
+}
+.nav__cta:hover{ border-color:var(--cinnabar); color:var(--cinnabar); }
+/* 触屏也能打开的搜索入口（替代 Ctrl+K） */
+.nav__search{
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:inherit; font-size:12.5px; letter-spacing:.1em; color:var(--ink-2);
+  border:1px solid transparent; border-radius:999px;
+  padding:7px 10px 6px; white-space:nowrap; background:none; cursor:pointer;
+  transition:.3s var(--ease);
+}
+.nav__search svg{ width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; }
+.nav__search:hover{ color:var(--cinnabar); border-color:var(--line); background:rgba(178,58,44,.04); }
+
+/* ---------- Hero ---------- */
+.hero{
+  min-height:100svh; padding:120px 0 70px;
+  display:grid; grid-template-columns:1fr; align-items:center;
+  position:relative; overflow:hidden;
+}
+/* 淡墨大字水印 */
+.hero__ghost{
+  position:absolute; right:-4vw; top:46%;
+  transform:translateY(-50%);
+  font-family:var(--kai);
+  font-size:clamp(240px,42vw,620px);
+  line-height:.8;
+  color:rgba(23,23,15,.045);
+  writing-mode:vertical-rl;
+  letter-spacing:-.06em;
+  pointer-events:none; user-select:none;
+  z-index:0;
+}
+.hero__inner{ position:relative; z-index:2; display:grid; gap:34px; }
+
+.hero__eyebrow{
+  display:flex; align-items:center; gap:14px;
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.34em;
+  color:var(--ink-3); text-transform:uppercase;
+}
+.hero__eyebrow span{ display:block; width:52px; height:1px; background:var(--ink-4); }
+
+.hero__name{
+  font-family:var(--kai);
+  font-size:clamp(64px,12.5vw,150px);
+  line-height:1.02; letter-spacing:.06em; font-weight:400;
+  margin:0;
+}
+.hero__name em{ font-style:normal; color:var(--cinnabar); }
+.hero__latin{
+  font-family:var(--mono); font-size:12px; letter-spacing:.3em;
+  color:var(--ink-3); margin-top:6px;
+}
+
+.hero__epi{
+  max-width:600px; padding-left:22px;
+  border-left:2px solid var(--cinnabar);
+  font-family:var(--kai); font-size:clamp(19px,2.3vw,25px);
+  line-height:1.9; color:var(--ink-2); letter-spacing:.08em;
+}
+.hero__epi b{ font-weight:400; color:var(--ink); border-bottom:1px solid var(--line); }
+.hero__epi cite{ display:block; margin-top:10px; font-style:normal; font-size:12.5px; letter-spacing:.14em; color:var(--ink-3); font-family:var(--serif); }
+
+.hero__meta{
+  display:flex; flex-wrap:wrap; gap:0;
+  border-top:1px solid var(--line); padding-top:18px;
+}
+.hero__meta div{ padding-right:38px; margin-right:38px; border-right:1px solid var(--line-2); }
+.hero__meta div:last-child{ border:0; }
+.hero__meta dt{ font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; color:var(--ink-3); }
+.hero__meta dd{ margin:4px 0 0; font-family:var(--kai); font-size:17px; letter-spacing:.1em; }
+
+.hero__scroll{
+  position:absolute; left:50%; bottom:26px; transform:translateX(-50%);
+  display:grid; justify-items:center; gap:8px;
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.28em; color:var(--ink-4);
+}
+.hero__scroll i{ display:block; width:1px; height:44px; background:linear-gradient(var(--ink-4),transparent); animation:drop 2.4s var(--ease) infinite; }
+@keyframes drop{ 0%{ transform:scaleY(.2); transform-origin:top; opacity:0 } 40%{opacity:1} 100%{ transform:scaleY(1); transform-origin:top; opacity:0 } }
+
+/* ---------- 章节 ---------- */
+.sec{ padding:clamp(72px,10vw,132px) 0; position:relative; }
+.sec + .sec{ border-top:1px solid var(--line-2); }
+.sec--tint{ background:linear-gradient(180deg, rgba(234,226,210,.55), rgba(234,226,210,0)); }
+
+.sec__head{ display:grid; grid-template-columns:auto 1fr; gap:clamp(16px,3vw,40px); align-items:start; margin-bottom:clamp(38px,5vw,64px); }
+.sec__num{
+  font-family:var(--kai); font-size:13px; letter-spacing:.2em; color:var(--cinnabar);
+  border:1px solid var(--cinnabar); border-radius:2px;
+  padding:5px 7px 4px; line-height:1; margin-top:4px;
+  writing-mode:vertical-rl; text-orientation:upright;
+}
+.sec__title{
+  font-family:var(--kai); font-weight:400;
+  font-size:clamp(27px,4.4vw,44px); line-height:1.35; letter-spacing:.1em;
+  margin:0 0 10px;
+}
+.sec__sub{ color:var(--ink-3); font-size:14px; letter-spacing:.08em; max-width:62ch; margin:0; }
+.sec__sub b{ color:var(--ink-2); font-weight:400; }
+
+/* 竖排小標 */
+.vlabel{
+  writing-mode:vertical-rl; text-orientation:upright;
+  font-family:var(--kai); font-size:12px; letter-spacing:.34em;
+  color:var(--ink-4);
+}
+
+/* ---------- 小节标题（表格分组用） ---------- */
+.subhead{
+  display:flex; align-items:baseline; gap:10px;
+  font-family:var(--kai); font-weight:400;
+  font-size:clamp(17px,2.2vw,20px); letter-spacing:.08em;
+  margin:clamp(26px,3.4vw,40px) 0 12px; color:var(--ink);
+}
+.subhead em{
+  font-family:var(--mono); font-style:normal; font-size:11px;
+  letter-spacing:.16em; color:var(--cinnabar); margin-right:12px;
+}
+.subhead::after{ content:""; flex:1; height:1px; background:var(--line-2); }
+
+/* ---------- 通用卡片 ---------- */
+.card{
+  background:rgba(255,252,246,.55);
+  border:1px solid var(--line);
+  padding:clamp(22px,3vw,34px);
+  position:relative;
+  transition:.45s var(--ease);
+}
+.card:hover{ background:rgba(255,253,248,.9); border-color:rgba(23,23,15,.3); transform:translateY(-3px); }
+.card h3{
+  font-family:var(--kai); font-weight:400; font-size:21px; letter-spacing:.08em;
+  margin:0 0 10px;
+}
+.card p{ margin:0; font-size:14.5px; color:var(--ink-2); line-height:1.95; }
+.card p + p{ margin-top:10px; }
+
+/* 界格装饰角 */
+.grid-corner::before,.grid-corner::after{
+  content:""; position:absolute; width:9px; height:9px; border-color:var(--cinnabar); border-style:solid; opacity:.55;
+}
+.grid-corner::before{ top:-1px; left:-1px; border-width:1px 0 0 1px; }
+.grid-corner::after{ bottom:-1px; right:-1px; border-width:0 1px 1px 0; }
+
+/* ---------- 概述格 ---------- */
+.grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.6vw,20px); }
+.grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(12px,1.6vw,20px); }
+.grid-4{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,1.6vw,20px); }
+
+.stat{ padding:clamp(20px,2.6vw,30px); border:1px solid var(--line); background:rgba(255,252,246,.4); }
+.stat b{ display:block; font-family:var(--kai); font-size:clamp(30px,4.4vw,46px); line-height:1.1; letter-spacing:.02em; }
+.stat b small{ font-size:.42em; letter-spacing:.14em; margin-left:4px; color:var(--ink-3); }
+.stat span{ display:block; margin-top:8px; font-size:12.5px; letter-spacing:.16em; color:var(--ink-3); }
+
+/* ---------- 引文 ---------- */
+blockquote.big{
+  margin:0; padding:clamp(26px,4vw,44px);
+  border:1px solid var(--line);
+  background:rgba(255,253,248,.55);
+  position:relative;
+}
+blockquote.big p{
+  font-family:var(--kai); font-size:clamp(20px,3.1vw,32px);
+  line-height:1.85; letter-spacing:.08em; margin:0; color:var(--ink);
+}
+blockquote.big p::before{ content:"「"; color:var(--cinnabar); }
+blockquote.big p::after{ content:"」"; color:var(--cinnabar); }
+blockquote.big footer{ margin-top:16px; font-size:12.5px; letter-spacing:.1em; color:var(--ink-3); }
+
+/* ---------- 时间轴 ---------- */
+.timeline{ position:relative; margin-top:8px; }
+.timeline::before{
+  content:""; position:absolute; left:96px; top:6px; bottom:6px; width:1px;
+  background:linear-gradient(var(--line),var(--line-2),var(--line));
+}
+.tl-item{ position:relative; display:grid; grid-template-columns:96px 1fr; gap:clamp(18px,3vw,38px); padding:0 0 clamp(26px,3.4vw,40px); }
+.tl-item:last-child{ padding-bottom:0; }
+.tl-year{
+  font-family:var(--mono); font-size:15px; letter-spacing:.06em; color:var(--ink-2);
+  text-align:right; padding-top:2px; position:relative;
+}
+.tl-year em{ display:block; font-style:normal; font-size:10.5px; color:var(--ink-4); letter-spacing:.14em; margin-top:2px; }
+.tl-dot{
+  position:absolute; right:-5px; top:11px; width:9px; height:9px;
+  border-radius:50%; background:var(--paper); border:1px solid var(--cinnabar);
+  box-shadow:0 0 0 4px var(--paper);
+}
+.tl-item.major .tl-dot{ background:var(--cinnabar); }
+.tl-body{ padding-left:8px; }
+.tl-body h4{
+  font-family:var(--kai); font-weight:400; font-size:19px; letter-spacing:.06em;
+  margin:0 0 6px; display:flex; flex-wrap:wrap; align-items:baseline; gap:10px;
+}
+.tl-body h4 span.tagline{ font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; color:var(--cinnabar); border:1px solid rgba(166,52,42,.35); padding:1px 6px; border-radius:2px; }
+.tl-body p{ margin:0; font-size:14px; color:var(--ink-2); line-height:1.9; max-width:64ch; }
+
+/* ---------- 作品卡 ---------- */
+.filters{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 26px; }
+.chip{
+  font-family:var(--serif); font-size:12.5px; letter-spacing:.1em;
+  padding:6px 14px 5px; border:1px solid var(--line); border-radius:999px;
+  background:transparent; color:var(--ink-2); cursor:pointer;
+  transition:.3s var(--ease);
+}
+.chip:hover{ border-color:var(--ink-3); }
+.chip.on{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+.works{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.6vw,18px); }
+.work{
+  border:1px solid var(--line); background:rgba(255,252,246,.45);
+  padding:20px 22px 22px; position:relative; overflow:hidden;
+  cursor:pointer; transition:.45s var(--ease);
+}
+.work::after{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(circle at 80% 0%, rgba(166,52,42,.10), transparent 60%);
+  opacity:0; transition:.5s;
+}
+.work:hover{ border-color:rgba(23,23,15,.34); transform:translateY(-3px); box-shadow:0 14px 30px -22px rgba(23,23,15,.5); }
+.work:hover::after{ opacity:1; }
+.work__top{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:10px; }
+.work__yr{ font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--ink-3); }
+.work__script{ font-size:10.5px; letter-spacing:.16em; color:var(--cinnabar); border:1px solid rgba(166,52,42,.3); padding:1px 6px; border-radius:2px; }
+.work h4{ font-family:var(--kai); font-weight:400; font-size:19px; letter-spacing:.04em; margin:0 0 8px; line-height:1.4; }
+.work p{ margin:0; font-size:13px; line-height:1.85; color:var(--ink-2); }
+.work__col{ margin-top:10px; font-size:11.5px; letter-spacing:.08em; color:var(--ink-4); }
+.work.is-hidden{ display:none; }
+
+/* ---------- 三期 tabs ---------- */
+.tabs{ display:flex; gap:2px; border-bottom:1px solid var(--line); margin-bottom:28px; flex-wrap:wrap; }
+.tab{
+  background:none; border:0; cursor:pointer; font-family:var(--kai);
+  font-size:16px; letter-spacing:.12em; color:var(--ink-3);
+  padding:12px 22px 12px; position:relative; transition:.3s;
+}
+.tab:hover{ color:var(--ink); }
+.tab.on{ color:var(--ink); }
+.tab.on::after{ content:""; position:absolute; left:14px; right:14px; bottom:-1px; height:2px; background:var(--cinnabar); }
+.tab i{ font-style:normal; font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--ink-4); margin-left:7px; }
+
+.panel{ display:none; animation:fade .55s var(--ease); }
+.panel.on{ display:block; }
+@keyframes fade{ from{ opacity:0; transform:translateY(8px) } to{ opacity:1; transform:none } }
+
+.panel__grid{ display:grid; grid-template-columns:1.35fr .85fr; gap:clamp(20px,3vw,44px); align-items:start; }
+.panel__body p{ margin:0 0 14px; font-size:15px; color:var(--ink-2); }
+.panel__body p:last-child{ margin-bottom:0; }
+.panel__body b{ color:var(--ink); font-weight:400; border-bottom:1px solid rgba(166,52,42,.4); }
+
+.traits{ border:1px solid var(--line); padding:22px 24px; background:rgba(255,253,248,.5); }
+.traits h5{ font-family:var(--mono); font-size:10.5px; letter-spacing:.22em; color:var(--ink-3); margin:0 0 16px; font-weight:400; }
+.trait{ margin-bottom:14px; }
+.trait:last-child{ margin-bottom:0; }
+.trait div{ display:flex; justify-content:space-between; font-size:12px; letter-spacing:.1em; color:var(--ink-2); margin-bottom:5px; }
+.bar{ height:3px; background:var(--line-2); position:relative; overflow:hidden; }
+.bar i{ position:absolute; left:0; top:0; bottom:0; width:0; background:var(--cinnabar); transition:width 1.1s var(--ease); }
+
+/* ---------- 五体 ---------- */
+.acc{ border-top:1px solid var(--line); }
+.acc__item{ border-bottom:1px solid var(--line); }
+.acc__btn{
+  width:100%; background:none; border:0; cursor:pointer; text-align:left;
+  display:grid; grid-template-columns:auto 1fr auto; gap:18px; align-items:center;
+  padding:22px 4px; font-family:var(--kai); color:var(--ink);
+  transition:.3s;
+}
+.acc__btn:hover{ color:var(--cinnabar); }
+.acc__char{ font-size:34px; line-height:1; letter-spacing:0; width:52px; text-align:center; }
+.acc__name{ font-size:19px; letter-spacing:.1em; }
+.acc__name small{ display:block; font-family:var(--serif); font-size:12px; letter-spacing:.06em; color:var(--ink-3); margin-top:3px; }
+.acc__ic{ width:14px; height:14px; position:relative; flex:none; }
+.acc__ic::before,.acc__ic::after{ content:""; position:absolute; background:var(--ink-2); transition:.4s var(--ease); }
+.acc__ic::before{ left:0; right:0; top:6.5px; height:1px; }
+.acc__ic::after{ top:0; bottom:0; left:6.5px; width:1px; }
+.acc__item.open .acc__ic::after{ transform:rotate(90deg); opacity:0; }
+.acc__body{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .5s var(--ease); }
+.acc__item.open .acc__body{ grid-template-rows:1fr; }
+.acc__inner{ overflow:hidden; }
+.acc__inner > div{ padding:0 4px 28px 70px; display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+.acc__inner p{ margin:0; font-size:14.5px; color:var(--ink-2); }
+.acc__inner .k{ font-family:var(--mono); font-size:10.5px; letter-spacing:.18em; color:var(--ink-3); display:block; margin-bottom:7px; }
+
+/* ---------- 师承图 ---------- */
+.genealogy{ border:1px solid var(--line); background:rgba(255,253,248,.42); padding:clamp(10px,2vw,26px); position:relative; overflow-x:auto; }
+.genealogy svg{ display:block; width:100%; min-width:720px; height:auto; }
+.g-node{ cursor:pointer; }
+.g-node text{ font-family:var(--kai); fill:var(--ink); transition:.3s; }
+.g-node .sub{ font-family:var(--serif); font-size:9.5px; fill:var(--ink-3); letter-spacing:.06em; }
+.g-node .dot{ transition:.35s var(--ease); }
+.g-node.dim text{ opacity:.28; }
+.g-node.dim .dot{ opacity:.25; }
+.g-node.on text{ fill:var(--cinnabar); }
+.g-edge{ fill:none; stroke:rgba(23,23,15,.22); stroke-width:1; transition:.35s; }
+.g-edge.dashed{ stroke-dasharray:3 4; }
+.g-edge.on{ stroke:var(--cinnabar); stroke-width:1.6; }
+.g-edge.dim{ opacity:.12; }
+.g-legend{ display:flex; gap:22px; flex-wrap:wrap; margin-top:14px; padding-top:14px; border-top:1px solid var(--line-2); font-size:11.5px; letter-spacing:.1em; color:var(--ink-3); }
+.g-legend i{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:7px; vertical-align:middle; }
+
+/* ---------- 争议双栏 ---------- */
+.debate{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(14px,2vw,26px); }
+.debate__side{ border:1px solid var(--line); padding:clamp(22px,3vw,32px); background:rgba(255,253,248,.42); }
+.debate__side.praise{ border-top:2px solid var(--jade); }
+.debate__side.critic{ border-top:2px solid var(--cinnabar); }
+.debate__side h4{ font-family:var(--mono); font-size:10.5px; letter-spacing:.24em; color:var(--ink-3); margin:0 0 18px; font-weight:400; }
+.quote-item + .quote-item{ margin-top:20px; padding-top:20px; border-top:1px solid var(--line-2); }
+.quote-item p{ margin:0 0 7px; font-family:var(--kai); font-size:16.5px; line-height:1.85; letter-spacing:.05em; }
+.quote-item cite{ font-style:normal; font-size:12px; letter-spacing:.1em; color:var(--ink-3); }
+
+/* ---------- 朱批 / 备考提示 ---------- */
+.note{
+  margin:clamp(24px,3vw,36px) 0 0;
+  border-left:3px solid var(--cinnabar);
+  background:linear-gradient(90deg, rgba(166,52,42,.075), rgba(166,52,42,.02));
+  padding:20px 24px 22px;
+  position:relative;
+}
+.note::before{
+  content:"朱批"; position:absolute; right:14px; top:-9px;
+  background:var(--cinnabar); color:#fff6ee;
+  font-family:var(--kai); font-size:11px; letter-spacing:.2em;
+  padding:2px 7px 3px; border-radius:2px;
+}
+.note h5{ margin:0 0 8px; font-family:var(--kai); font-size:15px; letter-spacing:.1em; color:var(--cinnabar); font-weight:400; }
+.note p{ margin:0; font-size:14px; line-height:1.9; color:var(--ink-2); }
+.note p + p{ margin-top:8px; }
+.note b{ font-weight:400; color:var(--ink); background:linear-gradient(transparent 62%, rgba(166,52,42,.22) 62%); }
+
+/* ---------- 论述题库 ---------- */
+.qs{ display:grid; gap:1px; background:var(--line); border:1px solid var(--line); }
+.q{ background:var(--paper); padding:20px 24px; display:grid; grid-template-columns:auto 1fr; gap:18px; transition:.35s; }
+.q:hover{ background:rgba(255,253,248,.75); }
+.q__n{ font-family:var(--mono); font-size:11px; color:var(--cinnabar); letter-spacing:.1em; padding-top:5px; }
+.q h4{ font-family:var(--kai); font-size:17.5px; font-weight:400; letter-spacing:.05em; margin:0 0 7px; }
+.q p{ margin:0; font-size:13.5px; color:var(--ink-3); line-height:1.85; }
+
+/* ---------- 结语 / Footer ---------- */
+.outro{ text-align:center; padding:clamp(80px,12vw,150px) 0; }
+.outro__line{ font-family:var(--kai); font-size:clamp(24px,4.6vw,44px); letter-spacing:.14em; line-height:1.8; margin:0 0 22px; }
+.outro__sub{ color:var(--ink-3); font-size:13.5px; letter-spacing:.16em; }
+.seal-big{
+  display:inline-grid; place-items:center; width:74px; height:74px;
+  background:var(--cinnabar); color:#fff6ee; border-radius:5px;
+  font-family:var(--kai); font-size:15px; line-height:1.25; letter-spacing:.06em;
+  margin-bottom:26px; transform:rotate(-2.5deg);
+  box-shadow:inset 0 0 0 2px rgba(255,246,238,.35), 0 10px 24px -16px rgba(166,52,42,.9);
+}
+
+footer.foot{
+  border-top:1px solid var(--line);
+  padding:38px 0 46px; font-size:12px; letter-spacing:.1em; color:var(--ink-3);
+}
+footer.foot .wrap{ display:flex; flex-wrap:wrap; gap:16px 30px; justify-content:space-between; align-items:center; }
+footer.foot a{ border-bottom:1px solid var(--line); }
+footer.foot a:hover{ color:var(--cinnabar); border-color:var(--cinnabar); }
+
+/* ---------- 搜索面板 ---------- */
+.search{
+  position:fixed; inset:0; z-index:200; display:none;
+  background:rgba(23,23,15,.42); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+  padding:14vh 20px 20px;
+}
+.search.on{ display:block; animation:fade .25s; }
+.search__box{ max-width:660px; margin:0 auto; background:var(--paper); border:1px solid var(--line); box-shadow:0 40px 80px -40px rgba(0,0,0,.5); }
+.search__in{
+  width:100%; border:0; background:transparent; outline:none;
+  font-family:var(--kai); font-size:21px; letter-spacing:.06em; color:var(--ink);
+  padding:20px 24px; border-bottom:1px solid var(--line);
+}
+.search__in::placeholder{ color:var(--ink-4); }
+.search__res{ max-height:52vh; overflow:auto; }
+.search__res a{ display:grid; grid-template-columns:1fr auto; gap:14px; padding:13px 24px; align-items:baseline; border-bottom:1px solid var(--line-2); }
+.search__res a:hover,.search__res a.sel{ background:rgba(166,52,42,.07); }
+.search__res .t{ font-family:var(--kai); font-size:16px; letter-spacing:.05em; }
+.search__res .m{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--ink-4); }
+.search__hint{ padding:12px 24px; font-size:11px; letter-spacing:.12em; color:var(--ink-4); display:flex; gap:18px; flex-wrap:wrap; }
+kbd{ font-family:var(--mono); font-size:10px; border:1px solid var(--line); border-bottom-width:2px; border-radius:3px; padding:1px 5px; color:var(--ink-2); }
+
+/* ---------- 滚动入场 ---------- */
+.js .rv{ opacity:0; transform:translateY(26px); transition:opacity .85s var(--ease), transform .85s var(--ease); }
+.rv.in{ opacity:1; transform:none; }
+.rv.d1{ transition-delay:.08s } .rv.d2{ transition-delay:.16s } .rv.d3{ transition-delay:.24s } .rv.d4{ transition-delay:.32s }
+
+/* ============================================================
+   日语页组件
+   ============================================================ */
+.verb-tool{
+  border:1px solid var(--line); background:rgba(255,253,248,.55);
+  padding:clamp(20px,3vw,30px);
+}
+.verb-tool__lab{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.22em;
+  color:var(--ink-3); margin-bottom:10px;
+}
+.verb-in{
+  width:100%; border:0; border-bottom:1px solid var(--ink-3); background:transparent;
+  font-family:var(--kai); font-size:34px; letter-spacing:.06em; color:var(--ink);
+  padding:6px 2px 10px; outline:none;
+}
+.verb-in::placeholder{ color:var(--ink-4); font-size:22px; }
+.verb-tip{ margin-top:10px; font-size:12px; letter-spacing:.06em; color:var(--ink-3); display:flex; gap:16px; flex-wrap:wrap; }
+.verb-tip b{ color:var(--cinnabar); font-weight:400; }
+.verb-tip b[data-v]{ cursor:pointer; border-bottom:1px dashed rgba(166,52,42,.45); padding-bottom:1px; }
+.verb-tip b[data-v]:hover{ background:var(--cinnabar-s); }
+.verb-out{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(188px,1fr));
+  gap:0; border:1px solid var(--line); border-right:0; border-bottom:0;
+  margin-top:22px; background:var(--paper);
+}
+.verb-out > div{ padding:13px 15px 14px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+.verb-out b{ display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.15em; color:var(--ink-3); font-weight:400; margin-bottom:3px; }
+.verb-out span{ font-family:var(--kai); font-size:18px; letter-spacing:.03em; color:var(--ink); }
+.verb-out span em{ font-style:normal; font-size:11px; color:var(--ink-4); font-family:var(--serif); margin-left:6px; letter-spacing:.02em; }
+.verb-out > div.hl{ background:rgba(166,52,42,.06); }
+.verb-out > div.hl span{ color:var(--cinnabar); }
+
+.g-list{ border-top:1px solid var(--line); }
+.g-item{
+  border-bottom:1px solid var(--line);
+  padding:15px 0; display:grid; grid-template-columns:196px 1fr; gap:clamp(12px,2vw,26px);
+  align-items:start;
+}
+.g-item h4{
+  margin:0; font-family:var(--kai); font-size:16px; font-weight:400;
+  letter-spacing:.03em; line-height:1.5;
+}
+.g-item .cat{
+  display:block; font-family:var(--mono); font-size:9px; letter-spacing:.14em;
+  color:var(--ink-4); margin-top:5px;
+}
+.g-item p{ margin:0 0 5px; font-size:13px; line-height:1.85; color:var(--ink-2); }
+.g-item p:last-child{ margin-bottom:0; }
+.g-item .setsu{ color:var(--ink-3); font-size:12.5px; }
+.g-item .setsu b{ color:var(--jade); font-weight:400; }
+.g-item .ex{ font-family:var(--kai); font-size:15px; color:var(--ink); line-height:1.8; }
+.g-item .ex small{ display:block; font-family:var(--serif); font-size:12px; color:var(--ink-3); margin-top:2px; letter-spacing:.03em; }
+.g-item.hide{ display:none; }
+
+@media (max-width:760px){
+  .g-item{ grid-template-columns:1fr; gap:6px; }
+  .g-item .cat{ display:inline-block; margin-left:8px; margin-top:0; }
+  .verb-in{ font-size:26px; }
+}
+
+.war-hero{ padding:130px 0 60px; }
+.count{
+  display:flex; align-items:flex-end; gap:clamp(10px,2vw,22px); flex-wrap:wrap;
+  margin:26px 0 6px;
+}
+.count__n{ font-family:var(--mono); font-size:clamp(64px,13vw,132px); line-height:.86; letter-spacing:-.04em; }
+.count__u{ font-family:var(--kai); font-size:20px; letter-spacing:.2em; padding-bottom:12px; color:var(--ink-2); }
+.count__sub{ font-size:12.5px; letter-spacing:.14em; color:var(--ink-3); }
+.count small{ font-family:var(--mono); font-size:12px; color:var(--ink-3); letter-spacing:.08em; }
+
+.ledger{ border:1px solid var(--line); background:rgba(255,253,248,.5); padding:clamp(22px,3vw,34px); }
+.ledger__row{ display:grid; grid-template-columns:96px 1fr 64px; gap:16px; align-items:center; padding:11px 0; border-bottom:1px solid var(--line-2); }
+.ledger__row:last-of-type{ border:0; }
+.ledger__row label{ font-family:var(--kai); font-size:15px; letter-spacing:.08em; }
+input[type=range]{
+  -webkit-appearance:none; appearance:none; width:100%; height:18px; background:transparent; cursor:pointer;
+}
+input[type=range]::-webkit-slider-runnable-track{ height:3px; background:var(--line); }
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none; width:15px; height:15px; border-radius:50%;
+  background:var(--cinnabar); margin-top:-6px; border:2px solid var(--paper);
+  box-shadow:0 0 0 1px var(--cinnabar);
+}
+input[type=range]::-moz-range-track{ height:3px; background:var(--line); }
+input[type=range]::-moz-range-thumb{ width:13px; height:13px; border-radius:50%; background:var(--cinnabar); border:2px solid var(--paper); }
+.ledger__v{ font-family:var(--mono); font-size:15px; text-align:right; color:var(--ink); }
+.ledger__sum{
+  display:flex; justify-content:space-between; align-items:baseline; gap:14px; flex-wrap:wrap;
+  margin-top:18px; padding-top:18px; border-top:1px solid var(--line);
+}
+.ledger__sum b{ font-family:var(--mono); font-size:34px; letter-spacing:-.02em; }
+.ledger__sum .verdict{ font-size:13px; letter-spacing:.1em; padding:5px 12px; border:1px solid; border-radius:2px; }
+.verdict.ok{ color:var(--jade); border-color:rgba(47,82,87,.4); background:rgba(47,82,87,.07); }
+.verdict.no{ color:var(--cinnabar); border-color:rgba(166,52,42,.4); background:var(--cinnabar-s); }
+
+.plan-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(14px,2vw,22px); }
+.phase{ border:1px solid var(--line); background:rgba(255,253,248,.42); padding:clamp(20px,2.6vw,28px); }
+.phase__top{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:14px; }
+.phase__top h4{ font-family:var(--kai); font-size:18.5px; letter-spacing:.08em; margin:0; font-weight:400; }
+.phase__top span{ font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--cinnabar); }
+.phase ul{ margin:0; padding:0; list-style:none; }
+.phase li{ position:relative; padding-left:20px; font-size:14px; color:var(--ink-2); line-height:1.9; margin-bottom:7px; }
+.phase li::before{ content:""; position:absolute; left:2px; top:12px; width:5px; height:5px; border:1px solid var(--cinnabar); transform:rotate(45deg); }
+.phase li b{ font-weight:400; color:var(--ink); }
+
+table.tt{ width:100%; border-collapse:collapse; font-size:13.5px; }
+table.tt th,table.tt td{ text-align:left; padding:11px 12px; border-bottom:1px solid var(--line-2); vertical-align:top; }
+table.tt th{ font-weight:400; font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; color:var(--ink-3); border-bottom:1px solid var(--line); white-space:nowrap; }
+table.tt td b{ font-weight:400; color:var(--cinnabar); }
+table.tt .nw{ white-space:nowrap; }
+table.tt tr:hover td{ background:rgba(166,52,42,.035); }
+.tt-wrap{ overflow-x:auto; border:1px solid var(--line); }
+
+.checklist{ border:1px solid var(--line); }
+.ck{ display:grid; grid-template-columns:auto 1fr auto; gap:14px; align-items:center; padding:13px 18px; border-bottom:1px solid var(--line-2); cursor:pointer; transition:.25s; }
+.ck:last-child{ border:0; }
+.ck:hover{ background:rgba(255,253,248,.8); }
+.ck input{ appearance:none; -webkit-appearance:none; width:15px; height:15px; border:1px solid var(--ink-3); border-radius:2px; cursor:pointer; position:relative; margin:0; flex:none; }
+.ck input:checked{ background:var(--cinnabar); border-color:var(--cinnabar); }
+.ck input:checked::after{ content:""; position:absolute; left:4px; top:0.5px; width:4px; height:8px; border:solid #fff6ee; border-width:0 1.5px 1.5px 0; transform:rotate(45deg); }
+.ck span{ font-size:14px; color:var(--ink-2); }
+.ck input:checked + span{ color:var(--ink-4); text-decoration:line-through; text-decoration-thickness:1px; }
+.ck em{ font-style:normal; font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--ink-4); }
+
+/* ---------- iPad / 触屏优化 ---------- */
+html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+a, button, input, label, .chip, .tab, .ck, .work, .acc__btn{ touch-action:manipulation; }
+*{ -webkit-tap-highlight-color:transparent; }
+
+@media (pointer:coarse){
+  .nav__links a{ padding:11px 3px 9px; }
+  .nav__cta{ padding:10px 16px 9px; }
+  .chip{ padding:10px 17px 9px; font-size:13.5px; }
+  .tab{ padding:14px 20px 13px; }
+  .ck{ padding:16px 18px; }
+  .acc__btn{ padding:24px 4px; }
+  .work{ padding:22px 22px 24px; }
+  .filters{ gap:10px; }
+  .tabs{ flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .tabs::-webkit-scrollbar{ display:none; }
+  .search__res a{ padding:16px 24px; }
+  .ledger__row{ padding:16px 0; }
+  input[type=range]{ height:30px; }
+  input[type=range]::-webkit-slider-thumb{ width:22px; height:22px; margin-top:-9px; }
+  .nav__search{ padding:11px 10px; border-color:var(--line); }
+  .search__in{ font-size:16px; }
+  .search__hint span{ display:none; }
+  .search__hint::after{ content:"输入关键词 → 点结果直接跳转 · 点空白处关闭"; letter-spacing:.08em; }
+}
+
+/* 自测模式（政治页用） */
+.g-item .answer{ transition:filter .28s var(--ease), opacity .28s var(--ease); }
+.quiz .g-item .answer{ filter:blur(6.5px); opacity:.5; cursor:pointer; }
+.quiz .g-item.reveal .answer{ filter:none; opacity:1; }
+.quiz .g-item h4{ position:relative; }
+.quiz .g-item h4::after{
+  content:"轻点揭晓"; display:inline-block; vertical-align:middle;
+  font-family:var(--mono); font-size:9px; letter-spacing:.1em;
+  color:var(--cinnabar); border:1px solid rgba(166,52,42,.35);
+  border-radius:2px; padding:1px 5px; margin-left:8px;
+}
+.quiz .g-item.reveal h4::after{ content:"已显示"; color:var(--ink-4); border-color:var(--line); }
+.quizbtn{
+  font-family:var(--serif); font-size:12.5px; letter-spacing:.1em;
+  padding:8px 16px 7px; border:1px solid var(--cinnabar); border-radius:999px;
+  background:transparent; color:var(--cinnabar); cursor:pointer; transition:.3s var(--ease);
+}
+.quizbtn:hover{ background:var(--cinnabar); color:#fff6ee; }
+.quizbtn.on{ background:var(--cinnabar); color:#fff6ee; }
+
+/* ---------- 响应式 ---------- */
+@media (max-width:1200px){
+  .nav__title small{ display:none; }
+  .nav__brand{ flex:none; }
+  .nav__search span{ display:none; }
+  .nav__search{ padding:8px; }
+  .nav__links{ gap:15px; min-width:0; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .nav__links::-webkit-scrollbar{ display:none; }
+  .nav__links a{ font-size:12.5px; letter-spacing:.06em; }
+}
+@media (max-width:900px){
+  .nav__title{ display:none; }
+  .nav__links{ gap:11px; -webkit-mask-image:linear-gradient(90deg,#000 90%,transparent); mask-image:linear-gradient(90deg,#000 90%,transparent); }
+  .nav__links a{ font-size:12px; }
+  .nav{ gap:16px; }
+}
+@media (max-width:980px){
+  .grid-4{ grid-template-columns:repeat(2,1fr); }
+  .works{ grid-template-columns:repeat(2,1fr); }
+  .panel__grid{ grid-template-columns:1fr; }
+  .plan-grid{ grid-template-columns:1fr; }
+  .acc__inner > div{ grid-template-columns:1fr; }
+}
+@media (max-width:760px){
+  body{ font-size:16px; }
+  .nav__links{ display:none; }
+  .nav{ gap:14px; }
+  .grid-3,.grid-2{ grid-template-columns:1fr; }
+  .works{ grid-template-columns:1fr; }
+  .debate{ grid-template-columns:1fr; }
+  .tl-item{ grid-template-columns:64px 1fr; gap:16px; }
+  .timeline::before{ left:64px; }
+  .hero__meta{ display:grid; grid-template-columns:1fr 1fr; gap:14px 20px; border-top:1px solid var(--line); }
+  .hero__meta div{ padding:0; margin:0; border:0; }
+  .ledger__row{ grid-template-columns:76px 1fr 54px; gap:10px; }
+  .hero__ghost{ font-size:60vw; opacity:.7; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{ animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+  .rv{ opacity:1; transform:none; }
+}
+
+/* ============================================================
+   阅读设置（字体 / 主题 / 字号）—— read.js
+   ============================================================ */
+html[data-font="song"]{ --serif:var(--f-song); --kai:var(--f-kai); }
+html[data-font="kai"]{ --serif:var(--f-kai); --kai:var(--f-kai); }
+html[data-font="hei"]{ --serif:var(--f-hei); --kai:var(--f-hei); }
+html[data-font="hei"] .hero__name,
+html[data-font="hei"] .sec__title,
+html[data-font="hei"] .card h3,
+html[data-font="hei"] .acc__name{ letter-spacing:.06em; font-weight:600; }
+html[data-font="hei"] .hero__ghost{ opacity:.05; }
+
+.read-btn{
+  position:fixed; right:18px; bottom:calc(18px + env(safe-area-inset-bottom));
+  z-index:95; width:46px; height:46px; border-radius:50%;
+  border:1px solid rgba(166,52,42,.45); background:rgba(243,237,225,.92);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  color:var(--cinnabar); font-family:var(--kai); font-size:15px; line-height:1;
+  display:grid; place-items:center; cursor:pointer;
+  box-shadow:0 8px 20px -14px rgba(0,0,0,.45);
+  transition:.3s var(--ease);
+}
+.read-btn:hover{ background:var(--cinnabar); color:#fff6ee; }
+.read-panel{
+  position:fixed; right:18px; bottom:calc(74px + env(safe-area-inset-bottom));
+  z-index:95; width:250px; padding:16px 18px 18px;
+  background:var(--paper); border:1px solid var(--line);
+  box-shadow:0 26px 50px -30px rgba(0,0,0,.55);
+  display:none;
+}
+.read-panel.on{ display:block; animation:fade .22s var(--ease); }
+.read-row{ margin-bottom:13px; }
+.read-row:last-child{ margin-bottom:0; }
+.read-row > span{
+  display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.18em;
+  color:var(--ink-3); margin-bottom:7px;
+}
+.read-seg{ display:flex; gap:6px; }
+.read-seg button{
+  flex:1; padding:7px 4px 6px; font-family:var(--serif); font-size:12.5px;
+  letter-spacing:.06em; color:var(--ink-2); background:transparent;
+  border:1px solid var(--line); cursor:pointer; transition:.25s;
+}
+.read-seg button:hover{ border-color:var(--ink-3); }
+.read-seg button.on{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+/* 夜间纸 */
+html[data-theme="dark"]{
+  --paper:#14140f; --paper-2:#1a1a13; --paper-3:#221f17;
+  --ink:#e9e3d3; --ink-2:#c6c0af; --ink-3:#948e7e; --ink-4:#6b6559;
+  --cinnabar:#d0654f; --cinnabar-2:#e0836c; --cinnabar-s:rgba(208,101,79,.14);
+  --line:rgba(233,227,211,.2); --line-2:rgba(233,227,211,.09);
+  --jade:#7aa3a6; --gold:#b09a6d;
+}
+html[data-theme="dark"] body::before{ opacity:.22; mix-blend-mode:screen; }
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .stat,
+html[data-theme="dark"] .work,
+html[data-theme="dark"] .phase,
+html[data-theme="dark"] .debate__side,
+html[data-theme="dark"] .traits,
+html[data-theme="dark"] .ledger,
+html[data-theme="dark"] .verb-tool,
+html[data-theme="dark"] .genealogy,
+html[data-theme="dark"] blockquote.big,
+html[data-theme="dark"] .q,
+html[data-theme="dark"] .checklist{ background:rgba(255,255,255,.04); }
+html[data-theme="dark"] .q{ background:var(--paper); }
+html[data-theme="dark"] .nav{ background:rgba(20,20,15,.82); }
+html[data-theme="dark"] .read-btn{ background:rgba(20,20,15,.9); }
+html[data-theme="dark"] .seal-big,
+html[data-theme="dark"] .nav__seal{ color:#fff6ee; }
+html[data-theme="dark"] .read-seg button.on{ background:var(--cinnabar); border-color:var(--cinnabar); color:#fff6ee; }
+html[data-theme="dark"] .chip.on{ background:var(--cinnabar); border-color:var(--cinnabar); color:#fff6ee; }
+html[data-theme="dark"] img{ filter:brightness(.92); }
+
+/* 字号（用 zoom，Chromium / HarmonyOS 浏览器均支持，会正常重排） */
+html[data-fs="1"]{ }
+html[data-fs="2"] body{ zoom:1.08; }
+html[data-fs="3"] body{ zoom:1.18; }
+
+@media print{
+  @page{ size:A4; margin:13mm 11mm; }
+
+  /* 不论当前是纸/夜，打印一律走浅色 */
+  html, html[data-theme="dark"]{
+    --paper:#fff; --paper-2:#fff; --paper-3:#f4f1e8;
+    --ink:#111; --ink-2:#2a2a24; --ink-3:#55534a; --ink-4:#7a776c;
+    --cinnabar:#a6342a; --cinnabar-2:#c2543f; --cinnabar-s:rgba(166,52,42,.08);
+    --line:rgba(0,0,0,.22); --line-2:rgba(0,0,0,.1);
+    --jade:#2f5257; --gold:#8a7448;
+  }
+  html[data-fs] body{ zoom:1 !important; }
+  .nav,#progress,.search,.hero__scroll,.filters,.quizbtn,.read-btn,.read-panel,
+  .verb-tool,.hero__ghost,.g-legend,.outro{ display:none !important; }
+  body{ background:#fff !important; color:#111; font-size:10.5pt; }
+  body::before{ display:none !important; }
+  .rv{ opacity:1 !important; transform:none !important; }
+  .hero{ min-height:0 !important; padding:0 0 18px !important; display:block !important; }
+  .hero__inner{ gap:16px !important; }
+  .hero__name{ font-size:30pt !important; line-height:1.34 !important; margin:28px 0 12px !important; color:#111 !important; }
+  .hero__name em{ color:#a6342a !important; }
+  .hero__epi{ font-size:10pt !important; }
+  .sec{ padding:14px 0 !important; border-top:1px solid #d8d2c4 !important; }
+  .sec:first-of-type{ border-top:0 !important; }
+  .card,.work,.tl-item,.phase,.g-item,.q,.stat{ break-inside:avoid; }
+  h2,h3,h4{ break-after:avoid; }
+  .panel{ display:block !important; }
+  .panel::before{
+    display:block; font-family:var(--mono); font-size:8pt; letter-spacing:.2em;
+    color:#a6342a; margin-bottom:8px;
+  }
+  .panel[data-panel="0"]::before{ content:"早年 · 约 1254—1290"; }
+  .panel[data-panel="1"]::before{ content:"中年 · 约 1290—1310"; }
+  .panel[data-panel="2"]::before{ content:"晚年 · 约 1310—1322"; }
+  .acc__body{ grid-template-rows:1fr !important; }
+  .acc__inner > div{ padding:0 0 14px 0 !important; }
+  .works{ grid-template-columns:1fr 1fr !important; }
+  .grid-2,.grid-3,.grid-4{ grid-template-columns:1fr 1fr !important; }
+  .war-hero{ padding:0 0 16px !important; }
+  .count__n{ font-size:46pt !important; }
+  .tl-body p,.card p,.g-item p{ font-size:9.5pt; }
+  a{ color:inherit; text-decoration:none; }
+  .search,.work__n{ display:none !important; }
+  table.tt{ font-size:8.8pt; }
+  table.tt th{ white-space:nowrap; }
+  .card,.stat,.work,.phase,.debate__side,.traits,.ledger,.verb-tool,
+  .genealogy,blockquote.big,.q,.checklist{ background:transparent !important; }
+}
+
+</style>
+<style>
+/* ---- 刷题台专用（其余全部复用 site.css） ---- */
+.qwrap{ max-width:840px; margin:0 auto; }
+.qbar{ display:flex; flex-wrap:wrap; gap:14px 16px; align-items:center;
+  justify-content:space-between; margin-bottom:26px; padding-bottom:16px;
+  border-bottom:1px solid var(--line-2); }
+.qchips{ display:flex; flex-wrap:wrap; gap:7px; }
+.chip small{ font-family:var(--mono); font-size:10px; letter-spacing:0;
+  margin-left:5px; opacity:.5; }
+.chip.on small{ opacity:.7; }
+.qsizes{ display:flex; align-items:center; gap:6px; font-family:var(--mono);
+  font-size:11px; letter-spacing:.14em; color:var(--ink-3); text-transform:uppercase; }
+.qsize{ font-family:var(--mono); font-size:11.5px; letter-spacing:.04em;
+  padding:6px 11px; border:1px solid var(--line); background:transparent;
+  color:var(--ink-2); cursor:pointer; border-radius:2px; transition:.2s var(--ease); }
+.qsize:hover{ border-color:var(--ink-3); }
+.qsize.on{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+.qcard{ background:rgba(255,252,246,.55); border:1px solid var(--line);
+  padding:clamp(22px,3.4vw,40px); position:relative; }
+html[data-theme="dark"] .qcard{ background:rgba(255,255,255,.04); }
+
+.qtop{ display:flex; align-items:baseline; justify-content:space-between;
+  gap:16px; flex-wrap:wrap; margin-bottom:20px;
+  font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--ink-4); }
+.qtop b{ color:var(--cinnabar); font-weight:400; font-size:13px; }
+.qtag{ font-family:var(--serif); font-style:normal; letter-spacing:.16em;
+  border:1px solid var(--line); padding:3px 9px 2px; margin-left:8px;
+  color:var(--ink-3); font-size:11px; }
+
+.qtext{ font-family:var(--serif); font-size:clamp(16px,2.1vw,19px);
+  line-height:2; letter-spacing:.04em; margin-bottom:24px; }
+.opts{ display:flex; flex-direction:column; gap:9px; margin-bottom:22px; }
+.opt{ display:flex; gap:14px; align-items:flex-start; text-align:left;
+  font-family:var(--serif); font-size:clamp(14.5px,1.9vw,16px); line-height:1.75;
+  letter-spacing:.03em; padding:13px 16px; cursor:pointer;
+  background:transparent; color:var(--ink);
+  border:1px solid var(--line); border-radius:2px;
+  transition:border-color .2s var(--ease), background .2s var(--ease); }
+.opt:not([disabled]):hover{ border-color:var(--ink-3); background:var(--cinnabar-s); }
+.opt i{ font-family:var(--mono); font-style:normal; font-size:12px;
+  color:var(--ink-4); padding-top:3px; min-width:14px; }
+.opt span{ flex:1; }
+.opt[disabled]{ cursor:default; }
+.opt.is-right{ border-color:var(--jade); background:rgba(47,82,87,.09); }
+.opt.is-right i{ color:var(--jade); }
+.opt.is-wrong{ border-color:var(--cinnabar); background:var(--cinnabar-s); }
+.opt.is-wrong i{ color:var(--cinnabar); }
+
+.expl{ border-left:2px solid var(--cinnabar); padding:2px 0 2px 16px;
+  font-size:14px; line-height:1.9; color:var(--ink-2); margin-bottom:20px; }
+.expl b{ display:block; font-family:var(--mono); font-size:11px; letter-spacing:.12em;
+  color:var(--cinnabar); font-weight:400; margin-bottom:6px; }
+.exbody{ letter-spacing:.02em; }
+
+.qfoot{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+.qnext{ font-family:var(--serif); font-size:14px; letter-spacing:.12em;
+  padding:11px 26px 10px; cursor:pointer;
+  background:var(--ink); color:var(--paper); border:1px solid var(--ink);
+  border-radius:2px; transition:opacity .2s var(--ease); }
+.qnext:hover{ opacity:.85; }
+.qghost{ font-family:var(--serif); font-size:13px; letter-spacing:.1em;
+  padding:10px 20px; cursor:pointer; background:transparent;
+  color:var(--ink-2); border:1px solid var(--line); border-radius:2px; }
+.qghost:hover{ border-color:var(--ink-3); }
+.qhint{ font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; color:var(--ink-4); }
+
+.qempty{ font-family:var(--serif); font-size:15px; line-height:2; color:var(--ink-3);
+  padding:30px 0; text-align:center; }
+
+.qend{ text-align:center; padding:clamp(26px,4vw,44px) 0; }
+.end__num{ font-family:var(--mono); font-size:clamp(56px,10vw,96px); line-height:1;
+  color:var(--cinnabar); letter-spacing:-.02em; }
+.end__num small{ font-size:.34em; margin-left:2px; }
+.end__sub{ font-family:var(--serif); font-size:15px; line-height:2; color:var(--ink-2);
+  margin:18px 0 26px; letter-spacing:.04em; }
+.end__btns{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+.qlab{ font-family:var(--mono); font-size:11px; letter-spacing:.16em;
+  color:var(--ink-4); margin:0 0 10px; }
+.qstats{ font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; color:var(--ink-3); }
+
+@media (max-width:640px){
+  .qbar{ justify-content:flex-start; }
+  .opt{ padding:12px 13px; gap:11px; }
+}
+@media print{ .qbar,.qfoot{ display:none; } }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav class="nav" id="nav">
+  <a class="nav__brand" href="index.html">
+    <span class="nav__seal">刷题</span>
+    <span class="nav__title">刷题台<small>政治 · 日语</small></span>
+  </a>
+  <div class="nav__links">
+    <a href="quiz.html" class="on">练习</a>
+    <a href="zz.html">政治重点</a>
+    <a href="jp.html">日语203</a>
+    <a href="plan.html">作战室</a>
+  </div>
+  <a class="nav__cta" href="index.html">赵孟頫 →</a>
+</nav>
+
+<header class="war-hero">
+  <div class="wrap">
+    <div class="hero__eyebrow rv"><span></span>随机抽题 · 每题带解析 · 错题自动归档</div>
+    <h1 class="hero__name rv d1" style="font-size:clamp(38px,7.2vw,76px);margin-top:20px;letter-spacing:.04em">刷题<br><em>十分钟</em></h1>
+    <div class="hero__epi rv d2" style="max-width:680px">
+      刷题不是为了「刷完」，是为了<b>把错的那几道挑出来</b>。<br>
+      做错自动进错题本，做对自动出本子——本子薄下去，分就上去了。
+      <cite>—— 每天 10 题，政治与日语轮着来</cite>
+    </div>
+    <dl class="hero__meta rv d3">
+      <div><dt>政治</dt><dd><span id="nZz">—</span> 题 · 五科</dd></div>
+      <div><dt>日语</dt><dd><span id="nJp">—</span> 题 · 三类</dd></div>
+      <div><dt>错题本</dt><dd><span id="wrongBadge">0</span> 题</dd></div>
+      <div><dt>建议</dt><dd>一组 10 题 · 限时 8 分钟</dd></div>
+    </dl>
+  </div>
+  <div class="hero__scroll" aria-hidden="true"><i></i>SCROLL</div>
+</header>
+
+<main>
+
+<section class="sec" id="drill">
+  <div class="wrap">
+    <div class="qwrap">
+
+      <div class="qbar rv">
+        <div class="qchips">
+          <button class="chip on" data-f="all">全部 <small></small></button>
+          <button class="chip" data-f="zz">政治 <small></small></button>
+          <button class="chip" data-f="jp">日语 <small></small></button>
+          <button class="chip" data-f="助词">助词 <small></small></button>
+          <button class="chip" data-f="辨析">辨析 <small></small></button>
+          <button class="chip" data-f="活用">活用 <small></small></button>
+          <button class="chip" data-f="wrong">错题本 <small></small></button>
+        </div>
+        <div class="qsizes">
+          <span>每组</span>
+          <button class="qsize on" data-n="10">10</button>
+          <button class="qsize" data-n="20">20</button>
+          <button class="qsize" data-n="0">全部</button>
+        </div>
+      </div>
+
+      <div class="qcard rv d1" id="qCard">
+        <div class="qtop">
+          <div id="qMeta"></div>
+          <div class="qstats" id="qStats"></div>
+        </div>
+        <div id="qBody"></div>
+      </div>
+
+      <div class="qcard qend rv d1" id="qEnd" hidden></div>
+
+      <p class="qhint rv d2" style="margin-top:18px;text-align:center">
+        题源：历年真题与公开模拟题的<b>改编</b>，不是原卷；选项顺序固定，解析里提到「B 项」时按屏幕上的字母对。
+        <a href="#" id="clearWrong" style="color:var(--cinnabar);border-bottom:1px solid currentColor">清空错题本</a>
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<section class="outro">
+  <div class="wrap">
+    <div class="seal-big rv">每天<br>十题</div>
+    <p class="outro__line rv d1">「塵も積もれば山となる。」</p>
+    <p class="outro__sub rv d2">十题一组，四十组就是四百题——那已经是一场考试的量了。</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>刷题台 · 政治 100 分 / 日语 203 100 分 &nbsp;|&nbsp; 为中国美术学院书法（篆刻）方向整理 &nbsp;|&nbsp; 改编题，非原卷</span>
+    <span><a href="index.html">赵孟頫脉络</a> &nbsp;·&nbsp; <a href="jp.html">日语203</a> &nbsp;·&nbsp; <a href="zz.html">政治重点</a> &nbsp;·&nbsp; <a href="plan.html">作战室</a></span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   松雪·脉络 — 交互脚本
+   ============================================================ */
+(function () {
+  'use strict';
+
+  /* ---------------------------------------------------------
+     1. 作品数据
+     --------------------------------------------------------- */
+  var WORKS = [
+    { y: '约1280s', age: '三十余岁', t: '陋室铭', s: '行', c: '故宫博物院',
+      d: '早年行书。字字独立、行距宽疏，起收交代极清，可见智永《千字文》与定武《兰亭》的双重影响。',
+      n: '看它与晚年的差别：此时「法」压着「性」，一笔不敢放。' },
+    { y: '约1290s', age: '四十岁前后', t: '杜甫秋兴八首', s: '行', c: '上海博物馆',
+      d: '早年行书长卷。结字仍偏紧，横势未开，但笔笔有来历，已无南宋院体的习气。',
+      n: '「不杂近体」的实证：他把宋人那一套绕过去了。' },
+    { y: '1295', age: '四十二岁', t: '鹊华秋色图', s: '画', c: '台北故宫博物院',
+      d: '为周密所作。题跋楷书精整，画中披麻皴的线条即书法之中锋——书画同源在实践层面的样本。',
+      n: '「为周密作」四字常考：周密是宋遗民，此图有故国之思。' },
+    { y: '约1299', age: '四十六岁', t: '急就章', s: '草', c: '故宫博物院',
+      d: '临皇象《急就章》，章草。字字独立而波磔分明，是元代章草复兴的核心文本。',
+      n: '答「赵孟頫与章草」必举此作。' },
+    { y: '1300', age: '四十七岁', t: '洛神赋', s: '行', c: '天津博物馆',
+      d: '行书。笔势舒展、结字略扁，牵丝极少而气脉贯通，中年行书的标尺。',
+      n: '临行书首选此本：字口清晰、法度完备、字数适中。' },
+    { y: '1301', age: '四十八岁', t: '赤壁赋', s: '行', c: '台北故宫博物院',
+      d: '行书。较《洛神赋》更放松，墨色有浓淡变化，可见书写时的节奏起伏。',
+      n: '与苏轼原文对读，体会「文—书」气息的同步。' },
+    { y: '1302', age: '四十九岁', t: '吴兴赋', s: '行', c: '浙江省博物馆',
+      d: '行书。写故乡吴兴，笔意温润，是他「以书寄乡愁」的一件。横势已完全打开。',
+      n: '内容与身世互证，答「书风与心境」时可引。' },
+    { y: '约1302', age: '四十九岁', t: '玄妙观重修三门记', s: '楷', c: '日本东京国立博物馆',
+      d: '大字楷书。笔画丰腴而骨力内含，结字扁方，是「赵体」定型的标志性作品。',
+      n: '与《胆巴碑》并看：一为中年之「厚」，一为晚年之「化」。' },
+    { y: '约1304', age: '五十一岁', t: '红衣罗汉图', s: '画', c: '辽宁省博物馆',
+      d: '人物画。衣纹用「铁线描」，中锋圆转，与其篆书线质同源。',
+      n: '「以书入画」不只山水，人物衣纹同样是书法。' },
+    { y: '约1309', age: '五十六岁', t: '湖州妙严寺记', s: '楷', c: '美国普林斯顿大学美术馆',
+      d: '楷书。较《三门记》更整饬，横画收笔的顿势明显，是学赵楷的最佳范本之一。',
+      n: '结构清楚、刻工精良，适合「对临」阶段使用。' },
+    { y: '1310', age: '五十七岁', t: '兰亭十三跋', s: '论', c: '日本东京国立博物馆（残本）',
+      d: '北上舟中，为独孤长老所藏定武本《兰亭》连书十三跋。提出「用笔千古不易，结字因时相传」。',
+      n: '赵孟頫书学的「独立宣言」。原文务必背熟两三句。' },
+    { y: '1316', age: '六十三岁', t: '胆巴碑', s: '楷', c: '故宫博物院',
+      d: '楷书。晚年楷书的最高代表。看似平正，实则每一笔都在「提」着走，无一笔懈怠。',
+      n: '「松而能紧」的标本。学赵楷的终点，不是起点。' },
+    { y: '1316', age: '六十三岁', t: '道德经', s: '小楷', c: '故宫博物院',
+      d: '小楷长卷。字如粟米而笔笔送到，五千言一气贯注，是元代小楷的巅峰。',
+      n: '小楷最能藏不住拙：笔画扁不扁、气断不断，一目了然。' },
+    { y: '约1319', age: '六十六岁', t: '仇锷墓志铭', s: '楷', c: '日本京都阳明文库',
+      d: '楷书稿本。未经刻石，笔墨的提按、墨色的枯润全部保留，是研究赵体用笔的第一手材料。',
+      n: '「稿本」二字重要：它让你看见刻石前的真实笔迹。' },
+    { y: '约1319', age: '六十六岁', t: '嵇康与山巨源绝交书', s: '行', c: '故宫博物院',
+      d: '行书长卷。内容为嵇康拒仕之作——由一位仕元的宋宗室书写，意味深长。',
+      n: '内容与书者的张力，是答「身世与书风」时最锋利的一枚证据。' },
+    { y: '1320', age: '六十七岁', t: '汲黯传', s: '小楷', c: '日本东京永青文库',
+      d: '小楷。被视为「小楷极则」之一。结字比大字更紧，横画更平，气息极静。',
+      n: '与《道德经》并称双璧，考试若考小楷临摹，多取此。' },
+    { y: '约1300s', age: '中年', t: '归去来辞', s: '行', c: '上海博物馆',
+      d: '行书。写陶渊明《归去来兮辞》，笔意闲远，与其「思归」的心境相合。',
+      n: '「归去来」是元代南人共同的心里话，可作背景材料。' },
+    { y: '约1300s', age: '中年', t: '秋声赋', s: '行', c: '辽宁省博物馆',
+      d: '行书。欧阳修原文，笔势较《赤壁赋》更紧，行距密而气不塞。',
+      n: '看「密」中的透气：赵孟頫的章法功夫多在此类长卷。' },
+    { y: '约1300s', age: '中年', t: '六体千字文', s: '篆隶', c: '故宫博物院',
+      d: '传为赵孟頫作，以古文、篆、隶、章草、楷、草六体书《千字文》，可见其五体兼善的自我训练。',
+      n: '真伪有争议，但作为「五体互通」的证据被广泛引用。' },
+    { y: '约1300s', age: '中年', t: '秀石疏林图', s: '画', c: '故宫博物院',
+      d: '枯木竹石。题诗「石如飞白木如籀，写竹还应八法通。若也有人能会此，方知书画本来同」。',
+      n: '「书画同源」从口号变成技法纲领的关键文本，必背。' },
+    { y: '晚年', age: '六十后', t: '雪晴云散帖', s: '行', c: '台北故宫博物院',
+      d: '行书尺牍。随手写来而法度自在，是「化」之后的日常书写状态。',
+      n: '尺牍最见真性情，也最容易被学成「滑」——慎临。' },
+    { y: '晚年', age: '六十后', t: '宗阳宫帖', s: '行', c: '故宫博物院',
+      d: '行书尺牍。字距紧而行气足，可见其晚年对「势」的控制已入化境。',
+      n: '与《雪晴云散帖》对读，体会同一时期的不同面貌。' }
+  ];
+
+  var SECTIONS = [
+    { t: '壹 · 一个人的两副身份', m: '身世 · 贰臣 · 宋室后裔', h: 'life' },
+    { t: '贰 · 书学源流图谱', m: '师承 · 取法 · 不杂近体', h: 'roots' },
+    { t: '叁 · 三期风格', m: '早年 中年 晚年 · 分期', h: 'phases' },
+    { t: '肆 · 作品谱系', m: '二十件代表作 · 系年 · 馆藏', h: 'works' },
+    { t: '伍 · 五体拆解', m: '楷 行 草 小楷 篆隶', h: 'scripts' },
+    { t: '陆 · 五句书论', m: '用笔千古不易 · 书画本来同', h: 'theory' },
+    { t: '柒 · 五百年争议', m: '董其昌 · 傅山 · 甜俗', h: 'debate' },
+    { t: '捌 · 流变', m: '元四家 · 台阁体 · 碑学 · 域外', h: 'legacy' },
+    { t: '玖 · 七道论述题', m: '答题骨架 · 考场直连', h: 'exam' }
+  ];
+
+  /* ---------------------------------------------------------
+     2. 渲染作品
+     --------------------------------------------------------- */
+  var grid = document.getElementById('workGrid');
+  if (grid) {
+    var html = '';
+    WORKS.forEach(function (w, i) {
+      html += '<article class="work" data-s="' + w.s + '" data-i="' + i + '">' +
+        '<div class="work__top"><span class="work__yr">' + w.y + '</span>' +
+        '<span class="work__script">' + w.s + '</span></div>' +
+        '<h4>' + w.t + '</h4>' +
+        '<p class="work__d">' + w.d + '</p>' +
+        '<p class="work__n" style="display:none;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)">' +
+          '<span style="color:var(--cinnabar)">批注 · </span>' + w.n + '</p>' +
+        '<div class="work__col">' + w.c + ' &nbsp;·&nbsp; ' + w.age + '</div>' +
+      '</article>';
+    });
+    grid.innerHTML = html;
+
+    grid.addEventListener('click', function (e) {
+      var card = e.target.closest('.work');
+      if (!card) return;
+      var n = card.querySelector('.work__n');
+      n.style.display = (n.style.display === 'none') ? 'block' : 'none';
+    });
+
+    var fbox = document.getElementById('workFilters');
+    if (fbox) {
+      fbox.addEventListener('click', function (e) {
+        var b = e.target.closest('.chip');
+        if (!b) return;
+        fbox.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); });
+        b.classList.add('on');
+        var f = b.getAttribute('data-f');
+        grid.querySelectorAll('.work').forEach(function (el) {
+          var show = (f === 'all') || (el.getAttribute('data-s') === f);
+          el.classList.toggle('is-hidden', !show);
+        });
+      });
+    }
+  }
+
+  /* ---------------------------------------------------------
+     3. 师承图谱
+     --------------------------------------------------------- */
+  var svg = document.getElementById('genealogy');
+  if (svg) {
+    var NS = 'http://www.w3.org/2000/svg';
+    var CX = 552, CY = 400;
+
+    var left = [
+      { n: '石鼓文', s: '大篆 · 线质之源', y: 70 },
+      { n: '钟　繇', s: '楷则之祖', y: 148 },
+      { n: '王羲之', s: '行书极则', y: 226 },
+      { n: '王献之', s: '破体 · 连绵', y: 304 },
+      { n: '智　永', s: '千字文 · 法度', y: 382 },
+      { n: '褚遂良', s: '婉畅 · 疏瘦', y: 460 },
+      { n: '李　邕', s: '沉厚 · 欹侧', y: 538 },
+      { n: '颜真卿', s: '宽博 · 筋丰', y: 616 }
+    ];
+    var peers = [
+      { n: '鲜于枢', s: '同倡复古', x: 330, y: 96 },
+      { n: '邓文原', s: '元初三家', x: 552, y: 76 },
+      { n: '管道昇', s: '妻 · 管夫人', x: 774, y: 96 }
+    ];
+    var right = [
+      { n: '虞　集', s: '奎章阁 · 正统', y: 150 },
+      { n: '柯九思', s: '书画鉴藏', y: 208 },
+      { n: '张　雨', s: '诗书兼擅', y: 266 },
+      { n: '康里巎巎', s: '赵体加速版', y: 324 },
+      { n: '王　蒙', s: '外孙 · 元四家', y: 388 },
+      { n: '黄公望', s: '松雪斋小学生', y: 446 },
+      { n: '文徵明', s: '吴门 · 承赵', y: 512 },
+      { n: '董其昌', s: '以「生」反「熟」', y: 570 },
+      { n: '傅　山', s: '四宁四毋 · 反题', y: 628, dash: true }
+    ];
+
+    function el(tag, attrs) {
+      var e = document.createElementNS(NS, tag);
+      for (var k in attrs) e.setAttribute(k, attrs[k]);
+      return e;
+    }
+
+    var gEdges = el('g', {});
+    var gNodes = el('g', {});
+    svg.appendChild(gEdges);
+    svg.appendChild(gNodes);
+
+    // 中央节点
+    var centerName = el('text', { x: CX, y: CY - 6, 'text-anchor': 'middle', 'font-size': '40', 'letter-spacing': '6' });
+    centerName.textContent = '趙孟頫';
+    var centerSub = el('text', { x: CX, y: CY + 22, 'text-anchor': 'middle', 'font-size': '11', 'letter-spacing': '2', fill: '#6f6d60' });
+    centerSub.textContent = '1254 — 1322 · 松雪道人';
+    var centerRing = el('circle', { cx: CX, cy: CY - 16, r: 52, fill: 'none', stroke: 'rgba(166,52,42,.28)' });
+    var centerRing2 = el('circle', { cx: CX, cy: CY - 16, r: 62, fill: 'none', stroke: 'rgba(166,52,42,.12)' });
+    var gCenter = el('g', { class: 'g-node', 'data-id': 'center' });
+    gCenter.appendChild(centerRing);
+    gCenter.appendChild(centerRing2);
+    gCenter.appendChild(centerName);
+    gCenter.appendChild(centerSub);
+    gNodes.appendChild(gCenter);
+
+    var nodeEls = [];
+    var edgeEls = [];
+
+    // 左：取法
+    left.forEach(function (d, i) {
+      var id = 'L' + i;
+      var path = el('path', {
+        d: 'M 268 ' + d.y + ' C 380 ' + d.y + ', 430 ' + (CY - 16) + ', ' + (CX - 62) + ' ' + (CY - 16),
+        class: 'g-edge', 'data-a': id, 'data-b': 'center'
+      });
+      gEdges.appendChild(path);
+      edgeEls.push(path);
+
+      var g = el('g', { class: 'g-node', 'data-id': id });
+      g.appendChild(el('circle', { cx: 262, cy: d.y, r: 4, fill: '#2f5257', class: 'dot' }));
+      var t1 = el('text', { x: 250, y: d.y + 5, 'text-anchor': 'end', 'font-size': '17', 'letter-spacing': '2' });
+      t1.textContent = d.n;
+      var t2 = el('text', { x: 250, y: d.y + 21, 'text-anchor': 'end', class: 'sub' });
+      t2.textContent = d.s;
+      g.appendChild(t1); g.appendChild(t2);
+      gNodes.appendChild(g);
+      nodeEls.push({ id: id, g: g, edges: [path] });
+    });
+
+    // 上：同代
+    peers.forEach(function (d, i) {
+      var id = 'P' + i;
+      var path = el('path', {
+        d: 'M ' + d.x + ' ' + (d.y + 12) + ' C ' + d.x + ' ' + (d.y + 90) + ', ' + (d.x + (CX - d.x) * .35) + ' ' + (CY - 120) + ', ' + (CX + (d.x - CX) * .18) + ' ' + (CY - 78),
+        class: 'g-edge dashed', 'data-a': id, 'data-b': 'center'
+      });
+      gEdges.appendChild(path);
+      edgeEls.push(path);
+
+      var g = el('g', { class: 'g-node', 'data-id': id });
+      g.appendChild(el('circle', { cx: d.x, cy: d.y, r: 3.6, fill: '#8a7448', class: 'dot' }));
+      var t1 = el('text', { x: d.x, y: d.y - 12, 'text-anchor': 'middle', 'font-size': '15', 'letter-spacing': '2' });
+      t1.textContent = d.n;
+      var t2 = el('text', { x: d.x, y: d.y + 26, 'text-anchor': 'middle', class: 'sub' });
+      t2.textContent = d.s;
+      g.appendChild(t1); g.appendChild(t2);
+      gNodes.appendChild(g);
+      nodeEls.push({ id: id, g: g, edges: [path] });
+    });
+
+    // 右：流变
+    right.forEach(function (d, i) {
+      var id = 'R' + i;
+      var path = el('path', {
+        d: 'M ' + (CX + 66) + ' ' + (CY - 16) + ' C 700 ' + (CY - 16) + ', 790 ' + d.y + ', 838 ' + d.y,
+        class: 'g-edge' + (d.dash ? ' dashed' : ''), 'data-a': 'center', 'data-b': id
+      });
+      gEdges.appendChild(path);
+      edgeEls.push(path);
+
+      var g = el('g', { class: 'g-node', 'data-id': id });
+      g.appendChild(el('circle', { cx: 844, cy: d.y, r: 3.6, fill: d.dash ? '#6f6d60' : '#3c3b31', class: 'dot' }));
+      var t1 = el('text', { x: 858, y: d.y + 5, 'font-size': '16', 'letter-spacing': '2' });
+      t1.textContent = d.n;
+      var t2 = el('text', { x: 858, y: d.y + 21, class: 'sub' });
+      t2.textContent = d.s;
+      g.appendChild(t1); g.appendChild(t2);
+      gNodes.appendChild(g);
+      nodeEls.push({ id: id, g: g, edges: [path] });
+    });
+
+    // 下：印学同路人
+    (function () {
+      var id = 'B0';
+      var path = el('path', {
+        d: 'M 552 ' + (CY + 34) + ' C 552 ' + (CY + 120) + ', 552 ' + (600) + ', 552 640',
+        class: 'g-edge dashed', 'data-a': id, 'data-b': 'center'
+      });
+      gEdges.appendChild(path);
+      edgeEls.push(path);
+
+      var g = el('g', { class: 'g-node', 'data-id': id });
+      g.appendChild(el('circle', { cx: 552, cy: 646, r: 3.6, fill: '#8a7448', class: 'dot' }));
+      var t1 = el('text', { x: 552, y: 676, 'text-anchor': 'middle', 'font-size': '15', 'letter-spacing': '2' });
+      t1.textContent = '吾丘衍';
+      var t2 = el('text', { x: 552, y: 694, 'text-anchor': 'middle', class: 'sub' });
+      t2.textContent = '印学 · 三十五举 · 圆朱文';
+      g.appendChild(t1); g.appendChild(t2);
+      gNodes.appendChild(g);
+      nodeEls.push({ id: id, g: g, edges: [path] });
+    })();
+
+    // hover 高亮
+    function clearHl() {
+      nodeEls.forEach(function (n) { n.g.classList.remove('dim', 'on'); });
+      gCenter.classList.remove('dim');
+      edgeEls.forEach(function (e) { e.classList.remove('dim', 'on'); });
+    }
+    nodeEls.forEach(function (n) {
+      n.g.addEventListener('mouseenter', function () {
+        nodeEls.forEach(function (m) { if (m !== n) m.g.classList.add('dim'); });
+        n.g.classList.add('on');
+        edgeEls.forEach(function (e) {
+          var mine = (e.getAttribute('data-a') === n.id || e.getAttribute('data-b') === n.id);
+          e.classList.toggle('on', mine);
+          e.classList.toggle('dim', !mine);
+        });
+      });
+      n.g.addEventListener('mouseleave', clearHl);
+    });
+    gCenter.addEventListener('mouseenter', function () {
+      nodeEls.forEach(function (m) { m.g.classList.remove('dim'); });
+      edgeEls.forEach(function (e) { e.classList.add('on'); e.classList.remove('dim'); });
+    });
+    gCenter.addEventListener('mouseleave', clearHl);
+  }
+
+  /* ---------------------------------------------------------
+     4. 章节导航 / 进度条
+     --------------------------------------------------------- */
+  var nav = document.getElementById('nav');
+  var prog = document.getElementById('progress');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav__links a'));
+  /* 只把「页内锚点」参与高亮；指向别的页面的链接（如 quiz.html?）不参与，
+     否则 secs 被 filter 掉后下标会和 links 错位。 */
+  var pairs = links.map(function (a) {
+    var h = a.getAttribute('href') || '';
+    return { a: a, sec: h.charAt(0) === '#' ? document.getElementById(h.slice(1)) : null };
+  }).filter(function (p) { return p.sec; });
+
+  var lastY = 0;
+  function onScroll() {
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    if (prog) {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+    }
+    if (nav && y > 300) {
+      nav.classList.toggle('hide', y > lastY && y > 520);
+    } else if (nav) {
+      nav.classList.remove('hide');
+    }
+    lastY = y;
+
+    var cur = null;
+    pairs.forEach(function (p) {
+      if (p.sec.getBoundingClientRect().top <= 160) cur = p;
+    });
+    pairs.forEach(function (p) { p.a.classList.toggle('on', p === cur); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------------------------------------------------------
+     0. Service Worker（只在 https 下注册：离线可开、可加到桌面）
+     --------------------------------------------------------- */
+  var canSW = 'serviceWorker' in navigator && (location.protocol === 'https:' ||
+    location.hostname === 'localhost' || location.hostname === '127.0.0.1');
+  if (canSW) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () {});
+    });
+  }
+
+  /* ---------------------------------------------------------
+     5. 滚动入场
+     --------------------------------------------------------- */
+  var rvEls = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.classList.add('in');
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+    rvEls.forEach(function (e) { io.observe(e); });
+  } else {
+    rvEls.forEach(function (e) { e.classList.add('in'); });
+  }
+
+  /* ---------------------------------------------------------
+     6. 三期 tabs
+     --------------------------------------------------------- */
+  var tabs = document.querySelectorAll('.tab');
+  var panels = document.querySelectorAll('.panel');
+
+  function fillBars(panel) {
+    panel.querySelectorAll('.bar i').forEach(function (b) {
+      b.style.width = '0%';
+      setTimeout(function () { b.style.width = b.getAttribute('data-w') + '%'; }, 60);
+    });
+  }
+
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () {
+      tabs.forEach(function (x) { x.classList.remove('on'); });
+      panels.forEach(function (x) { x.classList.remove('on'); });
+      t.classList.add('on');
+      var p = document.querySelector('.panel[data-panel="' + i + '"]');
+      if (p) { p.classList.add('on'); fillBars(p); }
+    });
+  });
+  var firstPanel = document.querySelector('.panel.on');
+  if (firstPanel) {
+    if ('IntersectionObserver' in window) {
+      var io2 = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) { fillBars(e.target); io2.unobserve(e.target); }
+        });
+      }, { threshold: 0.2 });
+      io2.observe(firstPanel);
+    } else { fillBars(firstPanel); }
+  }
+
+  /* ---------------------------------------------------------
+     7. 五体手风琴
+     --------------------------------------------------------- */
+  document.querySelectorAll('.acc__btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = btn.parentElement;
+      var open = item.classList.contains('open');
+      item.classList.toggle('open', !open);
+    });
+  });
+
+  /* ---------------------------------------------------------
+     8. 搜索
+     --------------------------------------------------------- */
+  var search = document.getElementById('search');
+  var sIn = document.getElementById('searchIn');
+  var sRes = document.getElementById('searchRes');
+  if (search && sIn && sRes) {
+    var INDEX = [];
+    SECTIONS.forEach(function (s) {
+      INDEX.push({ t: s.t, m: s.m, href: '#' + s.h, k: s.t + s.m });
+    });
+    WORKS.forEach(function (w) {
+      INDEX.push({
+        t: w.t, m: w.y + ' · ' + w.s + ' · ' + w.c, href: '#works',
+        k: w.t + w.d + w.c + w.s + w.y + w.n
+      });
+    });
+    var CONCEPTS = [
+      { t: '用笔千古不易', m: '《兰亭十三跋》核心命题', href: '#theory', k: '用笔 结字 兰亭 十三跋 千古不易' },
+      { t: '不杂近体', m: '杨载《赵公行状》· 取法观', href: '#roots', k: '不杂近体 师承 取法 杨载' },
+      { t: '书画本来同', m: '《秀石疏林图》题诗', href: '#theory', k: '书画同源 本来同 秀石疏林 八法' },
+      { t: '作画贵有古意', m: '复古思潮 · 绘画', href: '#theory', k: '古意 复古 绘画' },
+      { t: '赵体甜俗之争', m: '董其昌 · 傅山 · 康有为', href: '#debate', k: '甜俗 熟 生 董其昌 傅山 康有为 碑学' },
+      { t: '章草复兴', m: '《急就章》· 元代草书', href: '#scripts', k: '章草 急就章 皇象 索靖 草书' },
+      { t: '圆朱文', m: '赵孟頫与吾丘衍 · 篆刻', href: '#legacy', k: '圆朱文 元朱文 篆刻 吾丘衍 三十五举 印章' },
+      { t: '元四家', m: '黄公望 · 王蒙 · 倪瓒 · 吴镇', href: '#legacy', k: '元四家 黄公望 王蒙 倪瓒 吴镇 外孙' },
+      { t: '台阁体 · 馆阁体', m: '赵体的工具化', href: '#legacy', k: '台阁体 馆阁体 乾隆 乌方光' },
+      { t: '宋室后裔 · 贰臣', m: '身世与书风', href: '#life', k: '宋室 后裔 贰臣 仕元 程钜夫 翰林' }
+    ];
+    INDEX = INDEX.concat(CONCEPTS);
+
+    var sel = 0, results = [];
+
+    function render(q) {
+      q = q.trim().toLowerCase();
+      if (!q) {
+        results = INDEX.slice(0, 9);
+      } else {
+        results = INDEX.map(function (it, i) {
+          var tt = it.t.toLowerCase();
+          var score = tt.indexOf(q) === 0 ? 0 : (tt.indexOf(q) > -1 ? 1 : ((it.k + it.t).toLowerCase().indexOf(q) > -1 ? 2 : 99));
+          return { it: it, score: score, i: i };
+        }).filter(function (x) { return x.score < 99; })
+          .sort(function (a, b) { return a.score - b.score || a.i - b.i; })
+          .slice(0, 12)
+          .map(function (x) { return x.it; });
+      }
+      sel = 0;
+      sRes.innerHTML = results.map(function (r, i) {
+        return '<a href="' + r.href + '" class="' + (i === 0 ? 'sel' : '') + '" data-i="' + i + '">' +
+          '<span class="t">' + r.t + '</span><span class="m">' + r.m + '</span></a>';
+      }).join('') || '<div style="padding:24px;color:var(--ink-4);font-size:13px">没有找到，换个词试试（如：胆巴 / 兰亭 / 骨）</div>';
+    }
+
+    function openS() { search.classList.add('on'); sIn.focus(); render(''); }
+    function closeS() { search.classList.remove('on'); sIn.value = ''; }
+
+    var sBtn = document.getElementById('searchBtn');
+    if (sBtn) {
+      sBtn.addEventListener('click', function (e) { e.preventDefault(); openS(); });
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault(); search.classList.contains('on') ? closeS() : openS();
+      }
+      if (e.key === 'Escape' && search.classList.contains('on')) closeS();
+    });
+    sIn.addEventListener('input', function () { render(sIn.value); });
+    search.addEventListener('click', function (e) { if (e.target === search) closeS(); });
+
+    document.addEventListener('keydown', function (e) {
+      if (!search.classList.contains('on')) return;
+      var as = sRes.querySelectorAll('a');
+      if (!as.length) return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        as[sel] && as[sel].classList.remove('sel');
+        sel = (sel + (e.key === 'ArrowDown' ? 1 : -1) + as.length) % as.length;
+        as[sel].classList.add('sel');
+        as[sel].scrollIntoView({ block: 'nearest' });
+      }
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        if (as[sel]) window.location.hash = as[sel].getAttribute('href');
+        closeS();
+      }
+    });
+  }
+
+  /* ---------------------------------------------------------
+     9. 平滑锚点（考虑固定导航高度）
+     --------------------------------------------------------- */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    if (!id) return;
+    var t = document.getElementById(id);
+    if (!t) return;
+    e.preventDefault();
+    var top = t.getBoundingClientRect().top + window.pageYOffset - 70;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+    history.replaceState(null, '', '#' + id);
+  });
+})();
+
+</script>
+<script>
+/* ============================================================
+   阅读设置：字体 / 字号 / 主题
+   —— 纯前端，记住选择；华为平板/安卓/iOS 通用
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var KEY = 'zmf-read-v1';
+  var root = document.documentElement;
+
+  /* ---------- 有没有衬线中文字体？ ----------
+     CJK 字符宽度都等于 1em，量宽度没用；
+     改成把同一个字分别用 serif / sans-serif 画到 canvas 上，
+     比较像素指纹——若完全一致，说明两者回退到了同一个字面。 */
+  function sig(family) {
+    var c = document.createElement('canvas');
+    c.width = 72; c.height = 72;
+    var x = c.getContext('2d');
+    x.font = '52px ' + family;
+    x.textBaseline = 'top';
+    x.fillStyle = '#000';
+    x.fillText('书', 2, 2);
+    var d = x.getImageData(0, 0, 72, 72).data;
+    var h = 0;
+    for (var i = 0; i < d.length; i += 5) { h = (h * 31 + d[i]) | 0; }
+    return h;
+  }
+
+  function hasSerif() {
+    try {
+      return sig('serif') !== sig('sans-serif');
+    } catch (e) { return true; }
+  }
+
+  /* ---------- 读取已保存的设置 ---------- */
+  var def = { font: hasSerif() ? 'song' : 'hei', fs: '1', theme: 'paper' };
+  var state = def;
+  try {
+    var saved = JSON.parse(localStorage.getItem(KEY) || '{}');
+    state = {
+      font: saved.font || def.font,
+      fs: saved.fs || def.fs,
+      theme: saved.theme || def.theme
+    };
+  } catch (e) { state = def; }
+
+  function apply() {
+    root.setAttribute('data-font', state.font);
+    root.setAttribute('data-fs', state.fs);
+    root.setAttribute('data-theme', state.theme);
+    if (state.theme === 'dark') root.style.colorScheme = 'dark';
+    else root.style.colorScheme = 'light';
+  }
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  // 尽早应用，避免闪一下
+  apply();
+
+  /* ---------- 面板 ---------- */
+  var GROUPS = [
+    { k: 'font', label: '字体', opts: [['song', '宋'], ['kai', '楷'], ['hei', '黑']] },
+    { k: 'fs', label: '字号', opts: [['1', '小'], ['2', '中'], ['3', '大']] },
+    { k: 'theme', label: '主题', opts: [['paper', '纸'], ['dark', '夜']] }
+  ];
+
+  function build() {
+    var btn = document.createElement('button');
+    btn.className = 'read-btn';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', '阅读设置');
+    btn.textContent = 'Aa';
+
+    var panel = document.createElement('div');
+    panel.className = 'read-panel';
+    panel.innerHTML = GROUPS.map(function (g) {
+      return '<div class="read-row"><span>' + g.label + '</span><div class="read-seg" data-k="' + g.k + '">' +
+        g.opts.map(function (o) {
+          return '<button type="button" data-v="' + o[0] + '">' + o[1] + '</button>';
+        }).join('') + '</div></div>';
+    }).join('');
+
+    document.body.appendChild(btn);
+    document.body.appendChild(panel);
+
+    function sync() {
+      panel.querySelectorAll('.read-seg').forEach(function (seg) {
+        var k = seg.getAttribute('data-k');
+        seg.querySelectorAll('button').forEach(function (b) {
+          b.classList.toggle('on', b.getAttribute('data-v') === state[k]);
+        });
+      });
+    }
+    sync();
+
+    panel.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-v]');
+      if (!b) return;
+      var k = b.parentElement.getAttribute('data-k');
+      state[k] = b.getAttribute('data-v');
+      apply();
+      save();
+      sync();
+    });
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      panel.classList.toggle('on');
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!panel.classList.contains('on')) return;
+      if (panel.contains(e.target) || btn.contains(e.target)) return;
+      panel.classList.remove('on');
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') panel.classList.remove('on');
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', build);
+  } else {
+    build();
+  }
+
+  /* ---------- 跟随系统深色（仅首次） ---------- */
+  if (!localStorage.getItem(KEY) && window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    state.theme = 'dark';
+    apply();
+  }
+})();
+
+</script>
+<script>
+/* 松雪·脉络 — 政治题库
+   全部按考研政治（101）选择题的命题方式写：题干给情境，四个选项里只有一个站得住。
+   标注「真题」的是历年真题考过的原考点（表述按原题改写），其余是同一考点的改编。
+   用法：window.ZMF_BANK 是一个数组，每条 {tag, q, o[4], a, e}。 */
+window.ZMF_BANK = (window.ZMF_BANK || []).concat([
+
+/* ============ 马原 · 唯物论 ============ */
+{tag:'马原', q:'马克思主义哲学认为，物质的唯一特性是', o:['运动性','客观实在性','可知性','矛盾性'], a:1,
+ e:'「客观实在性」是物质的唯一特性，这是从物质与意识的关系上界定的。运动是物质的根本属性和存在方式，别混。选择题常把「根本属性」和「唯一特性」互换来设坑。'},
+
+{tag:'马原', q:'「望梅止渴」「画饼充饥」这两个说法，从哲学上看', o:['否认了意识的能动作用','夸大了意识的能动作用','是彻底的唯物主义','正确说明了物质决定意识'], a:1,
+ e:'二者都试图用主观意识替代客观物质，属于夸大意识能动作用、走向唯意志论的表现。判断标准：意识能不能「代替」物质——能反映、能指导，但不能代替。'},
+
+{tag:'马原', q:'人们能够利用规律改造世界，其前提是', o:['认识了事物的现象','掌握了科学理论','尊重规律的客观性','发挥了主观能动性'], a:2,
+ e:'规律是客观的，不以人的意志为转移；人可以认识规律、利用规律，但不能创造、改变、消灭规律。所以「利用」的前提是「尊重」。这是「规律客观性与主观能动性」这一对关系的标准答法。'},
+
+/* ============ 马原 · 辩证法 ============ */
+{tag:'马原', q:'矛盾的两个基本属性是', o:['普遍性和特殊性','同一性和斗争性','主要方面和次要方面','内因和外因'], a:1,
+ e:'同一性（相互依存、相互贯通、在一定条件下相互转化）与斗争性（相互排斥、相互分离）是矛盾的两种基本属性。普遍性/特殊性是矛盾的性质，主要/次要方面是矛盾双方的地位，三层要分清。'},
+
+{tag:'马原', q:'事物发展的根本原因在于', o:['外部矛盾的推动','事物内部矛盾性','实践的不断发展','数量的不断积累'], a:1,
+ e:'内部矛盾（内因）是事物发展的根据和第一位原因，外部矛盾（外因）是条件、通过内因起作用。「外因通过内因起作用」是常考的落脚句。'},
+
+{tag:'马原', q:'区分量变与质变的根本标志是', o:['事物数量的增减','事物的结构是否变化','事物的变化是否超出度','事物是否发生前进性变化'], a:2,
+ e:'度是保持事物质的稳定性的数量界限。变化在度内是量变，超出度就是质变。所以「是否超出度」是唯一的分界标准，数量的多少本身不构成标准。'},
+
+{tag:'马原', q:'否定之否定规律揭示的是', o:['事物发展的方向和道路','事物发展的动力和源泉','事物发展的形式和状态','事物联系的基本环节'], a:0,
+ e:'三轮对应要背死：对立统一规律→动力和源泉；量变质变规律→形式和状态；否定之否定规律→方向和道路（前进性与曲折性的统一）。这四个「是什么」是选择题的固定题点。'},
+
+/* ============ 马原 · 认识论 ============ */
+{tag:'马原', q:'「实践是认识的基础」表现在四个方面，其中把认识与实践最终联结起来的是', o:['实践是认识的来源','实践是认识发展的动力','实践是检验认识真理性的唯一标准','实践是认识的目的'], a:2,
+ e:'来源、动力、目的、检验标准四项中，「检验标准」是唯一能把主观认识与客观实际直接对照的环节，因而是联结认识与实践的枢纽。'},
+
+{tag:'马原', q:'真理既是绝对的又是相对的，这是由', o:['真理的客观性决定的','人的认识能力的至上性与非至上性决定的','实践的社会历史性决定的','真理的具体性决定的'], a:1,
+ e:'人的认识能力是至上性与非至上性的统一（无限与有限的统一），所以真理必然是绝对性与相对性的统一。这个「至上性与非至上性」是恩格斯式的表述，考过多次。'},
+
+{tag:'马原', q:'「有用即真理」这一命题的错误在于', o:['否认了真理的客观性','否认了真理的绝对性','否认了真理的具体性','否认了真理的相对性'], a:0,
+ e:'实用主义真理观用「有用」替换「符合客观实际」，把真理主观化，根本上否认了真理的客观性。注意：真理有用，但「有用」不是真理的标准。'},
+
+/* ============ 马原 · 唯物史观 ============ */
+{tag:'马原', q:'社会存在与社会意识的关系中，最根本的是', o:['社会意识具有相对独立性','社会存在决定社会意识','社会意识对社会存在有反作用','二者发展具有不平衡性'], a:1,
+ e:'B、C、D 三句都对，但问「最根本」就只能选决定作用。这类「都对但只能选一个」的题，靠的是题干的限定词（最根本/首要/基础/前提）。'},
+
+{tag:'马原', q:'社会发展的最终决定力量是', o:['生产力','生产关系','经济基础','上层建筑'], a:0,
+ e:'生产力是社会发展的最终决定力量；生产关系是直接决定作用（决定上层建筑）；经济基础是占统治地位的生产关系。三个层次别倒。'},
+
+{tag:'马原', q:'上层建筑反作用于经济基础的性质，取决于', o:['它是否具有相对独立性','它所服务的经济基础的性质','它自身的发展水平','它与社会意识的联系'], a:1,
+ e:'上层建筑反作用的性质（促进还是阻碍）取决于它所服务的经济基础是否适合生产力发展的要求。判断一种上层建筑进步与否，最终要回到生产力。'},
+
+/* ============ 马原 · 政经 ============ */
+{tag:'马原', q:'商品的价值量由', o:['个别劳动时间决定','社会必要劳动时间决定','劳动生产率决定','使用价值决定'], a:1,
+ e:'价值量由社会必要劳动时间决定；个别劳动时间低于社会必要劳动时间的生产者可获得超额收益。劳动生产率与单位商品价值量成反比，与价值总量无关——这句话每年都考。'},
+
+{tag:'马原', q:'具体劳动和抽象劳动是', o:['两次不同的劳动过程','同一劳动过程的两个方面','两种不同性质的劳动','先后发生的两个阶段'], a:1,
+ e:'具体劳动创造使用价值，抽象劳动形成价值，二者是同一劳动过程的两个方面，不是两次劳动。劳动二重性学说是理解马克思主义政治经济学的枢纽。'},
+
+{tag:'马原', q:'价值规律的表现形式是', o:['价格与价值始终一致','价格围绕价值上下波动','供求决定价格','价值围绕价格波动'], a:1,
+ e:'受供求影响，价格围绕价值上下波动——这不是对价值规律的否定，恰恰是它发生作用的形式。A 项是「完全竞争+无摩擦」的假想状态，不成立。'},
+
+{tag:'马原', q:'货币转化为资本的前提是', o:['商品交换的发展','劳动力成为商品','货币积累到一定量','剩余价值的产生'], a:1,
+ e:'劳动力成为商品，是货币转化为资本的前提。而剩余价值的真正来源，是劳动力商品「使用价值」的特殊性——它能创造出比自身价值更大的价值。'},
+
+{tag:'马原', q:'资本积累的实质是', o:['资本家节俭致富','用无偿占有的剩余价值扩大资本规模，进一步占有更多剩余价值','提高资本有机构成','扩大再生产'], a:1,
+ e:'资本积累＝剩余价值的资本化。它既是扩大再生产的过程，也是资本主义生产关系再生产、贫富分化加剧的过程。'},
+
+{tag:'马原', q:'资本主义基本矛盾是', o:['无产阶级与资产阶级的矛盾','生产社会化与生产资料私人占有之间的矛盾','个别企业有组织性与整个社会生产无政府状态的矛盾','生产与消费的矛盾'], a:1,
+ e:'基本矛盾只有一条：生产社会化与生产资料资本主义私人占有。其余都是它在不同层面的表现。'},
+
+{tag:'马原', q:'使社会主义从空想变为科学的两个理论基石是', o:['阶级斗争学说与暴力革命理论','唯物史观与剩余价值学说','辩证法与认识论','劳动价值论与共产主义理想'], a:1,
+ e:'唯物史观揭示了社会发展的一般规律，剩余价值学说揭示了资本主义剥削的秘密——这两块基石让社会主义有了科学依据。恩格斯在《社会主义从空想到科学的发展》里讲得很清楚。'},
+
+/* ============ 毛中特 ============ */
+{tag:'毛中特', q:'新民主主义革命总路线的核心是', o:['无产阶级的领导权','人民大众的广泛参与','反对帝国主义','武装斗争'], a:0,
+ e:'总路线＝无产阶级领导的、人民大众的、反对帝国主义、封建主义和官僚资本主义的革命。「无产阶级领导」是新民主主义革命区别于旧民主主义革命的根本标志，是核心。'},
+
+{tag:'毛中特', q:'中国革命战胜敌人的「三大法宝」是', o:['土地革命、武装斗争、根据地建设','统一战线、武装斗争、党的建设','实事求是、群众路线、独立自主','理论联系实际、密切联系群众、批评与自我批评'], a:1,
+ e:'三大法宝＝统一战线、武装斗争、党的建设。注意区分：C 是毛泽东思想活的灵魂三个基本方面，D 是党的三大优良作风。这三组是高频混淆点。'},
+
+{tag:'毛中特', q:'中国社会主义改造中，对资本主义工商业采取的方式是', o:['没收','和平赎买','公私合营（唯一方式）','强制征购'], a:1,
+ e:'对资本主义工商业采取「和平赎买」，通过从低级到高级的国家资本主义形式逐步过渡。这是中国社会主义改造的独创性贡献。'},
+
+{tag:'毛中特', q:'社会主义初级阶段的科学含义包括两层，其中一层是', o:['我国已经是社会主义社会','我国的生产力水平还很落后','我国将长期处于初级阶段','我国还处于过渡时期'], a:0,
+ e:'两层含义：①我国已经是社会主义社会，必须坚持而不能离开社会主义；②我国的社会主义还处在初级阶段，不能超越这个阶段。第一条讲性质，第二条讲程度，缺一不可。'},
+
+{tag:'毛中特', q:'新时代我国社会主要矛盾是', o:['人民日益增长的物质文化需要同落后的社会生产之间的矛盾','人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾','无产阶级同资产阶级之间的矛盾','先进的社会制度同落后的生产力之间的矛盾'], a:1,
+ e:'十九大作出转化判断。注意：主要矛盾变了，「我国仍处于并将长期处于社会主义初级阶段」的基本国情没有变，我国是世界最大发展中国家的国际地位没有变——「变」与「不变」常一起考。'},
+
+{tag:'毛中特', q:'党在社会主义初级阶段基本路线的核心内容是', o:['一个中心、两个基本点','四项基本原则','改革开放','自力更生、艰苦奋斗'], a:0,
+ e:'「一个中心」是以经济建设为中心，「两个基本点」是坚持四项基本原则、坚持改革开放。二者统一于中国特色社会主义伟大实践。'},
+
+{tag:'毛中特', q:'中国特色社会主义事业「五位一体」总体布局是指', o:['经济、政治、文化、社会、生态文明建设','物质、政治、精神、社会、生态文明建设','全面建成小康、全面深化改革、全面依法治国、全面从严治党','创新、协调、绿色、开放、共享'], a:0,
+ e:'五位一体＝经济、政治、文化、社会、生态文明建设。B 项把「经济」写成「物质」是常见干扰；C 是「四个全面」；D 是新发展理念。'},
+
+{tag:'毛中特', q:'新发展理念的内容是', o:['创新、协调、绿色、开放、共享','创新、协调、绿色、开放、共赢','改革、发展、稳定、和谐','高质量、高效率、公平、可持续'], a:0,
+ e:'创新（动力）、协调（内在要求）、绿色（必要条件）、开放（必由之路）、共享（本质要求）。五个词的括号解释也值得记，大题可以直接用。'},
+
+{tag:'毛中特', q:'中国式现代化的中国特色不包括', o:['人口规模巨大的现代化','全体人民共同富裕的现代化','物质文明和精神文明相协调的现代化','以资本为中心的现代化'], a:3,
+ e:'五个特征：人口规模巨大、全体人民共同富裕、物质文明和精神文明相协调、人与自然和谐共生、走和平发展道路。「以资本为中心」恰恰是西方式现代化的特征，是我们所反对的。'},
+
+{tag:'毛中特', q:'全过程人民民主的特点可以概括为', o:['最广泛、最真实、最管用','最直接、最快速、最有效','最民主、最自由、最平等','全覆盖、全流程、全方位'], a:0,
+ e:'「最广泛、最真实、最管用」是标准表述，三个词分别对应主体覆盖、制度保障、治理效能。'},
+
+/* ============ 史纲 ============ */
+{tag:'史纲', q:'近代中国半殖民地半封建社会的主要矛盾是', o:['帝国主义与中华民族的矛盾、封建主义与人民大众的矛盾','无产阶级与资产阶级的矛盾','地主阶级与农民阶级的矛盾','先进的社会制度与落后的生产力之间的矛盾'], a:0,
+ e:'两大主要矛盾，其中帝国主义与中华民族的矛盾是最主要的矛盾。'},
+
+{tag:'史纲', q:'下列文献中，第一个比较系统地提出发展资本主义方案的是', o:['《天朝田亩制度》','《资政新篇》','《海国图志》','《劝学篇》'], a:1,
+ e:'《资政新篇》（洪仁玕）是中国近代第一个比较系统的发展资本主义的方案；《天朝田亩制度》是绝对平均主义的空想。一个向前看，一个向后看，对比记忆。'},
+
+{tag:'史纲', q:'洋务运动的指导思想是', o:['师夷长技以制夷','中学为体、西学为用','维新变法','实业救国'], a:1,
+ e:'「中体西用」——只学器物、不动制度，这正是它甲午战败后破产的根本原因。A 是魏源《海国图志》的主张，时间更早。'},
+
+{tag:'史纲', q:'辛亥革命最伟大的历史功绩是', o:['建立了中华民国','推翻了统治中国几千年的君主专制制度','颁布了《中华民国临时约法》','实现了民族独立'], a:1,
+ e:'推翻君主专制制度、建立共和政体，是它最伟大的功绩。但它没有改变半殖民地半封建的社会性质，也没有完成反帝反封建的任务——「功绩」与「局限」要成对记。'},
+
+{tag:'史纲', q:'五四运动成为中国新民主主义革命开端，主要因为', o:['它是一次彻底的反帝反封建的爱国运动','无产阶级开始登上政治舞台并发挥主力军作用','它促进了马克思主义在中国的传播','它发生在十月革命之后'], a:1,
+ e:'四个选项都对，但「开端」的判定标准是领导阶级的变化：无产阶级以独立姿态登上政治舞台，革命的领导权开始转向无产阶级。'},
+
+{tag:'史纲', q:'中国共产党第一次全国代表大会召开于', o:['1919 年','1921 年','1927 年','1935 年'], a:1,
+ e:'1921 年 7 月，上海（后转嘉兴南湖）。1919 是五四，1927 是南昌起义与井冈山，1935 是遵义会议。'},
+
+{tag:'史纲', q:'确立毛泽东在党中央和红军中领导地位、成为党的历史上生死攸关转折点的会议是', o:['八七会议','古田会议','遵义会议','瓦窑堡会议'], a:2,
+ e:'遵义会议（1935 年 1 月）——生死攸关的转折点，标志着中国共产党在政治上开始走向成熟。'},
+
+{tag:'史纲', q:'实现新中国成立以来党的历史上具有深远意义的伟大转折的会议是', o:['党的八大','十一届三中全会','党的十二大','党的十四大'], a:1,
+ e:'十一届三中全会（1978 年 12 月）：重新确立解放思想、实事求是的思想路线，把工作重心转移到经济建设上来，作出改革开放的伟大决策。'},
+
+{tag:'史纲', q:'近代以来中国人民面临的两大历史任务是', o:['民族独立和人民解放、国家富强和人民幸福','反帝与反封建','救亡与启蒙','革命与建设'], a:0,
+ e:'两大历史任务：争取民族独立、人民解放；实现国家富强、人民幸福。前者是后者的前提，后者是前者的目的。'},
+
+/* ============ 思修 ============ */
+{tag:'思修', q:'人生观的核心是', o:['人生目的','人生态度','人生价值','人生理想'], a:0,
+ e:'人生目的回答「人为什么活着」，是人生观的核心，决定人生态度和人生价值的标准。三者的关系是「目的→态度→价值」。'},
+
+{tag:'思修', q:'中国精神的基本内容是', o:['以爱国主义为核心的民族精神和以改革创新为核心的时代精神','以集体主义为核心的道德精神和以法治为核心的制度精神','以艰苦奋斗为核心的革命精神和以开放包容为核心的全球精神','以人民为中心的发展思想和以共同富裕为目标的实践精神'], a:0,
+ e:'民族精神的核心是爱国主义，时代精神的核心是改革创新——两个「核心」不能互换。'},
+
+{tag:'思修', q:'社会主义核心价值观中，属于公民个人层面的是', o:['富强、民主、文明、和谐','自由、平等、公正、法治','爱国、敬业、诚信、友善','和平、发展、合作、共赢'], a:2,
+ e:'国家层面：富强民主文明和谐；社会层面：自由平等公正法治；个人层面：爱国敬业诚信友善。三层顺序每年都有人记反。'},
+
+{tag:'思修', q:'全面依法治国和以德治国相结合，是因为', o:['法律是成文的道德，道德是内心的法律','法律比道德更重要','道德可以替代法律','二者相互排斥'], a:0,
+ e:'「法律是成文的道德，道德是内心的法律」——这句话是大题的标准句：法律有效实施有赖于道德支持，道德践行也离不开法律约束。'},
+
+{tag:'思修', q:'理想信念的作用集中体现在', o:['指引人生的奋斗目标、提供人生的前进动力、提高人生的精神境界','决定人的物质生活水平','替代人的社会实践','保证人的事业成功'], a:0,
+ e:'三句话：指引目标、提供动力、提高境界。注意 D 的「保证成功」——理想不保证结果，只提供方向和动力。'},
+
+/* ============ 时政 · 只放稳定不变的 ============ */
+{tag:'时政', q:'党的二十大报告指出，从现在起中国共产党的中心任务是', o:['全面建成小康社会','团结带领全国各族人民全面建成社会主义现代化强国、实现第二个百年奋斗目标，以中国式现代化全面推进中华民族伟大复兴','基本实现社会主义现代化','实现共产主义'], a:1,
+ e:'中心任务＝全面建成社会主义现代化强国、实现第二个百年奋斗目标，以中国式现代化全面推进中华民族伟大复兴。这是二十大最核心的一句话，务必背原句。'},
+
+{tag:'时政', q:'中国式现代化的本质要求中，居于首位的是', o:['实现高质量发展','坚持中国共产党领导','发展全过程人民民主','丰富人民精神世界'], a:1,
+ e:'本质要求共九条，第一条是「坚持中国共产党领导」。这类「居于首位」的题只能靠背顺序。'}
+]);
+
+</script>
+<script>
+/* 松雪·脉络 — 日语题库（203 题型：助词 / 语法辨析 / 活用）
+   每条 {tag, q, o[4], a, e}。tag 用来筛题：助词 / 辨析 / 活用。 */
+window.ZMF_BANK = (window.ZMF_BANK || []).concat([
+
+/* ==================== 助词 ==================== */
+{tag:'助词', q:'毎朝七時＿＿起きます。', o:['で','に','を','が'], a:1,
+ e:'「に」表示具体的时间点：七時に起きる。注意：今日・明日・毎日・今朝 这类相对时间词后面不加「に」，但「毎朝七時」里有具体数字，所以「七時に」要加。'},
+
+{tag:'助词', q:'公園＿＿テニスをします。', o:['に','で','を','へ'], a:1,
+ e:'「で」表示动作进行的场所；「に」表示存在场所（公園にいる）或移动的目的地（公園に行く）。判断口诀：动词是「做某事」用で，动词是「在/去」用に。'},
+
+{tag:'助词', q:'電車＿＿学校へ行きます。', o:['に','で','を','から'], a:1,
+ e:'「で」表示手段、工具、交通方式：電車で行く、ペンで書く、日本語で話す。'},
+
+{tag:'助词', q:'部屋＿＿猫がいます。', o:['で','に','を','が'], a:1,
+ e:'存在句「～に～が ある／いる」：存在场所用「に」。对比：部屋で猫が遊んでいる（动作场所用で）。'},
+
+{tag:'助词', q:'九時＿＿五時まで働きます。', o:['まで','から','より','に'], a:1,
+ e:'「から～まで」表示时间或空间的起点与终点。单独一个空，看后半有「まで」，前半必是「から」。'},
+
+{tag:'助词', q:'誰＿＿来ましたか。', o:['は','が','を','に'], a:1,
+ e:'疑问词做主语时，后面必须用「が」不能用「は」——因为「は」提示的是已知信息，而疑问词是新信息。回答也要用「が」：田中さんが来ました。'},
+
+{tag:'助词', q:'私は日本語＿＿わかります。', o:['を','が','に','で'], a:1,
+ e:'可能、希望、理解、拥有这类词的对象用「が」：日本語がわかる／水が飲みたい／お金がある／日本語ができる。这是 203 完形的必考点。'},
+
+{tag:'助词', q:'東京＿＿大阪のほうが物価が安い。', o:['ほど','より','から','まで'], a:1,
+ e:'「AよりBのほうが～」＝B 比 A 更……。「より」是比较的基准。反过来「AはBほど～ない」＝A 不如 B。两个句型常成对出题。'},
+
+{tag:'助词', q:'お金が五百円＿＿ありません。', o:['しか','だけ','ばかり','ほど'], a:0,
+ e:'「しか～ない」＝只有……（配合否定）。「だけ」是肯定叙述，可与肯定呼应：五百円だけある。看到句末是否定，就选「しか」。'},
+
+{tag:'助词', q:'値段が高ければ高い＿＿、品質がいいとは限らない。', o:['ほど','くらい','ばかり','しか'], a:0,
+ e:'「～ば～ほど」＝越……越……：見れば見るほど好きになる。前半用假定形，后半用「ほど」。'},
+
+{tag:'助词', q:'五時＿＿帰ってください。', o:['まで','までに','から','に'], a:1,
+ e:'「までに」＝在……之前（期限），动作是「一次完成」；「まで」＝一直持续到……。帰る是一次性动作，所以用「までに」。'},
+
+{tag:'助词', q:'彼は医者＿＿なりました。', o:['が','に','を','で'], a:1,
+ e:'「～になる」表示变化的结果：医者になる／春になる／元気になる。ナ形容词和名词用「に」，イ形容词用「く」：高くなる。'},
+
+{tag:'助词', q:'先生＿＿ほめられました。', o:['に','で','から','を'], a:0,
+ e:'被动句的施事用「に」（也可用「から」，但「に」更常用，尤其在被感动词是「ほめる・叱る・頼む」这类时）。物作主语时用「で」：木で作られた。'},
+
+{tag:'助词', q:'この机は木＿＿作られています。', o:['に','で','から','より'], a:1,
+ e:'材料用「で」。但如果是「从……做成」看得见原材料的变化，也可用「から」：ぶどうからワインを作る。成品看不出原形时用「で」，看得出时用「から」。'},
+
+{tag:'助词', q:'病気＿＿学校を休みました。', o:['に','で','を','が'], a:1,
+ e:'「で」表示原因、理由：病気で休む／風で木が倒れた／事故で遅れた。'},
+
+{tag:'助词', q:'コーヒー＿＿飲みませんか。', o:['でも','しか','ほど','まで'], a:0,
+ e:'「でも」表示举例提议，语气轻：コーヒーでも飲みませんか＝喝点咖啡什么的吧。注意和「でも＝即使」区分，看语境。'},
+
+{tag:'助词', q:'雨＿＿降っています。', o:['は','が','を','に'], a:1,
+ e:'自然现象、生理现象的主语用「が」：雨が降る／風が吹く／熱がある。'},
+
+{tag:'助词', q:'これは友達＿＿書いた本です。', o:['が','の','に','を'], a:1,
+ e:'定语从句里的主语可以用「の」代替「が」：友達の（＝が）書いた本。这是书面语常客，203 的读解里几乎每篇都有。'},
+
+{tag:'助词', q:'京都へ行く＿＿、新幹線が便利です。', o:['のに','には','では','とも'], a:1,
+ e:'「～には」表示目的或评价的对象：行くには便利だ＝要去的话很方便。'},
+
+{tag:'助词', q:'彼女は笑い＿＿話しています。', o:['ながら','つつ','がてら','ながらも'], a:0,
+ e:'「ながら」＝一边……一边……，前后主语必须一致，且后项是主要动作。'},
+
+{tag:'助词', q:'三時間＿＿待ったが、来なかった。', o:['まで','までに','も','しか'], a:2,
+ e:'「も」表示数量之多（强调）：三時間も待った＝等了足足三小时。对比「しか」+否定表示少。'},
+
+{tag:'助词', q:'先生に聞い＿＿、わかりませんでした。', o:['ても','ては','たら','ので'], a:0,
+ e:'「～ても」＝即使……也……：聞いてもわからない＝问了也不明白。注意「ては」表反复或条件不良，语气不同。'},
+
+/* ==================== 辨析 ==================== */
+{tag:'辨析', q:'「明日は雨が降る＿＿。」——根据天气预报说的', o:['そうだ','ようだ','らしい','みたいだ'], a:0,
+ e:'传闻的「そうだ」接普通形（降るそうだ），表示「听说」。样态的「そうだ」接词干（降りそうだ），表示「看起来要下」——两个「そうだ」接续完全不同，这是最大的坑。'},
+
+{tag:'辨析', q:'空が暗くなってきました。雨が降り＿＿です。', o:['そう','よう','らしい','みたい'], a:0,
+ e:'样态「そうだ」接动词ます形去ます：降りそうだ＝眼看要下雨。特征：眼前能观察到的征兆。'},
+
+{tag:'辨析', q:'噂によると、彼は来年結婚する＿＿。', o:['そうだ','ようだ','らしい','べきだ'], a:2,
+ e:'「らしい」表示基于客观传闻或迹象的推断，常与「噂によると」「どうやら」呼应。和「そうだ（伝聞）」的区别：らしい含推断，そうだ只是转述。'},
+
+{tag:'辨析', q:'窓が開けて＿＿。', o:['ある','いる','おく','しまう'], a:0,
+ e:'「他动词て形＋ある」表示某人有意为之的结果状态：窓が開けてある＝窗是（有人）开着的。自动词＋ている只描述状态：窓が開いている。'},
+
+{tag:'辨析', q:'部屋を片付けて＿＿から、出かけます。', o:['ある','おく','しまう','くる'], a:1,
+ e:'「ておく」表示事先做好某种准备。三个补助动词的分工：てある（结果状态）／ておく（预先准备）／てしまう（完成或遗憾）。'},
+
+{tag:'辨析', q:'来年、日本へ留学する＿＿にしました。', o:['こと','もの','の','ところ'], a:0,
+ e:'「～ことにする」＝自己决定；「～ことになる」＝（被）决定、客观结果。判断主动还是被动，看是谁的决定。'},
+
+{tag:'辨析', q:'来年、日本へ留学する＿＿になりました。', o:['こと','もの','の','わけ'], a:0,
+ e:'同上，客观决定/结果用「ことになる」。这两个句型每年至少一题，务必成对记。'},
+
+{tag:'辨析', q:'雨が降れ＿＿、試合は中止です。', o:['ば','と','たら','なら'], a:0,
+ e:'「ば」表假定条件，后项多为判断、意志、请求。注意「ば」后项一般不能是过去时的事实叙述。'},
+
+{tag:'辨析', q:'春になる＿＿、桜が咲きます。', o:['ば','と','たら','なら'], a:1,
+ e:'「と」表恒常条件、自然规律、必然结果：春になると桜が咲く。后项不能是意志、命令、请求。'},
+
+{tag:'辨析', q:'家に帰っ＿＿、すぐ寝ました。', o:['ば','と','たら','なら'], a:2,
+ e:'「たら」表既成事实的契机（……之后）、也可表假定。后项可以是过去时，这是它区别于「と」「ば」的关键。'},
+
+{tag:'辨析', q:'日本の料理を食べる＿＿、寿司がおすすめです。', o:['なら','と','ば','たら'], a:0,
+ e:'「なら」承接对方刚提到的话题，提出建议或判断：「～なら～がいい」。'},
+
+{tag:'辨析', q:'合格する＿＿、毎日勉強しています。', o:['ために','ように','そうに','まま'], a:0,
+ e:'「ために」前接意志性动词，主语一致；「ように」前接非意志性动词或可能形（できるように）。合格する是意志行为，用ために。'},
+
+{tag:'辨析', q:'日本語が話せる＿＿、毎日練習しています。', o:['ために','ように','ことに','そうに'], a:1,
+ e:'「話せる」是可能形（非意志），用「ように」。口诀：为了（自己主动做）→ために；为了（达成某种状态/能力）→ように。'},
+
+{tag:'辨析', q:'私は学生です。彼＿＿学生です。', o:['は','が','も','の'], a:2,
+ e:'「も」表同类追加：彼も学生です＝他也是学生。'},
+
+{tag:'辨析', q:'あの店は安い＿＿、おいしくない。', o:['くて','のに','ので','から'], a:1,
+ e:'「のに」表逆接，含不满、意外语气：安いのにおいしくない。注意イ形容词接「のに」用原形，不变成「くて」。'},
+
+{tag:'辨析', q:'疲れていた＿＿、最後まで頑張った。', o:['のに','ので','けれども','から'], a:2,
+ e:'「けれども」是中性逆接，不带情绪；「のに」带不满/意外。本题只是陈述事实，语气中性。'},
+
+{tag:'辨析', q:'彼は来る＿＿だ。', o:['はず','わけ','べき','ところ'], a:0,
+ e:'「はずだ」＝按理应该（基于根据的推测）；「わけだ」＝难怪、也就是说（基于事实的归纳）；「べきだ」＝应该（义务）。三个都译「应该」，但逻辑完全不同。'},
+
+{tag:'辨析', q:'彼が怒るのも無理はない。そういう＿＿だ。', o:['はず','わけ','べき','つもり'], a:1,
+ e:'「わけだ」表得出理所当然的结论：也就是说……。前面常有「だから」「つまり」。'},
+
+{tag:'辨析', q:'学生は勉強する＿＿だ。', o:['はず','わけ','べき','そう'], a:2,
+ e:'「べきだ」表义务、应当：学生就该学习。'},
+
+{tag:'辨析', q:'私＿＿、この問題は難しい。', o:['にとって','について','に対して','によって'], a:0,
+ e:'「にとって」＝对……来说（从某人的立场看）。「について」＝关于；「に対して」＝对……（动作对象/对比）；「によって」＝由于/根据/由。'},
+
+{tag:'辨析', q:'この問題＿＿、みんなで話し合った。', o:['にとって','について','に対して','として'], a:1,
+ e:'「について」＝关于某事物，后接思考、谈论、研究类动词。'},
+
+{tag:'辨析', q:'先生＿＿質問した。', o:['にとって','について','に対して','によって'], a:2,
+ e:'「に対して」＝对某人做某动作，指向明确的对象。'},
+
+{tag:'辨析', q:'この小説は夏目漱石＿＿書かれた。', o:['にとって','によって','に対して','について'], a:1,
+ e:'「によって」在被动句中表示动作主体（比「に」更书面、更强调）；它还表示原因、手段、根据、因……而不同。'},
+
+{tag:'辨析', q:'人＿＿考え方が違う。', o:['にとって','によって','について','に対して'], a:1,
+ e:'「～によって違う」＝因……而异。这是「によって」四种用法里最常考的一种。'},
+
+/* ==================== 活用 ==================== */
+{tag:'活用', q:'「書く」的て形是', o:['書いて','書って','書きて','書くて'], a:0,
+ e:'五段动词以く结尾的て形是「いて」，但「行く」是例外，变成「行って」。这个例外每年都考。'},
+
+{tag:'活用', q:'「待つ」的て形是', o:['待ちて','待って','待いて','待つて'], a:1,
+ e:'つ・る・う 结尾 → って（待つ→待って、取る→取って、買う→買って）。这是「促音便」。'},
+
+{tag:'活用', q:'「食べる」的ない形是', o:['食べない','食べらない','食べるない','食べなかった'], a:0,
+ e:'一段动词去る加ない：食べない。五段把词尾变あ段加ない：書かない、待たない。'},
+
+{tag:'活用', q:'「する」的使役形是', o:['させる','される','しさせる','するさせる'], a:0,
+ e:'する→させる（使役）、される（被动）。注意させる和される只差一个假名，是最高频的混淆点。'},
+
+{tag:'活用', q:'「する」的可能形是', o:['できる','させる','される','しれる'], a:0,
+ e:'する 的可能形是「できる」，不是「される」（那是被动）。这三个形式必须一次分清：する→できる（可能）/される（被动）/させる（使役）。'},
+
+{tag:'活用', q:'イ形容词「高い」的过去否定是', o:['高かったない','高くなかった','高くないでした','高いでした'], a:1,
+ e:'イ形容词活用：高い→高くない→高くなかった。过去否定是「くなかった」，不是「かったない」。'},
+
+{tag:'活用', q:'ナ形容词「静か」的て形是', o:['静かくて','静かで','静かって','静かんで'], a:1,
+ e:'ナ形容词和名词的て形都用「で」：静かで、学生で。イ形容词才用「くて」：高くて。'},
+
+{tag:'活用', q:'「書く」的被动形是', o:['書かれる','書ける','書かせる','書かされる'], a:0,
+ e:'五段被动：词尾变あ段＋れる（書かれる）。可能形是「書ける」（下一段），两者不同形；但一段动词的被动和可能同形（食べられる）。'},
+
+{tag:'活用', q:'「食べる」的使役受身形是', o:['食べさせる','食べられる','食べさせられる','食べらされる'], a:2,
+ e:'使役受身＝使役形＋られる：食べさせられる（被迫吃）。五段的使役受身常缩略为「書かされる」。'},
+
+{tag:'活用', q:'「行く」的意志形是', o:['行こう','行け','行かれる','行きます'], a:0,
+ e:'五段意志形：词尾变お段＋う（行こう）。一段：食べよう。する：しよう。来る：来よう。'},
+
+{tag:'活用', q:'「読む」的假定形（ば形）是', o:['読めば','読むば','読みば','読まば'], a:0,
+ e:'五段ば形：词尾变え段＋ば（読めば）。一段：食べれば。する：すれば。来る：来れば。'},
+
+{tag:'活用', q:'「する」的命令形是', o:['しろ','せよ','するな','しろう'], a:0,
+ e:'する的命令形是「しろ」（书面也可「せよ」）。来る→来い。五段：词尾变え段（書け）。'},
+
+{tag:'活用', q:'「来る」的被动形是', o:['来られる','来させる','来い','来よう'], a:0,
+ e:'来る→来られる，与可能形同形，靠语境区分：先生に来られた（被动，老师来了——带困扰感）／一人で来られる（可能，能一个人来）。'},
+
+{tag:'活用', q:'「飲む」的使役形是', o:['飲ませる','飲まれる','飲める','飲まさせる'], a:0,
+ e:'五段使役：词尾变あ段＋せる（飲ませる）。'},
+
+{tag:'活用', q:'「わかる」的ます形是', o:['わかります','わかりります','わかます','わかるます'], a:0,
+ e:'五段：词尾变い段＋ます（わかる→わかります）。'},
+
+{tag:'活用', q:'「綺麗だ」的否定形（普通体）是', o:['綺麗くない','綺麗じゃない','綺麗ない','綺麗ではないだった'], a:1,
+ e:'ナ形容词否定：語幹＋じゃない／ではない（綺麗じゃない）。イ形容词才是「くない」。'},
+
+{tag:'活用', q:'「読む」的たい形是', o:['読みたい','読むたい','読もたい','読んだい'], a:0,
+ e:'たい接ます形去ます：読みたい。「たい」是イ形容词型活用：読みたかった、読みたくない。第三人称用「たがる」。'},
+
+{tag:'活用', q:'「食べる」的すぎる形是', o:['食べすぎる','食べるすぎる','食べりすぎる','食べさすぎる'], a:0,
+ e:'「すぎる」接ます形去ます：食べすぎる、飲みすぎる。イ形容词去い：高すぎる；ナ形容词直接接：静かすぎる。'},
+
+{tag:'活用', q:'「降る」的样态「そうだ」是', o:['降りそうだ','降るそうだ','降ったそうだ','降りそうな'], a:0,
+ e:'样态そうだ接ます形去ます（降りそうだ）。传闻そうだ接普通形（降るそうだ）。同一汉字两种接续，是 203 完形的经典陷阱。'},
+
+{tag:'活用', q:'「いい（良い）」的过去形是', o:['よかった','いかった','いいだった','よくなかった'], a:0,
+ e:'いい 是特殊活用：いい→よくない→よかった→よければ（全按「よい」来变）。这是唯一的例外，必背。'}
+]);
+
+</script>
+<script>
+/* 松雪·脉络 — 刷题机
+   · 题库来自 assets/bank-zz.js（政治）与 assets/bank-jp.js（日语）
+   · 选项顺序不打乱：解析里会写「B、C、D 三句都对」这种话，打乱就全错位了
+   · 错题记在 localStorage（key: zmf-quiz-v1），可以单独刷 */
+(function () {
+  'use strict';
+
+  var BANK = window.ZMF_BANK || [];
+  var STORE = 'zmf-quiz-v1';
+  var ZZ_TAGS = ['马原', '毛中特', '史纲', '思修', '时政'];
+
+  var state = {
+    filter: 'all',
+    size: 10,
+    queue: [],
+    i: 0,
+    right: 0,
+    picked: null,     // 当前题已选的选项 index
+    done: 0
+  };
+
+  /* ---------- 存档 ---------- */
+  function load() {
+    try {
+      var raw = localStorage.getItem(STORE);
+      if (!raw) return { wrong: [], total: 0, right: 0 };
+      var d = JSON.parse(raw);
+      return {
+        wrong: Array.isArray(d.wrong) ? d.wrong : [],
+        total: d.total || 0,
+        right: d.right || 0
+      };
+    } catch (e) {
+      return { wrong: [], total: 0, right: 0 };
+    }
+  }
+  function save(d) {
+    try { localStorage.setItem(STORE, JSON.stringify(d)); } catch (e) {}
+  }
+  var store = load();
+
+  function key(q) { return q.tag + '|' + q.q; }
+
+  /* ---------- 选题 ---------- */
+  function pool() {
+    switch (state.filter) {
+      case 'all':  return BANK;
+      case 'zz':   return BANK.filter(function (q) { return ZZ_TAGS.indexOf(q.tag) >= 0; });
+      case 'jp':   return BANK.filter(function (q) { return ZZ_TAGS.indexOf(q.tag) < 0; });
+      case 'wrong':return BANK.filter(function (q) { return store.wrong.indexOf(key(q)) >= 0; });
+      default:     return BANK.filter(function (q) { return q.tag === state.filter; });
+    }
+  }
+
+  function shuffle(a) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function start() {
+    var p = shuffle(pool());
+    var n = state.size === 0 ? p.length : Math.min(state.size, p.length);
+    state.queue = p.slice(0, n);
+    state.i = 0;
+    state.right = 0;
+    state.done = 0;
+    state.picked = null;
+    if (!state.queue.length) { renderEmpty(); return; }
+    renderQuestion();
+  }
+
+  /* ---------- 渲染 ---------- */
+  var $ = function (id) { return document.getElementById(id); };
+  var card, body, meta, stat;
+
+  function renderEmpty() {
+    $('qBody').innerHTML =
+      '<div class="qempty">这一组还没有题。<br>' +
+      (state.filter === 'wrong'
+        ? '错题本是空的——先随便刷一组，错的会自动进来。'
+        : '换个筛选条件试试。') +
+      '</div>';
+    $('qMeta').textContent = '';
+    $('qStats').textContent = '';
+  }
+
+  function renderQuestion() {
+    var q = state.queue[state.i];
+    state.picked = null;
+    $('qEnd').hidden = true;
+    $('qCard').hidden = false;
+
+    $('qMeta').innerHTML = '第 <b>' + (state.i + 1) + '</b> / ' + state.queue.length +
+      ' 题 <i class="qtag">' + q.tag + '</i>';
+    $('qStats').textContent = state.done
+      ? '对 ' + state.right + ' · 错 ' + (state.done - state.right) +
+        ' · 正确率 ' + Math.round(state.right / state.done * 100) + '%'
+      : '';
+
+    var html = '<div class="qtext">' + esc(q.q) + '</div><div class="opts">';
+    for (var k = 0; k < q.o.length; k++) {
+      html += '<button class="opt" data-k="' + k + '">' +
+        '<i>' + 'ABCD'[k] + '</i><span>' + esc(q.o[k]) + '</span></button>';
+    }
+    html += '</div><div class="expl" id="expl" hidden></div>' +
+      '<div class="qfoot"><button class="qnext" id="qNext" hidden>下一题 →</button>' +
+      '<span class="qhint">键盘 1–4 选答，Enter 下一题</span></div>';
+
+    $('qBody').innerHTML = html;
+
+    var opts = $('qBody').querySelectorAll('.opt');
+    for (var j = 0; j < opts.length; j++) {
+      opts[j].addEventListener('click', onPick);
+    }
+  }
+
+  function onPick(e) {
+    if (state.picked !== null) return;
+    var q = state.queue[state.i];
+    var k = +e.currentTarget.getAttribute('data-k');
+    state.picked = k;
+    state.done++;
+
+    var opts = $('qBody').querySelectorAll('.opt');
+    for (var i = 0; i < opts.length; i++) {
+      var v = +opts[i].getAttribute('data-k');
+      opts[i].disabled = true;
+      if (v === q.a) opts[i].classList.add('is-right');
+      if (v === k && k !== q.a) opts[i].classList.add('is-wrong');
+    }
+
+    if (k === q.a) {
+      state.right++;
+      store.right = (store.right || 0) + 1;
+      var wi = store.wrong.indexOf(key(q));
+      if (wi >= 0) store.wrong.splice(wi, 1);   // 答对了就从错题本里去掉
+    } else {
+      if (store.wrong.indexOf(key(q)) < 0) store.wrong.push(key(q));
+    }
+    store.total = (store.total || 0) + 1;
+    save(store);
+
+    var ex = $('expl');
+    ex.hidden = false;
+    ex.innerHTML = '<b>' + (k === q.a ? '对' : '错，正确答案是 ' + 'ABCD'[q.a]) + '</b>' +
+      '<span class="exbody">' + esc(q.e) + '</span>';
+
+    var next = $('qNext');
+    next.hidden = false;
+    next.textContent = (state.i + 1 >= state.queue.length) ? '看结果 →' : '下一题 →';
+
+    $('qStats').textContent = '对 ' + state.right + ' · 错 ' + (state.done - state.right) +
+      ' · 正确率 ' + Math.round(state.right / state.done * 100) + '%';
+    syncChips();
+  }
+
+  function nextQ() {
+    if (state.picked === null) return;
+    if (state.i + 1 >= state.queue.length) { renderEnd(); return; }
+    state.i++;
+    renderQuestion();
+  }
+
+  function renderEnd() {
+    var rate = state.done ? Math.round(state.right / state.done * 100) : 0;
+    var wrongNow = state.done - state.right;
+    var msg = rate >= 90 ? '这组基本可以了，换更难的组。'
+      : rate >= 70 ? '及格线以上，错的这几题抄进本子。'
+        : '别急，错的题把解析读两遍，比再刷十题有用。';
+    $('qCard').hidden = true;
+    $('qEnd').hidden = false;
+    $('qEnd').innerHTML =
+      '<div class="end__num">' + rate + '<small>%</small></div>' +
+      '<p class="end__sub">' + state.queue.length + ' 题，对 ' + state.right +
+      '，错 ' + wrongNow + '。' + msg + '</p>' +
+      '<div class="end__btns">' +
+      '<button class="qnext" id="again">再来一组</button>' +
+      '<button class="qghost" id="toWrong">刷错题本（' + store.wrong.length + '）</button>' +
+      '</div>';
+    $('again').addEventListener('click', start);
+    $('toWrong').addEventListener('click', function () {
+      state.filter = 'wrong';
+      syncChips();
+      start();
+    });
+  }
+
+  /* ---------- 筛选条 ---------- */
+  function syncChips() {
+    var chips = document.querySelectorAll('.qchips .chip');
+    for (var i = 0; i < chips.length; i++) {
+      chips[i].classList.toggle('on', chips[i].getAttribute('data-f') === state.filter);
+    }
+    var counts = {};
+    BANK.forEach(function (q) { counts[q.tag] = (counts[q.tag] || 0) + 1; });
+    chips.forEach(function (c) {
+      var f = c.getAttribute('data-f');
+      var n = f === 'all' ? BANK.length
+        : f === 'zz' ? BANK.filter(function (q) { return ZZ_TAGS.indexOf(q.tag) >= 0; }).length
+          : f === 'jp' ? BANK.filter(function (q) { return ZZ_TAGS.indexOf(q.tag) < 0; }).length
+            : f === 'wrong' ? store.wrong.length
+              : (counts[f] || 0);
+      var s = c.querySelector('small');
+      if (s) s.textContent = n;
+    });
+    updateBadge();
+  }
+
+  function updateBadge() {
+    var b = document.getElementById('wrongBadge');
+    if (b) b.textContent = store.wrong.length;
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  /* ---------- 初始化 ---------- */
+  function init() {
+    if (!BANK.length) {
+      $('qBody').innerHTML = '<div class="qempty">题库没加载上，检查 assets/bank-zz.js 和 bank-jp.js。</div>';
+      return;
+    }
+
+    var nZ = BANK.filter(function (q) { return ZZ_TAGS.indexOf(q.tag) >= 0; }).length;
+    var nJ = BANK.length - nZ;
+    if ($('nZz')) $('nZz').textContent = nZ;
+    if ($('nJp')) $('nJp').textContent = nJ;
+
+    document.querySelectorAll('.qchip').forEach(function (c) {
+      c.addEventListener('click', function () {
+        state.filter = c.getAttribute('data-f');
+        syncChips();
+        start();
+      });
+    });
+
+    document.querySelectorAll('.qsize').forEach(function (c) {
+      c.addEventListener('click', function () {
+        state.size = +c.getAttribute('data-n');
+        document.querySelectorAll('.qsize').forEach(function (x) {
+          x.classList.toggle('on', x === c);
+        });
+        start();
+      });
+    });
+
+    $('qBody').addEventListener('click', function (e) {
+      if (e.target && e.target.id === 'qNext') nextQ();
+    });
+
+    var clr = document.getElementById('clearWrong');
+    if (clr) clr.addEventListener('click', function () {
+      if (!store.wrong.length) return;
+      if (confirm('清空错题本？')) {
+        store.wrong = [];
+        save(store);
+        syncChips();
+        if (state.filter === 'wrong') start();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if ($('qCard').hidden) return;
+      if (e.key >= '1' && e.key <= '4') {
+        var b = $('qBody').querySelector('.opt[data-k="' + (+e.key - 1) + '"]');
+        if (b && !b.disabled) b.click();
+      } else if (e.key === 'Enter' && state.picked !== null) {
+        nextQ();
+      }
+    });
+
+    syncChips();
+    start();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+</script>
+</body>
+</html>

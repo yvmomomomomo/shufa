@@ -240,6 +240,19 @@ img{ max-width:100%; }
   color:var(--ink-4);
 }
 
+/* ---------- 小节标题（表格分组用） ---------- */
+.subhead{
+  display:flex; align-items:baseline; gap:10px;
+  font-family:var(--kai); font-weight:400;
+  font-size:clamp(17px,2.2vw,20px); letter-spacing:.08em;
+  margin:clamp(26px,3.4vw,40px) 0 12px; color:var(--ink);
+}
+.subhead em{
+  font-family:var(--mono); font-style:normal; font-size:11px;
+  letter-spacing:.16em; color:var(--cinnabar); margin-right:12px;
+}
+.subhead::after{ content:""; flex:1; height:1px; background:var(--line-2); }
+
 /* ---------- 通用卡片 ---------- */
 .card{
   background:rgba(255,252,246,.55);
@@ -610,7 +623,7 @@ input[type=range]::-moz-range-thumb{ width:13px; height:13px; border-radius:50%;
 
 table.tt{ width:100%; border-collapse:collapse; font-size:13.5px; }
 table.tt th,table.tt td{ text-align:left; padding:11px 12px; border-bottom:1px solid var(--line-2); vertical-align:top; }
-table.tt th{ font-weight:400; font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; color:var(--ink-3); border-bottom:1px solid var(--line); }
+table.tt th{ font-weight:400; font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; color:var(--ink-3); border-bottom:1px solid var(--line); white-space:nowrap; }
 table.tt td b{ font-weight:400; color:var(--cinnabar); }
 table.tt .nw{ white-space:nowrap; }
 table.tt tr:hover td{ background:rgba(166,52,42,.035); }
@@ -868,6 +881,7 @@ html[data-fs="3"] body{ zoom:1.18; }
     <a href="#debate">争议</a>
     <a href="#legacy">流变</a>
     <a href="#exam">考点</a>
+    <a href="quiz.html" style="color:var(--cinnabar)">刷题</a>
   </div>
   <button class="nav__search" id="searchBtn" type="button" aria-label="搜索本站">
     <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.6"></circle><path d="M12.9 12.9 17 17"></path></svg>
@@ -1397,7 +1411,7 @@ html[data-fs="3"] body{ zoom:1.18; }
 <footer class="foot">
   <div class="wrap">
     <span>松雪·脉络 &nbsp;|&nbsp; 为中国美术学院书法考研整理 &nbsp;|&nbsp; 内容据通行书法史著述与元人文集，系年个别有异说</span>
-    <span><a href="index.html">赵孟頫脉络</a> &nbsp;·&nbsp; <a href="jp.html">日语 203</a> &nbsp;·&nbsp; <a href="zz.html">政治重点</a> &nbsp;·&nbsp; <a href="plan.html">五十日作战室</a> &nbsp;·&nbsp; <kbd>Ctrl</kbd>+<kbd>K</kbd> 搜索</span>
+    <span><a href="index.html">赵孟頫脉络</a> &nbsp;·&nbsp; <a href="jp.html">日语 203</a> &nbsp;·&nbsp; <a href="zz.html">政治重点</a> &nbsp;·&nbsp; <a href="plan.html">五十日作战室</a> &nbsp;·&nbsp; <a href="quiz.html">刷题台</a> &nbsp;·&nbsp; <kbd>Ctrl</kbd>+<kbd>K</kbd> 搜索</span>
   </div>
 </footer>
 
@@ -1860,9 +1874,12 @@ html[data-fs="3"] body{ zoom:1.18; }
   var nav = document.getElementById('nav');
   var prog = document.getElementById('progress');
   var links = Array.prototype.slice.call(document.querySelectorAll('.nav__links a'));
-  var secs = links.map(function (a) {
-    return document.getElementById(a.getAttribute('href').slice(1));
-  }).filter(Boolean);
+  /* 只把「页内锚点」参与高亮；指向别的页面的链接（如 quiz.html?）不参与，
+     否则 secs 被 filter 掉后下标会和 links 错位。 */
+  var pairs = links.map(function (a) {
+    var h = a.getAttribute('href') || '';
+    return { a: a, sec: h.charAt(0) === '#' ? document.getElementById(h.slice(1)) : null };
+  }).filter(function (p) { return p.sec; });
 
   var lastY = 0;
   function onScroll() {
@@ -1878,11 +1895,11 @@ html[data-fs="3"] body{ zoom:1.18; }
     }
     lastY = y;
 
-    var cur = -1;
-    for (var i = 0; i < secs.length; i++) {
-      if (secs[i].getBoundingClientRect().top <= 160) cur = i;
-    }
-    links.forEach(function (a, i) { a.classList.toggle('on', i === cur); });
+    var cur = null;
+    pairs.forEach(function (p) {
+      if (p.sec.getBoundingClientRect().top <= 160) cur = p;
+    });
+    pairs.forEach(function (p) { p.a.classList.toggle('on', p === cur); });
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();

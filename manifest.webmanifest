@@ -1,7 +1,7 @@
 {
-  "name": "松雪·脉络 — 书法考研四页",
+  "name": "松雪·脉络 — 书法考研五页",
   "short_name": "松雪脉络",
-  "description": "赵孟頫书法脉络 / 五十日作战室 / 日本語203 / 政治重点",
+  "description": "赵孟頫书法脉络 / 五十日作战室 / 日本語203 / 政治重点 / 刷题台",
   "lang": "zh-CN",
   "start_url": "./index.html",
   "scope": "./",
@@ -14,6 +14,7 @@
     { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
+    { "name": "刷题台", "url": "./quiz.html" },
     { "name": "赵孟頫脉络", "url": "./index.html" },
     { "name": "五十日作战室", "url": "./plan.html" },
     { "name": "日语 203", "url": "./jp.html" },

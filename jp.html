@@ -240,6 +240,19 @@ img{ max-width:100%; }
   color:var(--ink-4);
 }
 
+/* ---------- 小节标题（表格分组用） ---------- */
+.subhead{
+  display:flex; align-items:baseline; gap:10px;
+  font-family:var(--kai); font-weight:400;
+  font-size:clamp(17px,2.2vw,20px); letter-spacing:.08em;
+  margin:clamp(26px,3.4vw,40px) 0 12px; color:var(--ink);
+}
+.subhead em{
+  font-family:var(--mono); font-style:normal; font-size:11px;
+  letter-spacing:.16em; color:var(--cinnabar); margin-right:12px;
+}
+.subhead::after{ content:""; flex:1; height:1px; background:var(--line-2); }
+
 /* ---------- 通用卡片 ---------- */
 .card{
   background:rgba(255,252,246,.55);
@@ -610,7 +623,7 @@ input[type=range]::-moz-range-thumb{ width:13px; height:13px; border-radius:50%;
 
 table.tt{ width:100%; border-collapse:collapse; font-size:13.5px; }
 table.tt th,table.tt td{ text-align:left; padding:11px 12px; border-bottom:1px solid var(--line-2); vertical-align:top; }
-table.tt th{ font-weight:400; font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; color:var(--ink-3); border-bottom:1px solid var(--line); }
+table.tt th{ font-weight:400; font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; color:var(--ink-3); border-bottom:1px solid var(--line); white-space:nowrap; }
 table.tt td b{ font-weight:400; color:var(--cinnabar); }
 table.tt .nw{ white-space:nowrap; }
 table.tt tr:hover td{ background:rgba(166,52,42,.035); }
@@ -863,10 +876,12 @@ html[data-fs="3"] body{ zoom:1.18; }
     <a href="#adj">形・名</a>
     <a href="#grammar">语法60</a>
     <a href="#particle">助词</a>
+    <a href="#diff">辨析</a>
     <a href="#keigo">敬语</a>
     <a href="#cloze">完形</a>
     <a href="#writing">作文</a>
     <a href="#trans">翻译</a>
+    <a href="quiz.html" style="color:var(--cinnabar)">刷题</a>
   </div>
   <a class="nav__cta" href="plan.html">作战室 →</a>
 </nav>
@@ -1060,6 +1075,63 @@ html[data-fs="3"] body{ zoom:1.18; }
       </div>
     </div>
 
+    <h3 class="subhead rv"><em>01</em>格助词：记「功能」不记「意思」</h3>
+    <div class="tt-wrap rv">
+      <table class="tt">
+        <thead><tr><th>格助词</th><th>核心功能</th><th>例句</th><th>易错</th></tr></thead>
+        <tbody>
+          <tr><td><b>が</b></td><td>主语（新信息、焦点）；可能/希望/喜好的对象；转折接续</td><td>雨が降っている／水が飲める／日本語がわかる</td><td>疑问词做主语必须用が：誰が来たか</td></tr>
+          <tr><td><b>を</b></td><td>他动词的宾语；移动经过的场所；使役对象</td><td>印を彫る／公園を散歩する／子供を買い物に行かせる</td><td>「散歩する／飛ぶ／歩く」这类移动动词用を，不是で</td></tr>
+          <tr><td><b>に</b></td><td>存在的地点；时间点；对象；去向；结果；原因</td><td>教室にいる／7時に起きる／先生に聞く／学者になる</td><td>「に」表存在，「で」表动作发生地——いる/ある 用に</td></tr>
+          <tr><td><b>で</b></td><td>动作场所；手段·工具·材料；原因；范围·限定</td><td>図書館で勉強する／筆で書く／風邪で休む／三人で行く</td><td>「車で行く」是手段；「車に乗る」是对象</td></tr>
+          <tr><td><b>と</b></td><td>共同动作的对象；引用；比较；结果（变成）</td><td>友達と行く／「行く」と言う／前と違う／氷が水となる</td><td>引用「と」后面常跟 言う/思う/聞く</td></tr>
+          <tr><td><b>へ</b></td><td>方向（较「に」更强调朝向，口语感弱）</td><td>東京へ行く／手紙を母へ出す</td><td>与「に」多数可换；但「に」还能表目的/结果，へ不能</td></tr>
+          <tr><td><b>から</b></td><td>起点（时间·地点）；来源；原因；材料</td><td>9時から始まる／中国から来た／疲れから倒れた</td><td>「から」表起点，「まで」表终点，成对记</td></tr>
+          <tr><td><b>より</b></td><td>比较基准；起点（书面，较から正式）</td><td>兄より背が高い／会議は9時より行う</td><td>比较句里「AはBより～」——B 后面才用より</td></tr>
+          <tr><td><b>の</b></td><td>所属；同位；修饰；主语（从句中可替が）</td><td>私の本／友人の田中さん／走るのが速い</td><td>从句主语可用の 替 が：彼の来るのが遅い</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subhead rv"><em>02</em>副助词：语气都藏在这里</h3>
+    <div class="tt-wrap rv d2" style="margin-top:clamp(16px,2.4vw,26px)">
+      <table class="tt">
+        <thead><tr><th>副助词 / 提示</th><th>功能</th><th>例句</th><th>易错</th></tr></thead>
+        <tbody>
+          <tr><td><b>は</b></td><td>提示主题；对比；强调否定</td><td>私は学生です／今日は寒い</td><td>「は」可以顶掉 が/を，但不能顶掉 に/で/と</td></tr>
+          <tr><td><b>も</b></td><td>同类追加（也）；数量之多（竟达）；全面否定</td><td>私も行く／3時間も待った／誰も来ない</td><td>「も」＋否定＝全面否定，不是「也不」</td></tr>
+          <tr><td><b>しか</b></td><td>只（必须与否定呼应）</td><td>水しか飲まない</td><td>しか…ない 是固定搭配，单独用错</td></tr>
+          <tr><td><b>だけ</b></td><td>只、仅（肯定句；限定范围，不含语气）</td><td>これだけ覚えればいい</td><td>だけ vs しか：一个配肯定，一个配否定</td></tr>
+          <tr><td><b>ばかり</b></td><td>光是；刚刚；大约</td><td>遊んでばかりいる／来たばかりだ</td><td>「たばかり」是主观「刚」，与「たところ」客观不同</td></tr>
+          <tr><td><b>まで</b></td><td>甚至（程度）；到…为止</td><td>子供まで知っている／5時まで待つ</td><td>まで（持续）vs までに（截止），完形常考</td></tr>
+          <tr><td><b>ほど</b></td><td>程度（到…的地步）；「～ば～ほど」越…越…</td><td>泣きたいほど嬉しい／見れば見るほど好きだ</td><td>「ほど～ない」表比较：今日は昨日ほど寒くない</td></tr>
+          <tr><td><b>くらい／ぐらい</b></td><td>大约；程度之轻（起码…）</td><td>10分ぐらい待って／挨拶ぐらいしなさい</td><td>与 ほど 的差别：ほど 偏「程度高」，くらい 偏「程度低」</td></tr>
+          <tr><td><b>など／なんか</b></td><td>等等；轻视、谦逊</td><td>篆刻などが好きだ／私なんかまだまだだ</td><td>口语里 なんか 常带轻蔑或自谦语气</td></tr>
+          <tr><td><b>こそ</b></td><td>正是、才是（强调）</td><td>今こそ始めよう</td><td>「～からこそ」＝正因为…才</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subhead rv"><em>03</em>接续助词：句子是怎么连起来的</h3>
+    <div class="tt-wrap rv d2" style="margin-top:clamp(16px,2.4vw,26px)">
+      <table class="tt">
+        <thead><tr><th>接续助词</th><th>接续</th><th>意思</th><th>例句</th></tr></thead>
+        <tbody>
+          <tr><td><b>て</b></td><td>动词て形 / 形容词くて / 形容动词で</td><td>并列、顺序、原因、方法、状态</td><td>筆を持って書く／風邪を引いて休んだ</td></tr>
+          <tr><td><b>ながら</b></td><td>ます形去ます</td><td>一边…一边…（同一主体）</td><td>音楽を聞きながら彫る</td></tr>
+          <tr><td><b>ので</b></td><td>普通形（名词/形容动词＋な）</td><td>客观原因，语气委婉</td><td>雨なので中止になった</td></tr>
+          <tr><td><b>のに</b></td><td>普通形（名词/形容动词＋な）</td><td>逆接，带不满/意外</td><td>一生懸命練習したのに、失敗した</td></tr>
+          <tr><td><b>けれど／が</b></td><td>普通形</td><td>逆接，语气最中性</td><td>高いけれど買う／高いが買う</td></tr>
+          <tr><td><b>し</b></td><td>普通形</td><td>并列理由（既…又…）</td><td>安いし、近いし、便利だ</td></tr>
+          <tr><td><b>たり</b></td><td>た形＋り</td><td>列举动作（有时…有时…）</td><td>書いたり読んだりする</td></tr>
+          <tr><td><b>ば</b></td><td>假定形</td><td>假定条件（后件可意志）</td><td>練習すれば上手になる</td></tr>
+          <tr><td><b>と</b></td><td>辞书形</td><td>必然·恒常（后件不能是意志/命令）</td><td>春になると暖かくなる</td></tr>
+          <tr><td><b>ても</b></td><td>て形＋も</td><td>即使…也…</td><td>雨が降っても行く</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subhead rv"><em>04</em>最容易混的七对：完形就看这里</h3>
     <div class="tt-wrap rv d1">
       <table class="tt">
         <thead><tr><th>对比</th><th>区别</th><th>例句</th></tr></thead>
@@ -1095,11 +1167,215 @@ html[data-fs="3"] body{ zoom:1.18; }
   </div>
 </section>
 
-<!-- ============ 陆 敬语 ============ -->
-<section class="sec sec--tint" id="keigo">
+<!-- ============ 陆 辨析与活用 ============ -->
+<section class="sec" id="diff">
   <div class="wrap">
     <div class="sec__head rv">
       <div class="sec__num">陆</div>
+      <div>
+        <h2 class="sec__title">辨析与活用：长得像的那些</h2>
+        <p class="sec__sub">203 的失分点很少是「没学过」，多半是<b>两个都认识、但选错了</b>。这一节只做一件事：把成对的语法摆在一起，用<b>一个判断维度</b>切开——而那个维度，通常只有一句话。</p>
+      </div>
+    </div>
+
+    <h3 class="subhead rv"><em>01</em>推量四兄弟：そうだ／ようだ／らしい／みたいだ</h3>
+    <div class="tt-wrap rv">
+      <table class="tt">
+        <thead><tr><th>形式</th><th>接续</th><th>依据</th><th>例句</th></tr></thead>
+        <tbody>
+          <tr><td><b>そうだ（样态）</b></td><td>动词ます形去ます／形容词·形容动词词干</td><td>眼看、凭外观——<b>还没发生</b></td><td>雨が降りそうだ。（眼看要下雨）<br>この印はよさそうだ。</td></tr>
+          <tr><td><b>そうだ（传闻）</b></td><td>普通形（名词＋だ）</td><td>听说的，<b>转述别人</b></td><td>明日は雨が降るそうだ。<br>李さんは来ないそうです。</td></tr>
+          <tr><td><b>ようだ</b></td><td>普通形＋の／な（名词）</td><td>主观推断，依据多来自五感</td><td>誰か来たようだ。<br>彼は学生のようだ。</td></tr>
+          <tr><td><b>らしい</b></td><td>名词直接接／普通形</td><td>客观传闻，或「典型性」</td><td>明日は雨らしい。<br>彼は男らしい。</td></tr>
+          <tr><td><b>みたいだ</b></td><td>普通形／名词直接</td><td>口语版的「ようだ」</td><td>子供みたいだ。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note rv d1" style="margin-top:14px">
+      <h5>一句话切开</h5>
+      <p><b>看接续判断最省事</b>：前面是「ます形去ます」→ 样态そうだ；前面是「普通形」且句中有「～によると／～の話では」→ 传闻そうだ；剩下三个里，<b>らしい 最客观、ようだ 最主观、みたいだ 最口语</b>。</p>
+    </div>
+
+    <h3 class="subhead rv"><em>02</em>条件四兄弟：と／ば／たら／なら</h3>
+    <div class="tt-wrap rv">
+      <table class="tt">
+        <thead><tr><th>形式</th><th>性质</th><th>后件能不能带意志·命令</th><th>例句</th></tr></thead>
+        <tbody>
+          <tr><td><b>と</b></td><td>必然·恒常·自然规律（一…就）</td><td><b>不能</b></td><td>春になると桜が咲く。<br>このボタンを押すと開く。</td></tr>
+          <tr><td><b>ば</b></td><td>假定条件（最「书面」）</td><td>能</td><td>練習すれば上手になる。<br>安ければ買います。</td></tr>
+          <tr><td><b>たら</b></td><td>一次性的假定＋「…之后」（最万能）</td><td>能</td><td>駅に着いたら電話して。<br>雨だったら中止だ。</td></tr>
+          <tr><td><b>なら</b></td><td>承接对方的话，「如果是…的话」</td><td>能</td><td>篆刻なら黄牧甫だ。<br>行くなら早く決めて。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note rv d1" style="margin-top:14px">
+      <h5>背一条就够用</h5>
+      <p>后件是<b>「してください／行きます／ましょう」</b>这类意志·命令——<b>不能用と</b>，其余三个都行；拿不准时选<b>たら</b>，它的适用面最宽。「～ば～ほど」是固定句型，表示「越…越…」。</p>
+    </div>
+
+    <h3 class="subhead rv"><em>03</em>は 与 が：一条线分清</h3>
+    <div class="grid-2 rv">
+      <div class="card grid-corner">
+        <h3>は＝主题（已知）</h3>
+        <p>先说「关于什么」，再说「它怎么样」。<br>
+        <b>私 は 学生です。</b>（至于我——是学生）<br>
+        <b>象 は 鼻 が 長い。</b>（主题は＋小主语が）<br>
+        <b>今日 は 寒い。</b>（时间词后也用は）</p>
+        <p style="margin-top:10px">关键词：<b>已知、对比、否定强调</b>。「は」可以把 が／を 顶掉，但顶不掉 に／で／と。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>が＝主语（新信息）</h3>
+        <p>回答「谁／什么」时才用它。<br>
+        <b>誰 が 来ましたか。 —— 田中さん が 来ました。</b><br>
+        <b>雨 が 降っている。</b>（眼前发生的新情况）<br>
+        <b>水 が 飲める。</b>（可能·希望·喜好用が）</p>
+        <p style="margin-top:10px">关键词：<b>新信息、焦点、排他</b>。疑问词做主语，必须用が。</p>
+      </div>
+    </div>
+
+    <h3 class="subhead rv"><em>04</em>てある／ておく／ている：三个「状态」</h3>
+    <div class="tt-wrap rv">
+      <table class="tt">
+        <thead><tr><th>形式</th><th>谁做的</th><th>意思</th><th>例句</th></tr></thead>
+        <tbody>
+          <tr><td><b>他动词＋てある</b></td><td>有人做过，但<b>不说是谁</b></td><td>人为留下的结果状态</td><td>窓が開けてある。（窗被开着）<br>印が押してある。</td></tr>
+          <tr><td><b>动词＋ておく</b></td><td>说话人（或某主体）</td><td>事先做好、保持原样</td><td>窓を開けておく。（先把窗开着）<br>資料を読んでおく。</td></tr>
+          <tr><td><b>自动词＋ている</b></td><td>自然发生</td><td>状态·进行</td><td>窓が開いている。（窗开着）<br>雨が降っている。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subhead rv"><em>05</em>ことにする／ことになる：谁决定的</h3>
+    <div class="grid-2 rv">
+      <div class="card grid-corner">
+        <h3>ことにする（自己决定）</h3>
+        <p><b>来年、再受験することにした。</b><br>我自己决定明年再考。</p>
+        <p style="margin-top:10px">也用于「当作…」：<b>見なかったことにする</b>（就当没看见）。</p>
+      </div>
+      <div class="card grid-corner">
+        <h3>ことになる（客观结果）</h3>
+        <p><b>来年、再受験することになった。</b><br>（形势所定）定下来要明年再考。</p>
+        <p style="margin-top:10px">也用于推论：<b>つまり、行かないことになる</b>（这么说就等于不去）。</p>
+      </div>
+    </div>
+
+    <h3 class="subhead rv"><em>06</em>ために／ように：目的还是原因</h3>
+    <div class="tt-wrap rv">
+      <table class="tt">
+        <thead><tr><th>形式</th><th>接续</th><th>用法</th><th>例句</th></tr></thead>
+        <tbody>
+          <tr><td><b>ために（目的）</b></td><td>意志动词辞书形／名词＋の</td><td>为了…（主语可有意志）</td><td>合格するために毎日練習する。</td></tr>
+          <tr><td><b>ために（原因）</b></td><td>普通形／名词＋の</td><td>因为…（较书面）</td><td>台風のために中止になった。</td></tr>
+          <tr><td><b>ように（目的）</b></td><td>非意志动词／可能形／ない形</td><td>为了做到…（含努力）</td><td>見えるように大きく書く。<br>忘れないようにメモする。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note rv d1" style="margin-top:14px">
+      <h5>判断口诀</h5>
+      <p>前件是<b>「能／不能／看得见／忘不了」</b>这类<b>非意志</b>动词——用<b>ように</b>；是「做某事」这类<b>意志</b>动词——用<b>ために</b>。</p>
+    </div>
+
+    <h3 class="subhead rv"><em>07</em>はずだ／わけだ／べきだ／かもしれない</h3>
+    <div class="tt-wrap rv">
+      <table class="tt">
+        <thead><tr><th>形式</th><th>说话人在干什么</th><th>例句</th></tr></thead>
+        <tbody>
+          <tr><td><b>はずだ</b></td><td>按道理应该（有依据的推断）</td><td>彼はもう着いているはずだ。</td></tr>
+          <tr><td><b>わけだ</b></td><td>难怪／也就是说（顺理成章的结论）</td><td>10年住んでいたのか。日本語が上手なわけだ。</td></tr>
+          <tr><td><b>べきだ</b></td><td>应该（义务、道义）</td><td>学生は勉強すべきだ。</td></tr>
+          <tr><td><b>かもしれない</b></td><td>也许（五成以下把握）</td><td>明日は雨かもしれない。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subhead rv"><em>08</em>ところだ：三个时态</h3>
+    <div class="tt-wrap rv">
+      <table class="tt">
+        <thead><tr><th>形式</th><th>时点</th><th>例句</th></tr></thead>
+        <tbody>
+          <tr><td><b>するところだ</b></td><td>正要（还没开始）</td><td>今から出かけるところだ。</td></tr>
+          <tr><td><b>しているところだ</b></td><td>正在</td><td>今、篆刻をしているところだ。</td></tr>
+          <tr><td><b>したところだ</b></td><td>刚刚（客观）</td><td>たった今終わったところだ。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note rv d1" style="margin-top:14px">
+      <h5>与「たばかり」的区别</h5>
+      <p><b>たところ＝客观的「刚刚」</b>（时间上真的刚过）；<b>たばかり＝主观的「才刚」</b>（说话人觉得时间短：先月結婚したばかりだ，虽已过一个月）。</p>
+    </div>
+
+    <h3 class="subhead rv"><em>09</em>まで／までに、うちに／あいだに</h3>
+    <div class="tt-wrap rv">
+      <table class="tt">
+        <thead><tr><th>对</th><th>区别</th><th>例句</th></tr></thead>
+        <tbody>
+          <tr><td><b>まで / までに</b></td><td>まで＝一直持续到…；までに＝在…之前（截止点，一次性）</td><td>5時まで待つ／5時までに出す</td></tr>
+          <tr><td><b>うちに / あいだに</b></td><td>うちに＝趁着（状态改变之前）；あいだに＝在…期间（两件事同时）</td><td>若いうちに学ぶ／夏休みのあいだに旅行した</td></tr>
+          <tr><td><b>ながら / つつ</b></td><td>ながら＝一边…一边（口语）；つつ＝同义，书面，且可表逆接</td><td>歩きながら考える／悪いと知りつつ行った</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subhead rv"><em>10</em>使役·被动·使役被动：一张表认清谁在动</h3>
+    <div class="tt-wrap rv">
+      <table class="tt">
+        <thead><tr><th>形式</th><th>一类（書く）</th><th>二类（食べる）</th><th>三类（する／来る）</th><th>谁做什么</th></tr></thead>
+        <tbody>
+          <tr><td><b>被动</b></td><td>書かれる</td><td>食べられる</td><td>される／来られる</td><td>被…（受害感可用）</td></tr>
+          <tr><td><b>使役</b></td><td>書かせる</td><td>食べさせる</td><td>させる／来させる</td><td>让…做</td></tr>
+          <tr><td><b>使役被动</b></td><td>書かされる</td><td>食べさせられる</td><td>させられる／来させられる</td><td>被迫做</td></tr>
+          <tr><td><b>可能</b></td><td>書ける</td><td>食べられる</td><td>できる／来られる</td><td>能…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note rv d1" style="margin-top:14px">
+      <h5>二类动词的坑</h5>
+      <p>二类动词的<b>被动形与可能形同形</b>（食べられる＝被吃／能吃），只能靠语境判断；一类动词两者不同形（書かれる／書ける），反而清楚。<b>使役被动</b>一律「あ段＋される」，二类是「させられる」——考试最爱在这一格设选项。</p>
+    </div>
+
+    <h3 class="subhead rv"><em>11</em>音便：て形／た形只有三条规则</h3>
+    <div class="tt-wrap rv">
+      <table class="tt">
+        <thead><tr><th>音便</th><th>词尾</th><th>变成</th><th>例</th></tr></thead>
+        <tbody>
+          <tr><td><b>い音便</b></td><td>く／ぐ</td><td>いて・いだ（ぐ→いで）</td><td>書く→書いて／泳ぐ→泳いで</td></tr>
+          <tr><td><b>促音便</b></td><td>う・つ・る</td><td>って・った</td><td>買う→買って／待つ→待って／取る→取って</td></tr>
+          <tr><td><b>撥音便</b></td><td>ぬ・ぶ・む</td><td>んで・んだ</td><td>死ぬ→死んで／遊ぶ→遊んで／読む→読んで</td></tr>
+          <tr><td><b>例外</b></td><td>行く</td><td>行って（不是「行いて」）</td><td>行ってきます</td></tr>
+          <tr><td><b>特殊</b></td><td>する／来る</td><td>して／来て（きて）</td><td>してしまった／来てください</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subhead rv"><em>12</em>形容词与形容动词：两套活用别串</h3>
+    <div class="tt-wrap rv">
+      <table class="tt">
+        <thead><tr><th>形</th><th>い形容词（高い）</th><th>な形容词（静か）</th></tr></thead>
+        <tbody>
+          <tr><td><b>现在肯定</b></td><td>高い</td><td>静かだ</td></tr>
+          <tr><td><b>现在否定</b></td><td>高くない／高くありません</td><td>静かではない／静かじゃない</td></tr>
+          <tr><td><b>过去肯定</b></td><td>高かった</td><td>静かだった</td></tr>
+          <tr><td><b>过去否定</b></td><td>高くなかった</td><td>静かではなかった</td></tr>
+          <tr><td><b>て形</b></td><td>高くて</td><td>静かで</td></tr>
+          <tr><td><b>假定形</b></td><td>高ければ</td><td>静かなら（ば）</td></tr>
+          <tr><td><b>修饰名词</b></td><td>高い本</td><td>静かな部屋</td></tr>
+          <tr><td><b>副词化</b></td><td>高くなる</td><td>静かになる</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note rv d1" style="margin-top:14px">
+      <h5>两个必须单独记的词</h5>
+      <p><b>いい</b>（好）按「よい」变：よくない／よかった／よければ——「いくない」「いかった」都是错的。<br>
+      <b>ない</b> 本身是形容词：ない→なかった／なくて。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 柒 敬语 ============ -->
+<section class="sec sec--tint" id="keigo">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div class="sec__num">柒</div>
       <div>
         <h2 class="sec__title">敬语：一套表，三类词</h2>
         <p class="sec__sub">203 每年必考 1–2 题敬语。别背整段课文，只背这张<b>特殊动词对照表</b>——因为考试就考这些。</p>
@@ -1143,11 +1419,11 @@ html[data-fs="3"] body{ zoom:1.18; }
   </div>
 </section>
 
-<!-- ============ 柒 完形 ============ -->
+<!-- ============ 捌 完形 ============ -->
 <section class="sec" id="cloze">
   <div class="wrap">
     <div class="sec__head rv">
-      <div class="sec__num">柒</div>
+      <div class="sec__num">捌</div>
       <div>
         <h2 class="sec__title">完形填空 20 分：只考五类东西</h2>
         <p class="sec__sub">一篇短文挖 20 个空，考的无非：<b>接续词、助词、形式名词、变形、敬语/授受</b>。把这五类做成条件反射，这 20 分就是白送的。</p>
@@ -1194,11 +1470,11 @@ html[data-fs="3"] body{ zoom:1.18; }
   </div>
 </section>
 
-<!-- ============ 捌 作文 ============ -->
+<!-- ============ 玖 作文 ============ -->
 <section class="sec sec--tint" id="writing">
   <div class="wrap">
     <div class="sec__head rv">
-      <div class="sec__num">捌</div>
+      <div class="sec__num">玖</div>
       <div>
         <h2 class="sec__title">作文 25 分：考场上只做「填空题」</h2>
         <p class="sec__sub">作文是整张卷子里<b>唯一可以提前准备到 80% 的题</b>。四段骨架＋20 个万能句＋两个主题素材，足够应付绝大多数题目。</p>
@@ -1258,11 +1534,11 @@ html[data-fs="3"] body{ zoom:1.18; }
   </div>
 </section>
 
-<!-- ============ 玖 翻译 ============ -->
+<!-- ============ 拾 翻译 ============ -->
 <section class="sec" id="trans">
   <div class="wrap">
     <div class="sec__head rv">
-      <div class="sec__num">玖</div>
+      <div class="sec__num">拾</div>
       <div>
         <h2 class="sec__title">翻译 15 分：切分—找主干—重排</h2>
         <p class="sec__sub">日语长句的结构是「修饰语在前，谓语在最后」。翻译的本质是<b>把倒装的积木拆开，按中文顺序重搭</b>。三步法，够用。</p>
@@ -1293,11 +1569,11 @@ html[data-fs="3"] body{ zoom:1.18; }
   </div>
 </section>
 
-<!-- ============ 拾 日程 ============ -->
+<!-- ============ 拾壹 日程 ============ -->
 <section class="sec sec--tint" id="schedule">
   <div class="wrap">
     <div class="sec__head rv">
-      <div class="sec__num">拾</div>
+      <div class="sec__num">拾壹</div>
       <div>
         <h2 class="sec__title">45 天日语日程（配合你的线下班）</h2>
         <p class="sec__sub">你有班、有单词量、N2/N3 之间——说明<b>基础不缺，缺的是「考试化」</b>。所以课要上，但课后 60–90 分钟必须做这三件事，否则上课只是「听懂」。</p>
@@ -1361,7 +1637,7 @@ html[data-fs="3"] body{ zoom:1.18; }
 <footer class="foot">
   <div class="wrap">
     <span>日本語 203 · 变形与高频考点 &nbsp;|&nbsp; 为中国美术学院书法（篆刻）方向整理 &nbsp;|&nbsp; 分值结构以当年大纲为准</span>
-    <span><a href="index.html">赵孟頫脉络</a> &nbsp;·&nbsp; <a href="zz.html">政治重点</a> &nbsp;·&nbsp; <a href="plan.html">五十日作战室</a></span>
+    <span><a href="index.html">赵孟頫脉络</a> &nbsp;·&nbsp; <a href="zz.html">政治重点</a> &nbsp;·&nbsp; <a href="plan.html">五十日作战室</a> &nbsp;·&nbsp; <a href="quiz.html">刷题台</a></span>
   </div>
 </footer>
 

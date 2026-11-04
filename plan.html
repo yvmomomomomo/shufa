@@ -240,6 +240,19 @@ img{ max-width:100%; }
   color:var(--ink-4);
 }
 
+/* ---------- 小节标题（表格分组用） ---------- */
+.subhead{
+  display:flex; align-items:baseline; gap:10px;
+  font-family:var(--kai); font-weight:400;
+  font-size:clamp(17px,2.2vw,20px); letter-spacing:.08em;
+  margin:clamp(26px,3.4vw,40px) 0 12px; color:var(--ink);
+}
+.subhead em{
+  font-family:var(--mono); font-style:normal; font-size:11px;
+  letter-spacing:.16em; color:var(--cinnabar); margin-right:12px;
+}
+.subhead::after{ content:""; flex:1; height:1px; background:var(--line-2); }
+
 /* ---------- 通用卡片 ---------- */
 .card{
   background:rgba(255,252,246,.55);
@@ -610,7 +623,7 @@ input[type=range]::-moz-range-thumb{ width:13px; height:13px; border-radius:50%;
 
 table.tt{ width:100%; border-collapse:collapse; font-size:13.5px; }
 table.tt th,table.tt td{ text-align:left; padding:11px 12px; border-bottom:1px solid var(--line-2); vertical-align:top; }
-table.tt th{ font-weight:400; font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; color:var(--ink-3); border-bottom:1px solid var(--line); }
+table.tt th{ font-weight:400; font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; color:var(--ink-3); border-bottom:1px solid var(--line); white-space:nowrap; }
 table.tt td b{ font-weight:400; color:var(--cinnabar); }
 table.tt .nw{ white-space:nowrap; }
 table.tt tr:hover td{ background:rgba(166,52,42,.035); }
@@ -865,6 +878,7 @@ html[data-fs="3"] body{ zoom:1.18; }
     <a href="#seal">篆刻</a>
     <a href="#weekly">检查表</a>
     <a href="#mind">心态</a>
+    <a href="quiz.html" style="color:var(--cinnabar)">刷题</a>
   </div>
   <a class="nav__cta" href="index.html">← 赵孟頫脉络</a>
 </nav>
@@ -1464,7 +1478,7 @@ html[data-fs="3"] body{ zoom:1.18; }
 <footer class="foot">
   <div class="wrap">
     <span>五十日作战室 &nbsp;|&nbsp; 为中国美术学院书法专硕（日语 203）整理 &nbsp;|&nbsp; 分值结构与科目以当年大纲、招生目录为准</span>
-    <span><a href="index.html">赵孟頫脉络</a> &nbsp;·&nbsp; <a href="jp.html">日语 203</a> &nbsp;·&nbsp; <a href="zz.html">政治重点</a> &nbsp;·&nbsp; <a href="#ledger">分数账本</a></span>
+    <span><a href="index.html">赵孟頫脉络</a> &nbsp;·&nbsp; <a href="jp.html">日语 203</a> &nbsp;·&nbsp; <a href="zz.html">政治重点</a> &nbsp;·&nbsp; <a href="quiz.html">刷题台</a> &nbsp;·&nbsp; <a href="#ledger">分数账本</a></span>
   </div>
 </footer>
 

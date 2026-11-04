@@ -240,6 +240,19 @@ img{ max-width:100%; }
   color:var(--ink-4);
 }
 
+/* ---------- 小节标题（表格分组用） ---------- */
+.subhead{
+  display:flex; align-items:baseline; gap:10px;
+  font-family:var(--kai); font-weight:400;
+  font-size:clamp(17px,2.2vw,20px); letter-spacing:.08em;
+  margin:clamp(26px,3.4vw,40px) 0 12px; color:var(--ink);
+}
+.subhead em{
+  font-family:var(--mono); font-style:normal; font-size:11px;
+  letter-spacing:.16em; color:var(--cinnabar); margin-right:12px;
+}
+.subhead::after{ content:""; flex:1; height:1px; background:var(--line-2); }
+
 /* ---------- 通用卡片 ---------- */
 .card{
   background:rgba(255,252,246,.55);
@@ -610,7 +623,7 @@ input[type=range]::-moz-range-thumb{ width:13px; height:13px; border-radius:50%;
 
 table.tt{ width:100%; border-collapse:collapse; font-size:13.5px; }
 table.tt th,table.tt td{ text-align:left; padding:11px 12px; border-bottom:1px solid var(--line-2); vertical-align:top; }
-table.tt th{ font-weight:400; font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; color:var(--ink-3); border-bottom:1px solid var(--line); }
+table.tt th{ font-weight:400; font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; color:var(--ink-3); border-bottom:1px solid var(--line); white-space:nowrap; }
 table.tt td b{ font-weight:400; color:var(--cinnabar); }
 table.tt .nw{ white-space:nowrap; }
 table.tt tr:hover td{ background:rgba(166,52,42,.035); }
@@ -869,6 +882,7 @@ html[data-fs="3"] body{ zoom:1.18; }
     <a href="#essay">大题</a>
     <a href="#phrases">万能句</a>
     <a href="#plan45">日程</a>
+    <a href="quiz.html" style="color:var(--cinnabar)">刷题</a>
   </div>
   <a class="nav__cta" href="plan.html">作战室 →</a>
 </nav>
@@ -1517,7 +1531,7 @@ html[data-fs="3"] body{ zoom:1.18; }
 <footer class="foot">
   <div class="wrap">
     <span>政治重点 · 零基础 45 天 &nbsp;|&nbsp; 分值结构与表述以当年大纲、官方文件为准</span>
-    <span><a href="index.html">赵孟頫脉络</a> &nbsp;·&nbsp; <a href="jp.html">日语 203</a> &nbsp;·&nbsp; <a href="plan.html">作战室</a></span>
+    <span><a href="index.html">赵孟頫脉络</a> &nbsp;·&nbsp; <a href="jp.html">日语 203</a> &nbsp;·&nbsp; <a href="plan.html">作战室</a> &nbsp;·&nbsp; <a href="quiz.html">刷题台</a></span>
   </div>
 </footer>
 
